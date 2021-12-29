@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2018/06/21 15:09:19.000.815,C:\Projetos\Componentes\CompjulDXE\source\DateEditJulSRX.pas=</Transaction>
+    <Transaction>2018/06/21 15:09:19.000.820,C:\Projetos\Componentes\CompjulDXE\source\DBGridJul.pas=</Transaction>
+    <Transaction>2018/06/21 15:09:19.000.803,C:\Projetos\Componentes\CompjulDXE\source\CalendarFormJul.pas=</Transaction>
+    <Transaction>2018/06/21 15:09:19.000.832,C:\Projetos\Componentes\CompjulDXE\source\TimeEditJul.pas=</Transaction>
+    <Transaction>2018/06/21 15:09:19.000.831,C:\Projetos\Componentes\CompjulDXE\source\StringGridJul.pas=</Transaction>
+    <Transaction>2018/06/21 15:09:19.000.808,C:\Projetos\Componentes\CompjulDXE\source\ComboBoxJul.pas=</Transaction>
+    <Transaction>2018/06/21 15:09:19.000.824,C:\Projetos\Componentes\CompjulDXE\source\ListBoxJul.pas=</Transaction>
+    <Transaction>2018/06/21 15:09:19.000.789,C:\Projetos\Componentes\CompjulDXE\source\BitBtnJul.pas=</Transaction>
+    <Transaction>2018/06/21 15:09:19.000.821,C:\Projetos\Componentes\CompjulDXE\source\EditJul.pas=</Transaction>
+    <Transaction>2018/06/21 15:09:19.000.805,C:\Projetos\Componentes\CompjulDXE\source\CheckBoxJul.pas=</Transaction>
+    <Transaction>2018/06/21 15:09:19.000.813,C:\Projetos\Componentes\CompjulDXE\source\DateDlgJul.pas=</Transaction>
+    <Transaction>2018/06/21 15:09:19.000.828,C:\Projetos\Componentes\CompjulDXE\source\NumEditJul.pas=</Transaction>
+    <Transaction>2018/06/21 15:09:19.000.825,C:\Projetos\Componentes\CompjulDXE\source\MaskEditJul.pas=</Transaction>
+    <Transaction>2018/06/21 15:09:19.000.823,C:\Projetos\Componentes\CompjulDXE\source\EditNumKeyJul.pas=</Transaction>
+    <Transaction>2018/06/21 15:09:19.000.822,C:\Projetos\Componentes\CompjulDXE\source\EditKeyJul.pas=</Transaction>
+    <Transaction>2018/06/21 15:09:19.000.827,C:\Projetos\Componentes\CompjulDXE\source\MemoJul.pas=</Transaction>
+    <Transaction>2018/06/21 15:09:19.000.807,C:\Projetos\Componentes\CompjulDXE\source\CheckListBoxJul.pas=</Transaction>
+    <Transaction>2018/06/21 15:09:19.000.811,C:\Projetos\Componentes\CompjulDXE\source\CurrEditJul.pas=</Transaction>
+    <Transaction>2018/06/21 15:09:19.000.818,C:\Projetos\Componentes\CompjulDXE\source\DateTimeJul.pas=</Transaction>
+    <Transaction>2018/06/21 15:09:19.000.810,C:\Projetos\Componentes\CompjulDXE\source\ComunsJul.pas=</Transaction>
+    <Transaction>2018/06/21 15:09:19.000.830,C:\Projetos\Componentes\CompjulDXE\source\RelVisual.pas=</Transaction>
+    <Transaction>2018/06/21 15:09:19.000.830,C:\Projetos\Componentes\CompjulDXE\source\RegJul.pas=</Transaction>
+    <Transaction>2018/06/21 15:10:16.000.872,C:\Projetos\Componentes\CompjulDXE\source\Juliano.dproj=C:\Projetos\Componentes\CompBlueField\Source\BlueFieldvcl.dproj</Transaction>
+    <Transaction>2018/06/21 15:15:54.000.680,=C:\Projetos\Componentes\CompBlueField\Source\bfEdit.pas</Transaction>
+    <Transaction>2018/06/21 15:16:01.000.800,=vcl.dcp</Transaction>
+    <Transaction>2018/06/21 15:16:01.000.757,=rtl.dcp</Transaction>
+    <Transaction>2018/06/21 15:25:36.000.177,=C:\Projetos\Componentes\CompBlueField\Source\bf_Registra.pas</Transaction>
+    <Transaction>2018/06/21 15:27:46.000.338,=C:\Projetos\Componentes\CompBlueField\Source\bfNumEdit.pas</Transaction>
+    <Transaction>2018/06/21 15:29:43.000.593,=C:\Projetos\Componentes\CompBlueField\Source\RelVisual.pas</Transaction>
+    <Transaction>2018/06/21 15:30:15.000.058,=C:\Projetos\Componentes\CompBlueField\Source\bfComboBox.pas</Transaction>
+    <Transaction>2018/06/21 15:32:24.000.773,=dsnap.dcp</Transaction>
+    <Transaction>2018/06/21 15:32:24.000.792,=dbrtl.dcp</Transaction>
+    <Transaction>2018/06/21 15:36:09.000.817,=C:\Projetos\Componentes\CompBlueField\Source\bfdbEdit.pas</Transaction>
+    <Transaction>2018/06/21 15:48:27.000.590,=C:\Projetos\Componentes\CompBlueField\Source\bfdbGrid.pas</Transaction>
+    <Transaction>2018/06/21 15:52:16.000.443,=C:\Projetos\Componentes\CompBlueField\Source\bfMemo.pas</Transaction>
+    <Transaction>2018/06/21 15:55:26.000.551,=C:\Projetos\Componentes\CompBlueField\Source\bfdbComboBox.pas</Transaction>
+    <Transaction>2018/06/21 15:55:32.000.814,=C:\Projetos\Componentes\CompBlueField\Source\bfdbMemo.pas</Transaction>
+    <Transaction>2018/07/16 18:33:43.000.272,C:\Users\Public\Fontes\BlueField\CompBlueField\Source\RelVisual.pas=</Transaction>
+    <Transaction>2018/07/16 18:34:23.000.598,=Juliano.dcp</Transaction>
+    <Transaction>2018/07/16 18:35:26.000.821,=Juliano.dcp</Transaction>
+    <Transaction>2018/08/09 22:19:21.000.183,=C:\Users\Public\Fontes\BlueField\CompBlueField\Source\RelVisual.pas</Transaction>
+    <Transaction>2018/08/09 22:21:25.000.472,C:\Users\Public\Fontes\BlueField\CompBlueField\Source\RelVisual.pas=C:\Users\Public\Fontes\BlueField\CompBlueField\Source\RelVisualBlue.pas</Transaction>
+  </Transactions>
+</BorlandProject>

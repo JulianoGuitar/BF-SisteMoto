@@ -1,0 +1,47 @@
+unit uConsultaCNPJunit;
+
+interface
+uses
+  Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms;
+
+function ConsultaCNPJ(sOpCNPJ:pChar): pChar;
+
+implementation
+
+uses uConsultaCNPJ;
+
+function ConsultaCNPJ(sOpCNPJ:pChar): pChar;
+begin
+  result := '';
+  if (sOpCNPJ = '')
+  then exit;
+
+  fmConsultaCNPJ := TfmConsultaCNPJ.Create(Application);
+  //fmConsultaCNPJ.Consulta_CNPJ(CgcCpfPic(trim(edtCNPJ.Text)));
+  //fmConsultaCNPJ.EditCNPJ.Text := CgcCpfPic(trim(edtCNPJ.Text));
+  fmConsultaCNPJ.EditCNPJ.Text := sOpCNPJ;
+  fmConsultaCNPJ.ShowModal;
+
+  if (fmConsultaCNPJ.ModalResult = mrOk)
+  and (trim(fmConsultaCNPJ.EditRazaoSocial.Text) <> '')
+  then
+  begin
+    //boRecebe := false;
+    cdsNOME.AsString := trim(fmConsultaCNPJ.EditRazaoSocial.Text);
+    //edtNome_Fantasia.Text := trim(fmConsultaCNPJ.EditFantasia.Text);
+    cdsUF.AsString := trim(fmConsultaCNPJ.EditUF.Text);
+    cdsNOME_CIDADE.AsString := trim(fmConsultaCNPJ.EditCidade.Text);
+    cdsCOD_CIDADE.AsString :=  trim(fmconsultaCNPJ.EditIBGE.Text);
+    cdsENDERECO.AsString := trim(copy(trim(fmConsultaCNPJ.EditEndereco.Text),1,60));
+    cdsNUMERO.AsString := trim(fmConsultaCNPJ.EditNumero.Text);
+    cdsCOMPLEMENTO.AsString := trim(fmConsultaCNPJ.EditComplemento.Text);
+    cdsBAIRRO.AsString := trim(fmConsultaCNPJ.EditBairro.Text);
+    //edtCEP.Text := trim(Tira_Mascara(fmConsultaCNPJ.EditCEP.Text));
+    //if edtCidade.CanFocus then edtCidade.SetFocus;
+    //boRecebe := true;
+  end;
+
+  fmConsultaCNPJ.Release;
+end;
+
+end.

@@ -1,0 +1,47 @@
+package BlueFieldvcl;
+{$R *.res}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST ON}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'Componentes BlueField © 2018 þ®ø¥¡§µå£ 1.0.0.0'}
+{$IMPLICITBUILD ON}
+
+requires
+  vcl,
+  rtl,
+  dbrtl,
+  dsnap,
+  vcldb;
+
+contains
+  bfEdit in 'bfEdit.pas',
+  bf_Registra in 'bf_Registra.pas',
+  bfNumEdit in 'bfNumEdit.pas',
+  bfComboBox in 'bfComboBox.pas',
+  bfdbEdit in 'bfdbEdit.pas',
+  bfdbGrid in 'bfdbGrid.pas',
+  bfMemo in 'bfMemo.pas',
+  bfdbComboBox in 'bfdbComboBox.pas',
+  bfdbMemo in 'bfdbMemo.pas',
+  RelVisualBlue in 'RelVisualBlue.pas',
+  bfdbEditButton in 'bfdbEditButton.pas';
+
+end.

@@ -1,0 +1,9 @@
+unit uConsultaCNPJunit;
+
+interface
+
+implementation
+
+uses uConsultaCNPJ;
+
+end.

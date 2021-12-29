@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2019/10/02 16:20:20.000.983,C:\Projetos\BlueField\DllConsultaCNPJ\ConsultaCNPJ.dproj=C:\Users\Juliano\Documents\RAD Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2019/10/02 16:23:38.000.770,=C:\Projetos\BlueField\DllConsultaCNPJ\uConsultaCNPJ.pas</Transaction>
+    <Transaction>2019/10/02 16:26:56.000.150,=C:\Projetos\BlueField\DllConsultaCNPJ\Unit1.pas</Transaction>
+    <Transaction>2019/10/02 16:27:16.000.730,C:\Projetos\BlueField\DllConsultaCNPJ\Unit1.pas=C:\Projetos\BlueField\DllConsultaCNPJ\uConsultaCNPJunit.pas</Transaction>
+  </Transactions>
+</BorlandProject>

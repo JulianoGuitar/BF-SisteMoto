@@ -1,0 +1,84 @@
+﻿	<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+		<PropertyGroup>
+			<ProjectGuid>{2D137C27-F284-4378-B8BF-060BCFD3B853}</ProjectGuid>
+		</PropertyGroup>
+		<ItemGroup>
+			<Projects Include="CompBlueField\Source\BlueFieldvcl.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="bplBase\BPLBase.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="Menu\BlueField.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="bplSGD\SGD.dproj">
+				<Dependencies/>
+			</Projects>
+			<Projects Include="bplSGC\SGC.dproj">
+				<Dependencies/>
+			</Projects>
+		</ItemGroup>
+		<ProjectExtensions>
+			<Borland.Personality>Default.Personality.12</Borland.Personality>
+			<Borland.ProjectType/>
+			<BorlandProject>
+				<Default.Personality/>
+			</BorlandProject>
+		</ProjectExtensions>
+		<Target Name="BlueFieldvcl">
+			<MSBuild Projects="CompBlueField\Source\BlueFieldvcl.dproj"/>
+		</Target>
+		<Target Name="BlueFieldvcl:Clean">
+			<MSBuild Projects="CompBlueField\Source\BlueFieldvcl.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="BlueFieldvcl:Make">
+			<MSBuild Projects="CompBlueField\Source\BlueFieldvcl.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="BPLBase">
+			<MSBuild Projects="bplBase\BPLBase.dproj"/>
+		</Target>
+		<Target Name="BPLBase:Clean">
+			<MSBuild Projects="bplBase\BPLBase.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="BPLBase:Make">
+			<MSBuild Projects="bplBase\BPLBase.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="BlueField">
+			<MSBuild Projects="Menu\BlueField.dproj"/>
+		</Target>
+		<Target Name="BlueField:Clean">
+			<MSBuild Projects="Menu\BlueField.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="BlueField:Make">
+			<MSBuild Projects="Menu\BlueField.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="SGD">
+			<MSBuild Projects="bplSGD\SGD.dproj"/>
+		</Target>
+		<Target Name="SGD:Clean">
+			<MSBuild Projects="bplSGD\SGD.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="SGD:Make">
+			<MSBuild Projects="bplSGD\SGD.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="SGC">
+			<MSBuild Projects="bplSGC\SGC.dproj"/>
+		</Target>
+		<Target Name="SGC:Clean">
+			<MSBuild Projects="bplSGC\SGC.dproj" Targets="Clean"/>
+		</Target>
+		<Target Name="SGC:Make">
+			<MSBuild Projects="bplSGC\SGC.dproj" Targets="Make"/>
+		</Target>
+		<Target Name="Build">
+			<CallTarget Targets="BlueFieldvcl;BPLBase;BlueField;SGD;SGC"/>
+		</Target>
+		<Target Name="Clean">
+			<CallTarget Targets="BlueFieldvcl:Clean;BPLBase:Clean;BlueField:Clean;SGD:Clean;SGC:Clean"/>
+		</Target>
+		<Target Name="Make">
+			<CallTarget Targets="BlueFieldvcl:Make;BPLBase:Make;BlueField:Make;SGD:Make;SGC:Make"/>
+		</Target>
+		<Import Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')" Project="$(BDS)\Bin\CodeGear.Group.Targets"/>
+	</Project>
