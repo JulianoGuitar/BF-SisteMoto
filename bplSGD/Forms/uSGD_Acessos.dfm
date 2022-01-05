@@ -1,9 +1,9 @@
 object fmSGD_AcessoS: TfmSGD_AcessoS
   Left = 0
   Top = 0
-  Width = 745
-  Height = 430
   Caption = 'SGD003 | Acessos'
+  ClientHeight = 391
+  ClientWidth = 729
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -34,6 +34,10 @@ object fmSGD_AcessoS: TfmSGD_AcessoS
       Caption = 'Consulta'
       ImageIndex = 1
       OnShow = tsConsultaShow
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         721
         363)
@@ -60,6 +64,8 @@ object fmSGD_AcessoS: TfmSGD_AcessoS
           Width = 88
           Height = 21
           Caption = 'Consultar'
+          DoubleBuffered = True
+          ParentDoubleBuffered = False
           TabOrder = 3
           OnClick = btConsultaClick
         end
@@ -177,6 +183,8 @@ object fmSGD_AcessoS: TfmSGD_AcessoS
         Height = 25
         Anchors = [akRight, akBottom]
         Caption = 'Visualizar'
+        DoubleBuffered = True
+        ParentDoubleBuffered = False
         TabOrder = 2
         OnClick = btIncluiClick
       end
@@ -187,10 +195,12 @@ object fmSGD_AcessoS: TfmSGD_AcessoS
         Height = 25
         Anchors = [akRight, akBottom]
         Caption = 'Transportar'
+        DoubleBuffered = True
+        NumGlyphs = 2
+        ParentDoubleBuffered = False
         TabOrder = 1
         Visible = False
         OnClick = btTransportaClick
-        NumGlyphs = 2
       end
       object btImprime: TBitBtn
         Left = 8
@@ -199,12 +209,18 @@ object fmSGD_AcessoS: TfmSGD_AcessoS
         Height = 25
         Anchors = [akLeft, akBottom]
         Caption = 'Imprimir'
+        DoubleBuffered = True
+        ParentDoubleBuffered = False
         TabOrder = 3
         OnClick = btImprimeClick
       end
     end
     object tsCadastro: TTabSheet
       Caption = 'Cadastro'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         721
         363)
@@ -215,10 +231,12 @@ object fmSGD_AcessoS: TfmSGD_AcessoS
         Height = 25
         Anchors = [akRight, akBottom]
         Caption = 'Salvar'
+        DoubleBuffered = True
         Enabled = False
+        NumGlyphs = 2
+        ParentDoubleBuffered = False
         TabOrder = 2
         OnClick = btSalvaClick
-        NumGlyphs = 2
       end
       object btDesiste: TBitBtn
         Left = 447
@@ -227,9 +245,11 @@ object fmSGD_AcessoS: TfmSGD_AcessoS
         Height = 25
         Anchors = [akRight, akBottom]
         Caption = 'Desistir'
+        DoubleBuffered = True
+        NumGlyphs = 2
+        ParentDoubleBuffered = False
         TabOrder = 3
         OnClick = btDesisteClick
-        NumGlyphs = 2
       end
       object btExclui: TBitBtn
         Left = 3
@@ -238,7 +258,9 @@ object fmSGD_AcessoS: TfmSGD_AcessoS
         Height = 25
         Anchors = [akLeft, akBottom]
         Caption = 'E&xcluir!'
+        DoubleBuffered = True
         Enabled = False
+        ParentDoubleBuffered = False
         TabOrder = 1
         TabStop = False
         OnClick = btExcluiClick
@@ -350,7 +372,7 @@ object fmSGD_AcessoS: TfmSGD_AcessoS
           OnExit = DBEdit3Exit
           ClickKey = 122
           NumGlyphs = 1
-          Text = 'DBEDIT3'
+          Text = 'DBEdit3'
           OnButtonClick = DBEdit3ButtonClick
         end
         object DBEdit4: TbfdbEdit
@@ -392,7 +414,7 @@ object fmSGD_AcessoS: TfmSGD_AcessoS
           OnExit = DBEdit5Exit
           ClickKey = 122
           NumGlyphs = 1
-          Text = 'DBEDIT5'
+          Text = 'DBEdit5'
           OnButtonClick = DBEdit5ButtonClick
         end
         object DBEdit6: TbfdbEdit
@@ -427,7 +449,6 @@ object fmSGD_AcessoS: TfmSGD_AcessoS
           Font.Height = -11
           Font.Name = 'Tahoma'
           Font.Style = []
-          ItemHeight = 13
           Items.Strings = (
             'S'
             'N')
@@ -459,9 +480,11 @@ object fmSGD_AcessoS: TfmSGD_AcessoS
     Height = 25
     Anchors = [akRight, akBottom]
     Caption = 'Sair'
+    DoubleBuffered = True
+    NumGlyphs = 2
+    ParentDoubleBuffered = False
     TabOrder = 2
     OnClick = btSaiClick
-    NumGlyphs = 2
   end
   object btInclui: TBitBtn
     Tag = 1
@@ -471,6 +494,8 @@ object fmSGD_AcessoS: TfmSGD_AcessoS
     Height = 25
     Anchors = [akRight, akBottom]
     Caption = 'Incluir'
+    DoubleBuffered = True
+    ParentDoubleBuffered = False
     TabOrder = 1
     OnClick = btIncluiClick
   end

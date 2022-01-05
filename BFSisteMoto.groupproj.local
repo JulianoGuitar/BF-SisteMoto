@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2018/05/22 13:47:59.000.742,C:\Projetos\BlueField\Bluefield.groupproj=C:\Users\Juliano\Documents\RAD Studio\Projects\ProjectGroup1.groupproj</Transaction>
+    <Transaction>2022/01/05 11:04:54.129,E:\Fontes\Delphi\BF-SisteMoto\BFSisteMoto.groupproj=E:\Fontes\Delphi\BF-SisteMoto\Bluefield.groupproj</Transaction>
+  </Transactions>
+	<Default.Personality>
+		<Projects ActiveProject="E:\Fontes\Delphi\BF-SisteMoto\bplSGV\SGV.dproj"/>
+	</Default.Personality>
+</BorlandProject>

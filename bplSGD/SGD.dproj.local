@@ -1,22 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2018/06/15 16:21:05.000.706,C:\Projetos\BlueField\bplSFP\Forms\uSFP_FUNCIONARIOS.pas=C:\Projetos\BlueField\bplSGD\Forms\uSGD_EMPRESAS.pas</Transaction>
-    <Transaction>2018/06/15 16:21:05.000.706,C:\Projetos\BlueField\bplSFP\Forms\uSFP_FUNCIONARIOS.dfm=C:\Projetos\BlueField\bplSGD\Forms\uSGD_EMPRESAS.dfm</Transaction>
+    <Transaction>2018/06/15 16:21:05.000.706,C:\Projetos\BlueField\bplSGD\Forms\uSGD_EMPRESAS.pas=C:\Projetos\BlueField\bplSFP\Forms\uSFP_FUNCIONARIOS.pas</Transaction>
+    <Transaction>2018/06/15 16:21:05.000.706,C:\Projetos\BlueField\bplSGD\Forms\uSGD_EMPRESAS.dfm=C:\Projetos\BlueField\bplSFP\Forms\uSFP_FUNCIONARIOS.dfm</Transaction>
     <Transaction>2018/06/18 14:31:00.000.018,C:\Projetos\BlueField\bplSFP\Forms\uSFP_FUNCIONARIOS.pas=</Transaction>
     <Transaction>2018/06/20 17:00:19.000.988,=C:\Projetos\BlueField\bplSGD\Forms\uSGD_EMPRESAS.pas</Transaction>
     <Transaction>2018/06/21 16:34:36.000.507,=C:\Projetos\Componentes\Bpl\BlueFieldvcl.bpl</Transaction>
     <Transaction>2018/06/21 16:35:22.000.018,=BlueFieldvcl.dcp</Transaction>
     <Transaction>2018/06/25 16:07:50.000.732,=C:\Projetos\BlueField\bplSGD\Forms\uSGD_CIDADES.pas</Transaction>
-    <Transaction>2018/06/27 14:49:45.000.066,C:\Projetos\BlueField\bplSGD\Forms\uSGD_UF.pas=C:\Projetos\BlueField\bplSGD\Forms\uSGD_Modulos.pas</Transaction>
-    <Transaction>2018/06/27 14:49:45.000.066,C:\Projetos\BlueField\bplSGD\Forms\uSGD_UF.dfm=C:\Projetos\BlueField\bplSGD\Forms\uSGD_Modulos.dfm</Transaction>
+    <Transaction>2018/06/27 14:49:45.000.066,C:\Projetos\BlueField\bplSGD\Forms\uSGD_Modulos.pas=C:\Projetos\BlueField\bplSGD\Forms\uSGD_UF.pas</Transaction>
+    <Transaction>2018/06/27 14:49:45.000.066,C:\Projetos\BlueField\bplSGD\Forms\uSGD_Modulos.dfm=C:\Projetos\BlueField\bplSGD\Forms\uSGD_UF.dfm</Transaction>
     <Transaction>2018/07/04 14:33:08.000.027,=C:\Projetos\BlueField\bplSGD\Forms\uSGD_Modulos.pas</Transaction>
     <Transaction>2018/07/04 16:07:53.000.621,=C:\Projetos\BlueField\bplSFP\Forms\uSFP_RUBRICAS.pas</Transaction>
     <Transaction>2018/07/04 16:30:52.000.961,C:\Projetos\BlueField\bplSFP\Forms\uSFP_RUBRICAS.pas=</Transaction>
     <Transaction>2018/07/16 15:49:11.000.434,=BlueFieldvcl.dcp</Transaction>
     <Transaction>2018/07/16 15:55:12.000.180,C:\Projetos\Componentes\Bpl\BlueFieldvcl.bpl=</Transaction>
-    <Transaction>2018/07/26 15:08:13.000.525,=C:\Projetos\BlueField\bplSGD\Forms\uSGD_UF.pas</Transaction>
     <Transaction>2018/07/26 15:08:13.000.008,=C:\Projetos\BlueField\bplSGD\Forms\uSGD_CIDADES.pas</Transaction>
+    <Transaction>2018/07/26 15:08:13.000.525,=C:\Projetos\BlueField\bplSGD\Forms\uSGD_UF.pas</Transaction>
     <Transaction>2018/08/15 14:44:41.000.625,=C:\Projetos\Bluefield\trunk\bplSGD\Forms\uSGD_PAISES.pas</Transaction>
     <Transaction>2019/07/05 18:13:26.000.762,=C:\Projetos\Bluefield\trunk\bplSGD\Forms\uSGD_CONFIG_EMAIL.pas</Transaction>
     <Transaction>2019/07/08 15:33:51.000.050,=C:\Projetos\Bluefield\trunk\bplSGD\Forms\uSGD_BANCOS.pas</Transaction>

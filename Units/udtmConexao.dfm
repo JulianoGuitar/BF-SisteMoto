@@ -1,31 +1,50 @@
 object dtmConexao: TdtmConexao
   OldCreateOrder = False
   OnCreate = DataModuleCreate
-  Left = 216
-  Top = 117
   Height = 296
   Width = 326
   object SQLDB: TSQLConnection
     ConnectionName = 'UIB FireBird15 Connection'
-    DriverName = 'UIB FireBird15'
+    DriverName = 'Firebird'
     GetDriverFunc = 'getSQLDriverINTERBASE'
-    LibraryName = 'dbexpUIBfire15.dll'
+    LibraryName = 'dbxfb.dll'
     LoginPrompt = False
     Params.Strings = (
-      'DriverName=UIB FireBird15'
-      'BlobSize=-1'
-      'CommitRetain=False'
-      'Database=c:\Projetosfdb\kalykim.FDB'
-      'ErrorResourceFile='
-      'LocaleCode=0000'
+      'DriverUnit=DBXFirebird'
+      
+        'DriverPackageLoader=TDBXDynalinkDriverLoader,DbxCommonDriver150.' +
+        'bpl'
+      
+        'DriverAssemblyLoader=Borland.Data.TDBXDynalinkDriverLoader,Borla' +
+        'nd.Data.DbxCommonDriver,Version=15.0.0.0,Culture=neutral,PublicK' +
+        'eyToken=91d62ebb5b0d1b1b'
+      
+        'MetaDataPackageLoader=TDBXFirebirdMetaDataCommandFactory,DbxFire' +
+        'birdDriver150.bpl'
+      
+        'MetaDataAssemblyLoader=Borland.Data.TDBXFirebirdMetaDataCommandF' +
+        'actory,Borland.Data.DbxFirebirdDriver,Version=15.0.0.0,Culture=n' +
+        'eutral,PublicKeyToken=91d62ebb5b0d1b1b'
+      'GetDriverFunc=getSQLDriverINTERBASE'
+      'LibraryName=dbxfb.dll'
+      'VendorLib=fbclient.DLL'
+      'Database=PauloRSA-Acer:\Projetosbin\BF SisteMoto\Sistemoto.FDB'
+      'User_Name=sysdba'
       'Password=masterkey'
-      'RoleName=RoleName'
-      'ServerCharSet=WIN1252'
+      'Role=RoleName'
+      'MaxBlobSize=-1'
+      'LocaleCode=0000'
+      'IsolationLevel=ReadCommitted'
       'SQLDialect=3'
-      'Interbase TransIsolation=ReadCommited'
-      'User_Name=SYSDBA'
-      'WaitOnLocks=True')
-    VendorLib = 'fbclient.dll'
+      'CommitRetain=False'
+      'WaitOnLocks=True'
+      'TrimChar=False'
+      'BlobSize=-1'
+      'ErrorResourceFile='
+      'RoleName=RoleName'
+      'ServerCharSet='
+      'Trim Char=False')
+    VendorLib = 'fbclient.DLL'
     Left = 32
     Top = 24
   end

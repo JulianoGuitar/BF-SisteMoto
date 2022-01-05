@@ -26,7 +26,6 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<DCC_OutputNeverBuildDcps>true</DCC_OutputNeverBuildDcps>
 			<DCC_UnitAlias>WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;$(DCC_UnitAlias)</DCC_UnitAlias>
 			<DCC_ImageBase>00400000</DCC_ImageBase>
 			<DCC_DependencyCheckOutputName>..\..\Bpl\Juliano.bpl</DCC_DependencyCheckOutputName>
@@ -105,11 +104,11 @@
 			<DelphiCompile Include="BlueFieldvcl.dpk">
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
-			<DCCReference Include="rtl.dcp"/>
 			<DCCReference Include="vcl.dcp"/>
+			<DCCReference Include="rtl.dcp"/>
+			<DCCReference Include="dbrtl.dcp"/>
 			<DCCReference Include="dsnap.dcp"/>
 			<DCCReference Include="vcldb.dcp"/>
-			<DCCReference Include="dbrtl.dcp"/>
 			<DCCReference Include="bfEdit.pas"/>
 			<DCCReference Include="bf_Registra.pas"/>
 			<DCCReference Include="bfNumEdit.pas"/>
@@ -120,6 +119,7 @@
 			<DCCReference Include="bfdbComboBox.pas"/>
 			<DCCReference Include="bfdbMemo.pas"/>
 			<DCCReference Include="RelVisualBlue.pas"/>
+			<DCCReference Include="bfdbEditButton.pas"/>
 			<BuildConfiguration Include="Debug">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>

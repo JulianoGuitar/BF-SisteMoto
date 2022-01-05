@@ -6,7 +6,7 @@ uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
   Dialogs, StdCtrls, Grids, bfdbGrid, DB, DBClient, Provider, FMTBcd,
   SqlExpr, ExtCtrls, DBCtrls, Mask, udtmConexao, ComCtrls,
-  Buttons, bfEdit, bfdbEdit, DBGrids, RelVisualBlue, dbxpress;
+  Buttons, bfEdit, bfdbEdit, DBGrids, RelVisualBlue;
 
 type
   TfmSGD_USUARIOS = class(TForm)

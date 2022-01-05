@@ -1,9 +1,9 @@
 object fmSGD_GRUPOMENU: TfmSGD_GRUPOMENU
   Left = 0
   Top = 0
-  Width = 709
-  Height = 321
   Caption = 'SGD004 | Grupos de Menu'
+  ClientHeight = 282
+  ClientWidth = 693
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -34,6 +34,10 @@ object fmSGD_GRUPOMENU: TfmSGD_GRUPOMENU
       Caption = 'Consulta'
       ImageIndex = 1
       OnShow = tsConsultaShow
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         685
         254)
@@ -52,6 +56,8 @@ object fmSGD_GRUPOMENU: TfmSGD_GRUPOMENU
           Width = 88
           Height = 21
           Caption = 'Consultar'
+          DoubleBuffered = True
+          ParentDoubleBuffered = False
           TabOrder = 2
           OnClick = btConsultaClick
         end
@@ -124,6 +130,8 @@ object fmSGD_GRUPOMENU: TfmSGD_GRUPOMENU
         Height = 25
         Anchors = [akRight, akBottom]
         Caption = 'Visualizar'
+        DoubleBuffered = True
+        ParentDoubleBuffered = False
         TabOrder = 2
         OnClick = btIncluiClick
       end
@@ -134,10 +142,12 @@ object fmSGD_GRUPOMENU: TfmSGD_GRUPOMENU
         Height = 25
         Anchors = [akRight, akBottom]
         Caption = 'Transportar'
+        DoubleBuffered = True
+        NumGlyphs = 2
+        ParentDoubleBuffered = False
         TabOrder = 1
         Visible = False
         OnClick = btTransportaClick
-        NumGlyphs = 2
       end
       object btImprime: TBitBtn
         Left = 8
@@ -146,12 +156,18 @@ object fmSGD_GRUPOMENU: TfmSGD_GRUPOMENU
         Height = 25
         Anchors = [akLeft, akBottom]
         Caption = 'Imprimir'
+        DoubleBuffered = True
+        ParentDoubleBuffered = False
         TabOrder = 3
         OnClick = btImprimeClick
       end
     end
     object tsCadastro: TTabSheet
       Caption = 'Cadastro'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         685
         254)
@@ -162,10 +178,12 @@ object fmSGD_GRUPOMENU: TfmSGD_GRUPOMENU
         Height = 25
         Anchors = [akRight, akBottom]
         Caption = 'Salvar'
+        DoubleBuffered = True
         Enabled = False
+        NumGlyphs = 2
+        ParentDoubleBuffered = False
         TabOrder = 2
         OnClick = btSalvaClick
-        NumGlyphs = 2
       end
       object btDesiste: TBitBtn
         Left = 411
@@ -174,9 +192,11 @@ object fmSGD_GRUPOMENU: TfmSGD_GRUPOMENU
         Height = 25
         Anchors = [akRight, akBottom]
         Caption = 'Desistir'
+        DoubleBuffered = True
+        NumGlyphs = 2
+        ParentDoubleBuffered = False
         TabOrder = 3
         OnClick = btDesisteClick
-        NumGlyphs = 2
       end
       object btExclui: TBitBtn
         Left = 3
@@ -185,7 +205,9 @@ object fmSGD_GRUPOMENU: TfmSGD_GRUPOMENU
         Height = 25
         Anchors = [akLeft, akBottom]
         Caption = 'E&xcluir!'
+        DoubleBuffered = True
         Enabled = False
+        ParentDoubleBuffered = False
         TabOrder = 1
         TabStop = False
         OnClick = btExcluiClick
@@ -256,9 +278,11 @@ object fmSGD_GRUPOMENU: TfmSGD_GRUPOMENU
     Height = 25
     Anchors = [akRight, akBottom]
     Caption = 'Sair'
+    DoubleBuffered = True
+    NumGlyphs = 2
+    ParentDoubleBuffered = False
     TabOrder = 2
     OnClick = btSaiClick
-    NumGlyphs = 2
   end
   object btInclui: TBitBtn
     Tag = 1
@@ -268,6 +292,8 @@ object fmSGD_GRUPOMENU: TfmSGD_GRUPOMENU
     Height = 25
     Anchors = [akRight, akBottom]
     Caption = 'Incluir'
+    DoubleBuffered = True
+    ParentDoubleBuffered = False
     TabOrder = 1
     OnClick = btIncluiClick
   end

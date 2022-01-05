@@ -6,7 +6,7 @@
 			<Config Condition="'$(Config)'==''">Debug</Config>
 			<Platform>Win32</Platform>
 			<AppType>Package</AppType>
-			<FrameworkType>VCL</FrameworkType>
+			<FrameworkType>None</FrameworkType>
 			<DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
 			<ProjectVersion>12.2</ProjectVersion>
 		</PropertyGroup>
@@ -24,7 +24,6 @@
 			<Base>true</Base>
 		</PropertyGroup>
 		<PropertyGroup Condition="'$(Base)'!=''">
-			<DCC_OutputNeverBuildDcps>true</DCC_OutputNeverBuildDcps>
 			<DCC_DcuOutput>..\Dcu</DCC_DcuOutput>
 			<DCC_DcpOutput>..\Dcp</DCC_DcpOutput>
 			<DCC_UnitSearchPath>..\Dcp;..\Dcu;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
@@ -56,15 +55,8 @@
 				<MainSource>MainSource</MainSource>
 			</DelphiCompile>
 			<DCCReference Include="BFBMP.res"/>
-			<DCCReference Include="rtl.dcp"/>
-			<DCCReference Include="vcl.dcp"/>
-			<DCCReference Include="dsnap.dcp"/>
-			<DCCReference Include="vcldb.dcp"/>
-			<DCCReference Include="dbrtl.dcp"/>
-			<DCCReference Include="DbxCommonDriver.dcp"/>
-			<DCCReference Include="dbexpress.dcp"/>
-			<DCCReference Include="DBXFirebirdDriver.dcp"/>
 			<DCCReference Include="BlueFieldvcl.dcp"/>
+			<DCCReference Include="dbexpress.dcp"/>
 			<DCCReference Include="..\Units\udtmConexao.pas">
 				<Form>dtmConexao</Form>
 				<DesignClass>TDataModule</DesignClass>

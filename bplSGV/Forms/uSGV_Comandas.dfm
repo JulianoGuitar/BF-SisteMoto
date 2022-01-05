@@ -36,6 +36,10 @@ object fmSGV_COMANDAS: TfmSGV_COMANDAS
       Caption = 'Consulta'
       ImageIndex = 1
       OnShow = tsConsultaShow
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         652
         352)
@@ -54,6 +58,8 @@ object fmSGV_COMANDAS: TfmSGV_COMANDAS
           Width = 88
           Height = 21
           Caption = 'Consultar'
+          DoubleBuffered = True
+          ParentDoubleBuffered = False
           TabOrder = 2
           OnClick = btConsultaClick
         end
@@ -187,6 +193,8 @@ object fmSGV_COMANDAS: TfmSGV_COMANDAS
         Height = 25
         Anchors = [akRight, akBottom]
         Caption = 'Visualizar'
+        DoubleBuffered = True
+        ParentDoubleBuffered = False
         TabOrder = 2
         OnClick = btIncluiClick
       end
@@ -197,10 +205,12 @@ object fmSGV_COMANDAS: TfmSGV_COMANDAS
         Height = 25
         Anchors = [akRight, akBottom]
         Caption = 'Transportar'
+        DoubleBuffered = True
+        NumGlyphs = 2
+        ParentDoubleBuffered = False
         TabOrder = 1
         Visible = False
         OnClick = btTransportaClick
-        NumGlyphs = 2
       end
       object btImprime: TBitBtn
         Left = 136
@@ -209,6 +219,8 @@ object fmSGV_COMANDAS: TfmSGV_COMANDAS
         Height = 25
         Anchors = [akLeft, akBottom]
         Caption = 'Relat'#243'rio'
+        DoubleBuffered = True
+        ParentDoubleBuffered = False
         TabOrder = 3
         Visible = False
         OnClick = btImprimeClick
@@ -220,12 +232,18 @@ object fmSGV_COMANDAS: TfmSGV_COMANDAS
         Height = 25
         Anchors = [akLeft, akBottom]
         Caption = 'Fechar Comanda'
+        DoubleBuffered = True
+        ParentDoubleBuffered = False
         TabOrder = 4
         OnClick = btFecharComandaClick
       end
     end
     object tsCadastro: TTabSheet
       Caption = 'Cadastro'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         652
         352)
@@ -236,10 +254,12 @@ object fmSGV_COMANDAS: TfmSGV_COMANDAS
         Height = 25
         Anchors = [akRight, akBottom]
         Caption = 'Salvar'
+        DoubleBuffered = True
         Enabled = False
+        NumGlyphs = 2
+        ParentDoubleBuffered = False
         TabOrder = 2
         OnClick = btSalvaClick
-        NumGlyphs = 2
       end
       object btDesiste: TBitBtn
         Left = 378
@@ -248,9 +268,11 @@ object fmSGV_COMANDAS: TfmSGV_COMANDAS
         Height = 25
         Anchors = [akRight, akBottom]
         Caption = 'Desistir'
+        DoubleBuffered = True
+        NumGlyphs = 2
+        ParentDoubleBuffered = False
         TabOrder = 3
         OnClick = btDesisteClick
-        NumGlyphs = 2
       end
       object btExclui: TBitBtn
         Left = 3
@@ -259,7 +281,9 @@ object fmSGV_COMANDAS: TfmSGV_COMANDAS
         Height = 25
         Anchors = [akLeft, akBottom]
         Caption = 'E&xcluir!'
+        DoubleBuffered = True
         Enabled = False
+        ParentDoubleBuffered = False
         TabOrder = 1
         TabStop = False
         Visible = False
@@ -350,7 +374,7 @@ object fmSGV_COMANDAS: TfmSGV_COMANDAS
           OnDblClick = edtCodCliButtonClick
           OnExit = edtCodCliExit
           NumGlyphs = 1
-          Text = 'EDTCODCLI'
+          Text = 'edtCodCli'
           OnButtonClick = edtCodCliButtonClick
         end
         object DBCheckBox1: TDBCheckBox
@@ -376,9 +400,11 @@ object fmSGV_COMANDAS: TfmSGV_COMANDAS
     Height = 25
     Anchors = [akRight, akBottom]
     Caption = 'Sair'
+    DoubleBuffered = True
+    NumGlyphs = 2
+    ParentDoubleBuffered = False
     TabOrder = 2
     OnClick = btSaiClick
-    NumGlyphs = 2
   end
   object btInclui: TBitBtn
     Tag = 1
@@ -388,6 +414,8 @@ object fmSGV_COMANDAS: TfmSGV_COMANDAS
     Height = 25
     Anchors = [akRight, akBottom]
     Caption = 'Incluir'
+    DoubleBuffered = True
+    ParentDoubleBuffered = False
     TabOrder = 1
     OnClick = btIncluiClick
   end
@@ -456,7 +484,6 @@ object fmSGV_COMANDAS: TfmSGV_COMANDAS
       FieldName = 'TOTAL'
       DisplayFormat = '#,##0.00'
       Precision = 18
-      Size = 8
     end
     object cdsNOME_CLIENTE: TStringField
       DisplayLabel = 'Cliente'
@@ -536,7 +563,6 @@ object fmSGV_COMANDAS: TfmSGV_COMANDAS
     object qrTOTAL: TFMTBCDField
       FieldName = 'TOTAL'
       Precision = 18
-      Size = 8
     end
     object qrNOME_CLIENTE: TStringField
       FieldName = 'NOME_CLIENTE'

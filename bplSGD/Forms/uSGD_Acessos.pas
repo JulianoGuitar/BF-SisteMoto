@@ -7,7 +7,7 @@ uses
   Dialogs, StdCtrls, Grids, bfdbGrid, DB, DBClient, Provider, FMTBcd,
   SqlExpr, ExtCtrls, DBCtrls, Mask, udtmConexao, ComCtrls,
   Buttons, bfEdit, bfdbEdit, bfdbComboBox, DBGrids, bfdbEditButton,
-  RelVisualBlue, bfdbMemo, dbxpress;
+  RelVisualBlue, bfdbMemo;
 
 type
   TfmSGD_AcessoS = class(TForm)

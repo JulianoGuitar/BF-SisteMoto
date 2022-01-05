@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <BorlandProject>
 	<Transactions>
-    <Transaction>2018/06/15 16:21:05.000.706,C:\Projetos\BlueField\bplSGD\Forms\uSGD_EMPRESAS.pas=C:\Projetos\BlueField\bplSFP\Forms\uSFP_FUNCIONARIOS.pas</Transaction>
-    <Transaction>2018/06/15 16:21:05.000.706,C:\Projetos\BlueField\bplSGD\Forms\uSGD_EMPRESAS.dfm=C:\Projetos\BlueField\bplSFP\Forms\uSFP_FUNCIONARIOS.dfm</Transaction>
+    <Transaction>2018/06/15 16:21:05.000.706,C:\Projetos\BlueField\bplSFP\Forms\uSFP_FUNCIONARIOS.pas=C:\Projetos\BlueField\bplSGD\Forms\uSGD_EMPRESAS.pas</Transaction>
+    <Transaction>2018/06/15 16:21:05.000.706,C:\Projetos\BlueField\bplSFP\Forms\uSFP_FUNCIONARIOS.dfm=C:\Projetos\BlueField\bplSGD\Forms\uSGD_EMPRESAS.dfm</Transaction>
     <Transaction>2018/06/18 14:31:00.000.018,C:\Projetos\BlueField\bplSFP\Forms\uSFP_FUNCIONARIOS.pas=</Transaction>
     <Transaction>2018/06/20 17:00:19.000.988,=C:\Projetos\BlueField\bplSGD\Forms\uSGD_EMPRESAS.pas</Transaction>
     <Transaction>2018/06/21 16:34:36.000.507,=C:\Projetos\Componentes\Bpl\BlueFieldvcl.bpl</Transaction>
     <Transaction>2018/06/21 16:35:22.000.018,=BlueFieldvcl.dcp</Transaction>
     <Transaction>2018/06/25 16:07:50.000.732,=C:\Projetos\BlueField\bplSGD\Forms\uSGD_CIDADES.pas</Transaction>
-    <Transaction>2018/06/27 14:49:45.000.066,C:\Projetos\BlueField\bplSGD\Forms\uSGD_Modulos.pas=C:\Projetos\BlueField\bplSGD\Forms\uSGD_UF.pas</Transaction>
-    <Transaction>2018/06/27 14:49:45.000.066,C:\Projetos\BlueField\bplSGD\Forms\uSGD_Modulos.dfm=C:\Projetos\BlueField\bplSGD\Forms\uSGD_UF.dfm</Transaction>
+    <Transaction>2018/06/27 14:49:45.000.066,C:\Projetos\BlueField\bplSGD\Forms\uSGD_UF.pas=C:\Projetos\BlueField\bplSGD\Forms\uSGD_Modulos.pas</Transaction>
+    <Transaction>2018/06/27 14:49:45.000.066,C:\Projetos\BlueField\bplSGD\Forms\uSGD_UF.dfm=C:\Projetos\BlueField\bplSGD\Forms\uSGD_Modulos.dfm</Transaction>
     <Transaction>2018/07/04 14:33:08.000.027,=C:\Projetos\BlueField\bplSGD\Forms\uSGD_Modulos.pas</Transaction>
     <Transaction>2018/07/04 16:07:53.000.621,=C:\Projetos\BlueField\bplSFP\Forms\uSFP_RUBRICAS.pas</Transaction>
     <Transaction>2018/07/04 16:30:52.000.961,C:\Projetos\BlueField\bplSFP\Forms\uSFP_RUBRICAS.pas=</Transaction>
@@ -24,20 +24,20 @@
     <Transaction>2019/07/15 16:58:26.000.161,=C:\Projetos\uFuncoesTelas.pas</Transaction>
     <Transaction>2019/07/15 16:59:11.000.163,C:\Projetos\uFuncoesTelas.pas=</Transaction>
     <Transaction>2019/07/19 16:41:58.000.418,=C:\Projetos\uConsultaCNPJ.pas</Transaction>
-    <Transaction>2019/07/24 17:10:23.000.629,C:\Projetos\Bluefield\trunk\bplSGD\SGD.dproj=C:\Projetos\Bluefield\trunk\bplSGC\SGC.dproj</Transaction>
-    <Transaction>2019/07/24 17:11:30.000.268,C:\Projetos\Bluefield\trunk\bplSGD\Forms\uSGD_GRUPOMENU.pas=</Transaction>
+    <Transaction>2019/07/24 17:10:23.000.629,C:\Projetos\Bluefield\trunk\bplSGC\SGC.dproj=C:\Projetos\Bluefield\trunk\bplSGD\SGD.dproj</Transaction>
     <Transaction>2019/07/24 17:11:30.000.204,C:\Projetos\Bluefield\trunk\bplSGD\Forms\uSGD_USUARIOS_ACESSO.pas=</Transaction>
-    <Transaction>2019/07/24 17:11:30.000.229,C:\Projetos\Bluefield\trunk\bplSGD\Forms\uSGD_Usuarios.pas=</Transaction>
+    <Transaction>2019/07/24 17:11:30.000.268,C:\Projetos\Bluefield\trunk\bplSGD\Forms\uSGD_GRUPOMENU.pas=</Transaction>
     <Transaction>2019/07/24 17:11:30.000.286,C:\Projetos\Bluefield\trunk\bplSGD\Forms\uSGD_Acessos.pas=</Transaction>
     <Transaction>2019/07/24 17:11:30.000.311,C:\Projetos\uConsultaCNPJ.pas=</Transaction>
     <Transaction>2019/07/24 17:11:30.000.250,C:\Projetos\Bluefield\trunk\bplSGD\Forms\uSGD_Modulos.pas=</Transaction>
+    <Transaction>2019/07/24 17:11:30.000.229,C:\Projetos\Bluefield\trunk\bplSGD\Forms\uSGD_Usuarios.pas=</Transaction>
     <Transaction>2019/07/24 17:12:05.000.923,=C:\Projetos\Bluefield\trunk\bplSGC\Forms\uSGC_EMPRESAS.pas</Transaction>
     <Transaction>2019/07/24 17:12:05.000.578,=C:\Projetos\Bluefield\trunk\bplSGC\Forms\uSGC_CIDADES.pas</Transaction>
     <Transaction>2019/07/24 17:12:05.000.409,=C:\Projetos\Bluefield\trunk\bplSGC\Forms\uSGC_BANCOS.pas</Transaction>
     <Transaction>2019/07/24 17:12:05.000.755,=C:\Projetos\Bluefield\trunk\bplSGC\Forms\uSGC_CONFIG_EMAIL.pas</Transaction>
+    <Transaction>2019/07/24 17:12:06.000.362,=C:\Projetos\Bluefield\trunk\bplSGC\Forms\uSGC_UF.pas</Transaction>
     <Transaction>2019/07/24 17:12:06.000.075,=C:\Projetos\Bluefield\trunk\bplSGC\Forms\uSGC_LOCAL_COBRANCA.pas</Transaction>
     <Transaction>2019/07/24 17:12:06.000.212,=C:\Projetos\Bluefield\trunk\bplSGC\Forms\uSGC_PAISES.pas</Transaction>
-    <Transaction>2019/07/24 17:12:06.000.362,=C:\Projetos\Bluefield\trunk\bplSGC\Forms\uSGC_UF.pas</Transaction>
     <Transaction>2019/07/26 13:57:41.000.978,=C:\Projetos\uConsultaCNPJ.pas</Transaction>
     <Transaction>2019/08/02 16:34:09.000.706,=C:\Projetos\Bluefield\trunk\bplSGC\Forms\uSGC_LOCAIS_ESTOQUE.pas</Transaction>
     <Transaction>2019/08/02 17:02:27.000.936,C:\Projetos\Bluefield\trunk\bplSGC\Forms\uSGC_LOCAIS_ESTOQUE.pas=</Transaction>
@@ -48,13 +48,13 @@
     <Transaction>2019/08/07 14:28:34.000.800,=C:\Projetos\Bluefield\trunk\bplSGC\Forms\uSGC_GRUPO_PRODUTOS.pas</Transaction>
     <Transaction>2019/08/19 16:21:45.000.527,C:\Projetos\uConsultaCNPJ.pas=</Transaction>
     <Transaction>2019/08/19 16:23:59.000.727,=C:\Projetos\Bluefield\trunk\Units\uConsultaCNPJ.pas</Transaction>
-    <Transaction>2019/08/19 16:58:59.000.981,=DBXMSSQLDriver.dcp</Transaction>
     <Transaction>2019/08/19 16:58:59.000.970,=vclimg.dcp</Transaction>
-    <Transaction>2019/08/20 14:35:47.000.305,=ACBr_TCP.dcp</Transaction>
-    <Transaction>2019/08/20 14:35:47.000.295,=ACBr_Diversos.dcp</Transaction>
-    <Transaction>2019/08/20 14:35:47.000.273,=ACBr_Comum.dcp</Transaction>
+    <Transaction>2019/08/19 16:58:59.000.981,=DBXMSSQLDriver.dcp</Transaction>
     <Transaction>2019/08/20 14:35:47.000.262,=vclimg.dcp</Transaction>
     <Transaction>2019/08/20 14:35:47.000.284,=ACBr_synapse.dcp</Transaction>
+    <Transaction>2019/08/20 14:35:47.000.273,=ACBr_Comum.dcp</Transaction>
+    <Transaction>2019/08/20 14:35:47.000.295,=ACBr_Diversos.dcp</Transaction>
+    <Transaction>2019/08/20 14:35:47.000.305,=ACBr_TCP.dcp</Transaction>
     <Transaction>2019/08/21 11:26:42.000.363,=BlueFieldvcl.dcp</Transaction>
     <Transaction>2019/08/23 15:20:38.000.749,C:\Projetos\BlueField\Units\uConsultaCNPJ.pas=</Transaction>
   </Transactions>
@@ -64,10 +64,20 @@
     <File Path="Forms\uSGC_BANCOS.dfm"/>
     <File Path="Forms\uSGC_CIDADES.pas"/>
     <File Path="Forms\uSGC_CIDADES.dfm"/>
+    <File Path="Forms\uSGC_CLIENTES.pas"/>
+    <File Path="Forms\uSGC_CLIENTES.dfm"/>
     <File Path="Forms\uSGC_CONFIG_EMAIL.pas"/>
     <File Path="Forms\uSGC_CONFIG_EMAIL.dfm"/>
+    <File Path="Forms\uSGC_CONTATOS.pas"/>
+    <File Path="Forms\uSGC_CONTATOS.dfm"/>
     <File Path="Forms\uSGC_EMPRESAS.pas"/>
     <File Path="Forms\uSGC_EMPRESAS.dfm"/>
+    <File Path="Forms\uSGC_ENDERECOS.pas"/>
+    <File Path="Forms\uSGC_ENDERECOS.dfm"/>
+    <File Path="Forms\uSGC_FAMILIA_PROD.pas"/>
+    <File Path="Forms\uSGC_FAMILIA_PROD.dfm"/>
+    <File Path="Forms\uSGC_FORNECEDORES.pas"/>
+    <File Path="Forms\uSGC_FORNECEDORES.dfm"/>
     <File Path="Forms\uSGC_GRUPO_PRODUTOS.pas"/>
     <File Path="Forms\uSGC_GRUPO_PRODUTOS.dfm"/>
     <File Path="Forms\uSGC_HIST_ESTOQUE.pas"/>
@@ -80,15 +90,28 @@
     <File Path="Forms\uSGC_LOCAL_COBRANCA.dfm"/>
     <File Path="Forms\uSGC_PAISES.pas"/>
     <File Path="Forms\uSGC_PAISES.dfm"/>
+    <File Path="Forms\uSGC_PRODUTOS.pas"/>
+    <File Path="Forms\uSGC_PRODUTOS.dfm"/>
     <File Path="Forms\uSGC_REGIOES.pas"/>
     <File Path="Forms\uSGC_REGIOES.dfm"/>
     <File Path="Forms\uSGC_SEGMENTO_CLIENTE.pas"/>
     <File Path="Forms\uSGC_SEGMENTO_CLIENTE.dfm"/>
+    <File Path="Forms\uSGC_TRANSPORTADORAS.pas"/>
+    <File Path="Forms\uSGC_TRANSPORTADORAS.dfm"/>
     <File Path="Forms\uSGC_UF.pas"/>
     <File Path="Forms\uSGC_UF.dfm"/>
     <File Path="Forms\uSGC_UNIDADES.pas"/>
     <File Path="Forms\uSGC_UNIDADES.dfm"/>
+    <File Path="Forms\uSGC_VENDEDORES.pas"/>
+    <File Path="Forms\uSGC_VENDEDORES.dfm"/>
     <File Path="BFBMP.res"/>
+    <File Path="BlueFieldvcl.dcp"/>
     <File Path="BPLBase.dcp"/>
+    <File Path="dbexpress.dcp"/>
+    <File Path="dbrtl.dcp"/>
+    <File Path="dsnap.dcp"/>
+    <File Path="rtl.dcp"/>
+    <File Path="vcl.dcp"/>
+    <File Path="vcldb.dcp"/>
   </ProjectSortOrder>
 </BorlandProject>

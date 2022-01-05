@@ -7,7 +7,7 @@ interface
 
 uses
   Windows, SysUtils, Forms, Classes, FMTBcd, DB, SqlExpr,
-  Provider, DBClient, DBXpress;
+  Provider, DBClient, DBXFirebird;
 
 type
   TdtmConexao = class(TDataModule)

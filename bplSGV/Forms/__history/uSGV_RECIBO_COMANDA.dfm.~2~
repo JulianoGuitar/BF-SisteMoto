@@ -1,0 +1,210 @@
+object fmSGV_RECIBO_COMANDA: TfmSGV_RECIBO_COMANDA
+  Left = 0
+  Top = 0
+  ActiveControl = btConsulta
+  Caption = 'SFP307 | Recibo de Pagamento'
+  ClientHeight = 303
+  ClientWidth = 608
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  FormStyle = fsMDIChild
+  KeyPreview = True
+  OldCreateOrder = False
+  Position = poDesigned
+  Visible = True
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnKeyPress = FormKeyPress
+  DesignSize = (
+    608
+    303)
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 10
+    Top = 7
+    Width = 55
+    Height = 13
+    Caption = 'Funcion'#225'rio'
+  end
+  object Label2: TLabel
+    Left = 8
+    Top = 62
+    Width = 92
+    Height = 13
+    Caption = 'Tipo de Pagamento'
+  end
+  object Label3: TLabel
+    Left = 446
+    Top = 11
+    Width = 36
+    Height = 13
+    Caption = 'Per'#237'odo'
+  end
+  object Label6: TLabel
+    Left = 513
+    Top = 31
+    Width = 17
+    Height = 13
+    Caption = 'At'#233
+  end
+  object MemoKIT_IMPRESSAO: TMemo
+    Left = 152
+    Top = 269
+    Width = 561
+    Height = 89
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 7
+    Visible = False
+  end
+  object btImprime: TBitBtn
+    Left = 8
+    Top = 270
+    Width = 113
+    Height = 25
+    Anchors = [akLeft, akBottom]
+    Caption = 'Imprimir'
+    DoubleBuffered = True
+    ParentDoubleBuffered = False
+    TabOrder = 6
+    OnClick = btImprimeClick
+  end
+  object edtFUNCIONARIO: TbfEdit
+    Left = 39
+    Top = 26
+    Width = 347
+    Height = 21
+    TabOrder = 1
+  end
+  object btConsulta: TBitBtn
+    Left = 390
+    Top = 24
+    Width = 52
+    Height = 25
+    DoubleBuffered = True
+    ParentDoubleBuffered = False
+    TabOrder = 2
+    OnClick = btConsultaClick
+  end
+  object edtID: TbfEdit
+    Left = 8
+    Top = 26
+    Width = 30
+    Height = 21
+    TabOrder = 0
+    OnChange = edtIDChange
+    OnKeyPress = edtIDKeyPress
+    SairComEnter = False
+  end
+  object memoSalarioExtenso: TMemo
+    Left = 567
+    Top = 53
+    Width = 194
+    Height = 49
+    Lines.Strings = (
+      'memoSalarioExtenso')
+    TabOrder = 8
+    Visible = False
+  end
+  object memoEtiqueta2: TMemo
+    Left = 567
+    Top = 108
+    Width = 225
+    Height = 177
+    Lines.Strings = (
+      'memoEtiqueta2')
+    TabOrder = 9
+    Visible = False
+  end
+  object cbxTIPO_PAGAMENTO: TComboBox
+    Left = 8
+    Top = 80
+    Width = 249
+    Height = 21
+    Style = csDropDownList
+    ItemIndex = 0
+    TabOrder = 5
+    Text = 'Recibo de Pagamento de Sal'#225'rio'
+    OnKeyPress = cbxTIPO_PAGAMENTOKeyPress
+    Items.Strings = (
+      'Recibo de Pagamento de Sal'#225'rio')
+  end
+  object edtPeriodo1: TMaskEdit
+    Left = 446
+    Top = 27
+    Width = 61
+    Height = 21
+    EditMask = '!99/99/0000;1; '
+    MaxLength = 10
+    TabOrder = 3
+    Text = '01/01/1900'
+    OnKeyPress = edtPeriodo1KeyPress
+  end
+  object edtPeriodo2: TMaskEdit
+    Left = 536
+    Top = 26
+    Width = 62
+    Height = 21
+    EditMask = '!99/99/0000;1; '
+    MaxLength = 10
+    TabOrder = 4
+    Text = '31/12/9999'
+    OnKeyPress = edtPeriodo1KeyPress
+  end
+  object RvSystem1: TRvSystem
+    TitleSetup = 'Op'#231#245'es'
+    TitleStatus = 'Status'
+    TitlePreview = 'Visualizar Impress'#227'o'
+    SystemSetups = [ssAllowCopies, ssAllowDestPreview, ssAllowDestPrinter, ssAllowDestFile, ssAllowPrinterSetup, ssAllowPreviewSetup]
+    SystemOptions = [soWaitForOK, soShowStatus, soAllowPrintFromPreview, soAllowSaveFromPreview, soPreviewModal]
+    SystemFiler.StatusFormat = 'Gerando p'#225'gina %p'
+    SystemPreview.FormState = wsMaximized
+    SystemPreview.ZoomFactor = 110.000000000000000000
+    SystemPrinter.MarginBottom = 7.000000000000000000
+    SystemPrinter.MarginLeft = 10.000000000000000000
+    SystemPrinter.MarginRight = 10.000000000000000000
+    SystemPrinter.MarginTop = 7.000000000000000000
+    SystemPrinter.ScaleX = 100.000000000000000000
+    SystemPrinter.ScaleY = 100.000000000000000000
+    SystemPrinter.StatusFormat = 'Imprimindo p'#225'gina %p'
+    SystemPrinter.Title = 'Recibo de Pagamento'
+    SystemPrinter.Units = unMM
+    SystemPrinter.UnitsFactor = 25.400000000000000000
+    OnPrint = RvSystem1Print
+    OnBeforePrint = RvSystem1BeforePrint
+    Left = 548
+    Top = 120
+  end
+  object qr: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      
+        'select e.*, c.nome nome_cidade, p.nome NOME_NACIONALIDADE, n.nom' +
+        'e NOME_NATURALIDADE, p1.nome nomePaisResid '
+      ', s.NOME SETOR_DESC, ca.NOME CARGO_DESC, f.NOME FUNCAO_DESC'
+      'from SFP_FUNCIONARIOS e'
+      'left join SGD_cidades c on c.id = e.cod_cidade'
+      'left join SGD_cidades n on n.id = e.cod_naturalidade'
+      'left join SGD_PAISES p on p.id = e.COD_NACIONALIDADE'
+      'left join SGD_PAISES p1 on p1.id = e.codPaisResid'
+      'left join SFP_SETOR s on s.ID = e.COD_SETOR'
+      'left join SFP_CARGOS ca on ca.ID = e.codCargo'
+      'left join SFP_FUNCOES f on f.ID = e.codFuncao;')
+    Left = 321
+    Top = 16
+  end
+  object RvRenderPDF1: TRvRenderPDF
+    DisplayName = 'Adobe Acrobat (PDF)'
+    FileExtension = '*.pdf'
+    DocInfo.Creator = 'Rave Reports (http://www.nevrona.com/rave)'
+    DocInfo.Producer = 'Nevrona Designs'
+    Left = 488
+    Top = 88
+  end
+end

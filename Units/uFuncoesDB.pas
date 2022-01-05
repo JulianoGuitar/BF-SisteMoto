@@ -7,7 +7,7 @@ interface
 
 uses
   Sysutils, Windows, Forms, Controls, Grids, DBGrids,
-  udtmConexao, DB, SqlExpr, DBXpress;
+  udtmConexao, DB, SqlExpr;
 
 function AbreDataModule(dtmOp: TdtmConexao; sOpPath: string; sOpDB : string = 'FIREBIRD'): boolean;
 function FechaDataModule(dtmOp: TdtmConexao): boolean;

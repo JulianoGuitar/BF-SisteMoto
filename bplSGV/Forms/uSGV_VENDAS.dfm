@@ -37,6 +37,10 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
       Caption = 'Vendas'
       ImageIndex = 1
       OnShow = tsConsultaShow
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         703
         360)
@@ -233,7 +237,6 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
           Font.Height = -11
           Font.Name = 'Tahoma'
           Font.Style = []
-          ItemHeight = 13
           ItemIndex = 0
           ParentFont = False
           TabOrder = 5
@@ -252,6 +255,8 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
         Height = 25
         Anchors = [akRight, akBottom]
         Caption = 'Visualizar'
+        DoubleBuffered = True
+        ParentDoubleBuffered = False
         TabOrder = 2
         Visible = False
         OnClick = btIncluiClick
@@ -263,15 +268,21 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
         Height = 25
         Anchors = [akRight, akBottom]
         Caption = 'Transportar'
+        DoubleBuffered = True
+        NumGlyphs = 2
+        ParentDoubleBuffered = False
         TabOrder = 1
         Visible = False
         OnClick = btTransportaClick
-        NumGlyphs = 2
       end
     end
     object tsCadastro: TTabSheet
       Caption = 'Venda'
       TabVisible = False
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         703
         360)
@@ -503,9 +514,8 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
           Width = 117
           Height = 31
           Caption = 'Registrar'
+          DoubleBuffered = True
           Enabled = False
-          TabOrder = 11
-          OnClick = btSalvaClick
           Glyph.Data = {
             F6060000424DF606000000000000360000002800000018000000180000000100
             180000000000C0060000120B0000120B00000000000000000000FFFFFFFFFFFF
@@ -563,6 +573,9 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
             FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
             FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
             FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+          ParentDoubleBuffered = False
+          TabOrder = 11
+          OnClick = btSalvaClick
         end
         object DBEdit1: TbfdbEdit
           Left = 31
@@ -581,7 +594,9 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
         Height = 25
         Anchors = [akLeft, akBottom]
         Caption = 'E&xcluir!'
+        DoubleBuffered = True
         Enabled = False
+        ParentDoubleBuffered = False
         TabOrder = 1
         TabStop = False
         Visible = False
@@ -596,10 +611,12 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
     Height = 25
     Anchors = [akRight, akBottom]
     Caption = 'Sair'
+    DoubleBuffered = True
+    NumGlyphs = 2
+    ParentDoubleBuffered = False
     TabOrder = 1
     Visible = False
     OnClick = btSaiClick
-    NumGlyphs = 2
   end
   object Panel1: TPanel
     Left = 0
@@ -618,8 +635,7 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
       Height = 31
       Anchors = [akLeft, akBottom]
       Caption = 'Voltar'
-      TabOrder = 3
-      OnClick = btDesisteClick
+      DoubleBuffered = True
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100
         180000000000C0060000120B0000120B00000000000000000000FFFFFFFFFFFF
@@ -677,6 +693,9 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+      ParentDoubleBuffered = False
+      TabOrder = 3
+      OnClick = btDesisteClick
     end
     object btInclui: TBitBtn
       Tag = 1
@@ -685,8 +704,7 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
       Width = 117
       Height = 31
       Caption = 'Vender'
-      TabOrder = 2
-      OnClick = btIncluiClick
+      DoubleBuffered = True
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100
         180000000000C006000024160000241600000000000000000000FFFFFFFFFFFF
@@ -744,6 +762,9 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEEF5FFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+      ParentDoubleBuffered = False
+      TabOrder = 2
+      OnClick = btIncluiClick
     end
     object btAbreComanda: TBitBtn
       Left = 1
@@ -751,8 +772,7 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
       Width = 117
       Height = 31
       Caption = 'Abrir Comanda'
-      TabOrder = 0
-      OnClick = btAbreComandaClick
+      DoubleBuffered = True
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100
         180000000000C006000024160000241600000000000000000000FFFFFFFFFFFF
@@ -810,6 +830,9 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
         B5D3FFFAFCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEAF3FFD9E7FFDCEA
         FFDCEAFFDCEAFFDCEAFFDCEAFFDCEAFFDCEAFFDCEAFFDCEAFFDCEAFFDCEAFFDA
         E9FFDBE9FFFDFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+      ParentDoubleBuffered = False
+      TabOrder = 0
+      OnClick = btAbreComandaClick
     end
     object btFecharComanda: TBitBtn
       Left = 118
@@ -817,8 +840,7 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
       Width = 117
       Height = 31
       Caption = 'Fechar Comanda'
-      TabOrder = 1
-      OnClick = btFecharComandaClick
+      DoubleBuffered = True
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100
         180000000000C006000024160000241600000000000000000000FFFFFFFFFFFF
@@ -876,6 +898,9 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
         8FBCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE4EFFFD0E3FFD4E5
         FFD4E5FFD4E5FFD4E5FFD4E5FFD4E5FFD4E5FFD4E5FFD4E5FFD4E5FFD4E5FFD0
         E2FFE5EFFFFEFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+      ParentDoubleBuffered = False
+      TabOrder = 1
+      OnClick = btFecharComandaClick
     end
     object btConsulta: TBitBtn
       Left = 590
@@ -884,8 +909,7 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
       Height = 31
       Anchors = [akTop, akRight]
       Caption = 'Atualizar'
-      TabOrder = 5
-      OnClick = btConsultaClick
+      DoubleBuffered = True
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100
         180000000000C0060000120B0000120B00000000000000000000FFFFFFFFFFFF
@@ -943,6 +967,9 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+      ParentDoubleBuffered = False
+      TabOrder = 5
+      OnClick = btConsultaClick
     end
     object btImprime: TBitBtn
       Left = 472
@@ -951,8 +978,7 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
       Height = 31
       Anchors = [akRight, akBottom]
       Caption = 'Relat'#243'rio'
-      TabOrder = 4
-      OnClick = btImprimeClick
+      DoubleBuffered = True
       Glyph.Data = {
         F6060000424DF606000000000000360000002800000018000000180000000100
         180000000000C0060000120B0000120B00000000000000000000FFFFFFFFFFFF
@@ -1010,6 +1036,9 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
         BBD6FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+      ParentDoubleBuffered = False
+      TabOrder = 4
+      OnClick = btImprimeClick
     end
     object btFechaTurno: TBitBtn
       Left = 352
@@ -1017,8 +1046,7 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
       Width = 117
       Height = 31
       Caption = 'Fechar Turno'
-      TabOrder = 6
-      OnClick = btFechaTurnoClick
+      DoubleBuffered = True
       Glyph.Data = {
         A2070000424DA207000000000000360000002800000019000000190000000100
         1800000000006C070000120B0000120B00000000000000000000FFFFFFFFFFFF
@@ -1082,6 +1110,9 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEEF5FFD0E2FF9EC5FF83B4FE7BAF
         FE7FB2FE97C0FEC8DEFFEAF2FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFF0D}
+      ParentDoubleBuffered = False
+      TabOrder = 6
+      OnClick = btFechaTurnoClick
     end
   end
   object cds: TClientDataSet
@@ -1152,7 +1183,6 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
       Required = True
       DisplayFormat = '#,##0.00'
       Precision = 18
-      Size = 8
     end
     object cdsQUANTIDADE: TFMTBCDField
       DisplayLabel = 'Qtde.'
@@ -1161,7 +1191,6 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
       OnChange = cdsQUANTIDADEChange
       DisplayFormat = '#,##0'
       Precision = 18
-      Size = 8
     end
     object cdsTOTAL: TFMTBCDField
       DisplayLabel = 'Total'
@@ -1169,7 +1198,6 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
       Required = True
       DisplayFormat = '#,##0.00'
       Precision = 18
-      Size = 8
     end
     object cdsFECHADA: TStringField
       DisplayLabel = 'Fechada'
@@ -1279,19 +1307,16 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
       FieldName = 'VALOR'
       Required = True
       Precision = 18
-      Size = 8
     end
     object qrQUANTIDADE: TFMTBCDField
       FieldName = 'QUANTIDADE'
       Required = True
       Precision = 18
-      Size = 8
     end
     object qrTOTAL: TFMTBCDField
       FieldName = 'TOTAL'
       Required = True
       Precision = 18
-      Size = 8
     end
     object qrFECHADA: TStringField
       FieldName = 'FECHADA'
