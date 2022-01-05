@@ -350,8 +350,21 @@ object fmSGV_COMANDAS: TfmSGV_COMANDAS
           OnDblClick = edtCodCliButtonClick
           OnExit = edtCodCliExit
           NumGlyphs = 1
-          Text = 'edtCodCli'
+          Text = 'EDTCODCLI'
           OnButtonClick = edtCodCliButtonClick
+        end
+        object DBCheckBox1: TDBCheckBox
+          Left = 14
+          Top = 144
+          Width = 72
+          Height = 17
+          Caption = 'Associado'
+          DataField = 'SOCIO'
+          DataSource = ds
+          ReadOnly = True
+          TabOrder = 4
+          ValueChecked = 'S'
+          ValueUnchecked = 'N'
         end
       end
     end
@@ -451,6 +464,11 @@ object fmSGV_COMANDAS: TfmSGV_COMANDAS
       ProviderFlags = []
       Size = 100
     end
+    object cdsSOCIO: TStringField
+      DisplayLabel = 'Associado'
+      FieldName = 'SOCIO'
+      Size = 1
+    end
   end
   object dsp: TDataSetProvider
     DataSet = qr
@@ -524,6 +542,10 @@ object fmSGV_COMANDAS: TfmSGV_COMANDAS
       FieldName = 'NOME_CLIENTE'
       ProviderFlags = []
       Size = 100
+    end
+    object qrSOCIO: TStringField
+      FieldName = 'SOCIO'
+      Size = 1
     end
   end
   object ds: TDataSource

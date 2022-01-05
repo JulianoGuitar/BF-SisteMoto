@@ -139,8 +139,20 @@ type
     Label1: TLabel;
     edtFabricante: TbfdbEdit;
     edtConsNCM: TbfEdit;
+    qrPRECO: TFMTBCDField;
+    qrPRECO_SOCIO: TFMTBCDField;
+    qrPRECO_ESPECIAL: TFMTBCDField;
+    Label19: TLabel;
+    bfdbEdit1: TbfdbEdit;
+    Label23: TLabel;
+    bfdbEdit2: TbfdbEdit;
+    Label24: TLabel;
+    bfdbEdit3: TbfdbEdit;
     Label10: TLabel;
     edtCustoRep: TbfdbEdit;
+    cdsPRECO: TFMTBCDField;
+    cdsPRECO_SOCIO: TFMTBCDField;
+    cdsPRECO_ESPECIAL: TFMTBCDField;
 
     procedure Direitos;
     function Pode_Salvar: boolean;
@@ -269,7 +281,9 @@ begin
                +cdsID_FAMILIA.AsString+';'
                +cdsNOME_FAMILIA.AsString+';'
                +cdsUNIDADE.AsString+';'
-               +FormatFloat('0.00',cdsCUSTO_REP.AsFloat)+';'
+               +FormatFloat('0.00',cdsPRECO.AsFloat)+';'
+               +FormatFloat('0.00',cdsPRECO_SOCIO.AsFloat)+';'
+               +FormatFloat('0.00',cdsPRECO_ESPECIAL.AsFloat)+';'
                ;
 
     ModalResult := mrOk;
@@ -511,6 +525,9 @@ begin
   cdsNCM.AsString := '999999';
   cdsUNIDADE.AsString := 'UN';
   cdsCUSTO_REP.AsFloat := 0;
+  cdsPRECO.AsFloat := 0;
+  cdsPRECO_SOCIO.AsFloat := 0;
+  cdsPRECO_ESPECIAL.AsFloat := 0;
   cdsPESO_BRU.AsFloat := 0;
   cdsPESO_LIQ.AsFloat := 0;
   cdsEMBALAGEM.AsFloat := 0;
@@ -906,14 +923,14 @@ begin
     Exit;
   end;
 
-  if trim(cdsNCM.AsString) = '' then
+{  if trim(cdsNCM.AsString) = '' then
   begin
     MessageBox(Handle, pchar('Informe o NCM.'), 'Aviso', MB_ICONWARNING);
     pgcDados.ActivePage := tbTributacao;
     edtNCM.SetFocus;
     Exit;
   end;
-
+ }
 
   result := true;
 end;

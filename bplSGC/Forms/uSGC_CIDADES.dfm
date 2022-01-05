@@ -1,9 +1,10 @@
 object fmSGC_CIDADES: TfmSGC_CIDADES
   Left = 0
   Top = 0
-  Width = 709
-  Height = 321
+  BorderStyle = bsSingle
   Caption = 'SGC002 | Cidades'
+  ClientHeight = 282
+  ClientWidth = 693
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,6 +14,7 @@ object fmSGC_CIDADES: TfmSGC_CIDADES
   FormStyle = fsMDIChild
   KeyPreview = True
   OldCreateOrder = False
+  Position = poDefault
   Visible = True
   OnClose = FormClose
   OnCreate = FormCreate

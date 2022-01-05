@@ -3,7 +3,7 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
   Top = 183
   BorderStyle = bsSingle
   Caption = 'SGV001 | Vendas'
-  ClientHeight = 395
+  ClientHeight = 396
   ClientWidth = 711
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -21,14 +21,14 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
   OnKeyPress = FormKeyPress
   DesignSize = (
     711
-    395)
+    396)
   PixelsPerInch = 96
   TextHeight = 13
   object pgc: TPageControl
     Left = 0
     Top = 0
     Width = 711
-    Height = 395
+    Height = 396
     ActivePage = tsConsulta
     Align = alClient
     TabHeight = 26
@@ -39,22 +39,22 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
       OnShow = tsConsultaShow
       DesignSize = (
         703
-        359)
+        360)
       object GroupBox1: TGroupBox
         Left = 0
         Top = 0
         Width = 703
-        Height = 359
+        Height = 360
         Align = alClient
         TabOrder = 0
         DesignSize = (
           703
-          359)
+          360)
         object dbgConsulta: TbfdbGrid
           Left = 2
           Top = 29
           Width = 699
-          Height = 328
+          Height = 329
           Align = alBottom
           Anchors = [akLeft, akTop, akRight, akBottom]
           DataSource = ds
@@ -65,7 +65,7 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
           Font.Style = []
           Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
           ParentFont = False
-          TabOrder = 5
+          TabOrder = 6
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
           TitleFont.Height = -9
@@ -133,13 +133,13 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
             item
               Expanded = False
               FieldName = 'DT_INCLUI'
-              Width = 90
+              Width = 100
               Visible = True
             end
             item
               Expanded = False
               FieldName = 'USU_INCLUI'
-              Width = 70
+              Width = 60
               Visible = True
             end
             item
@@ -221,22 +221,33 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
           OnKeyPress = edtConsultaCodKeyPress
           SairComEnter = False
         end
-        object ckbAbertasCons: TCheckBox
-          Left = 583
-          Top = 10
-          Width = 113
-          Height = 17
+        object cbxComandaCons: TComboBox
+          Left = 582
+          Top = 8
+          Width = 119
+          Height = 21
+          Style = csDropDownList
           Anchors = [akTop, akRight]
-          Caption = 'Comandas Abertas'
-          Checked = True
-          State = cbChecked
-          TabOrder = 6
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ItemHeight = 13
+          ItemIndex = 0
+          ParentFont = False
+          TabOrder = 5
+          Text = 'Comandas Abertas'
           OnClick = btConsultaClick
+          Items.Strings = (
+            'Comandas Abertas'
+            'Comandas Fechadas'
+            'Todas Comandas')
         end
       end
       object btEditar: TBitBtn
         Left = 520
-        Top = 331
+        Top = 332
         Width = 91
         Height = 25
         Anchors = [akRight, akBottom]
@@ -247,7 +258,7 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
       end
       object btTransporta: TBitBtn
         Left = 429
-        Top = 331
+        Top = 332
         Width = 91
         Height = 25
         Anchors = [akRight, akBottom]
@@ -263,12 +274,12 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
       TabVisible = False
       DesignSize = (
         703
-        359)
+        360)
       object GroupBox2: TGroupBox
         Left = 0
         Top = 0
         Width = 703
-        Height = 359
+        Height = 360
         Align = alClient
         Caption = 'Venda'
         TabOrder = 0
@@ -313,36 +324,44 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
           Visible = False
         end
         object Label1: TLabel
-          Left = 32
-          Top = 211
+          Left = 31
+          Top = 193
           Width = 58
           Height = 13
           Caption = 'Observa'#231#227'o'
           FocusControl = edtOBS
         end
         object Label10: TLabel
-          Left = 136
-          Top = 158
+          Left = 135
+          Top = 148
           Width = 67
           Height = 13
           Caption = 'Pre'#231'o Unit'#225'rio'
           FocusControl = edtCustoRep
         end
         object Label5: TLabel
-          Left = 31
-          Top = 158
+          Left = 30
+          Top = 148
           Width = 56
           Height = 13
           Caption = 'Quantidade'
           FocusControl = bfdbEdit1
         end
         object Label8: TLabel
-          Left = 242
-          Top = 158
+          Left = 241
+          Top = 148
           Width = 51
           Height = 13
           Caption = 'Valor Total'
           FocusControl = bfdbEdit2
+        end
+        object Label9: TLabel
+          Left = 31
+          Top = 268
+          Width = 18
+          Height = 13
+          Caption = 'Tag'
+          FocusControl = DBEdit1
         end
         object edtCliente: TbfdbEdit
           Left = 113
@@ -410,7 +429,7 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
           OnDblClick = edtCodProdButtonClick
           OnExit = edtCodProdExit
           NumGlyphs = 1
-          Text = 'EDTCODPROD'
+          Text = 'edtCodProd'
           OnButtonClick = edtCodProdButtonClick
         end
         object edtCodFamilia: TbfdbEditButton
@@ -429,12 +448,12 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
           OnDblClick = edtCodFamiliaButtonClick
           OnExit = edtCodFamiliaExit
           NumGlyphs = 1
-          Text = 'EDTCODFAMILIA'
+          Text = 'edtCodFamilia'
           OnButtonClick = edtCodFamiliaButtonClick
         end
         object edtOBS: TbfdbMemo
-          Left = 32
-          Top = 226
+          Left = 31
+          Top = 208
           Width = 439
           Height = 56
           DataField = 'OBS'
@@ -448,8 +467,8 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
           TabOrder = 9
         end
         object edtCustoRep: TbfdbEdit
-          Left = 136
-          Top = 171
+          Left = 135
+          Top = 161
           Width = 100
           Height = 21
           TabStop = False
@@ -459,8 +478,8 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
           TabOrder = 7
         end
         object bfdbEdit1: TbfdbEdit
-          Left = 31
-          Top = 171
+          Left = 30
+          Top = 161
           Width = 100
           Height = 21
           DataField = 'QUANTIDADE'
@@ -468,8 +487,8 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
           TabOrder = 6
         end
         object bfdbEdit2: TbfdbEdit
-          Left = 242
-          Top = 171
+          Left = 241
+          Top = 161
           Width = 100
           Height = 21
           TabStop = False
@@ -480,12 +499,12 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
         end
         object btSalva: TBitBtn
           Left = 33
-          Top = 296
+          Top = 314
           Width = 117
           Height = 31
           Caption = 'Registrar'
           Enabled = False
-          TabOrder = 10
+          TabOrder = 11
           OnClick = btSalvaClick
           Glyph.Data = {
             F6060000424DF606000000000000360000002800000018000000180000000100
@@ -545,10 +564,19 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
             FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
             FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
         end
+        object DBEdit1: TbfdbEdit
+          Left = 31
+          Top = 284
+          Width = 439
+          Height = 21
+          DataField = 'TAG'
+          DataSource = ds
+          TabOrder = 10
+        end
       end
       object btExclui: TBitBtn
         Left = 587
-        Top = 227
+        Top = 228
         Width = 91
         Height = 25
         Anchors = [akLeft, akBottom]
@@ -563,7 +591,7 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
   end
   object btSai: TBitBtn
     Left = 615
-    Top = 363
+    Top = 364
     Width = 91
     Height = 25
     Anchors = [akRight, akBottom]
@@ -983,6 +1011,78 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
         FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     end
+    object btFechaTurno: TBitBtn
+      Left = 352
+      Top = 1
+      Width = 117
+      Height = 31
+      Caption = 'Fechar Turno'
+      TabOrder = 6
+      OnClick = btFechaTurnoClick
+      Glyph.Data = {
+        A2070000424DA207000000000000360000002800000019000000190000000100
+        1800000000006C070000120B0000120B00000000000000000000FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFDBE8FA9CBFF36099EB4184E8367D
+        E63C81E75994EA90B7F1D4E3F9FCFDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFF0DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE5EEFB96BA
+        F15D96EC2875E61568E51569E51568E52272E6528FEA8CB4F0D5E3FAFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFF8FB7F1317BE7196CE91A6DE9186BE8176AE71769E7176AE7186BE81A
+        6CE9196CE92572E77AA9EFF6F9FEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF0DFFFF
+        FFFFFFFFFFFFFFFFFFFFF3F7FE5E97EB1A6CE91C6FEB2673E86098EBB9D2F6EC
+        F3FDF7FAFEEFF5FDC3D8F86CA0EE2B77E81B6EEA1B6DEA4586E9DCE8FBFFFFFF
+        FFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFF5F8FE4F8DEB1C6FEB1C6EEA5E
+        97EDEBF2FDFFFFFFF2F7FDD6E4FAD0E0F9D7E5FAF6F9FEFFFFFFF8FAFE75A6EE
+        1A6CE81E70EB367DE9DEE9FBFFFFFFFFFFFFFFFFFF0DFFFFFFFFFFFFFFFFFF5F
+        98ED1F71EC1C6FE998BCF2FFFFFFDCE8FB75A6F03981EB1B6DE81B6DE81B6DE9
+        3C83EC78A9EFE3EDFCFFFFFFB5CFF62574E92072EC4285EAF2F7FEFFFFFFFFFF
+        FF00FFFFFFFFFFFFA1C3F51E70EB2072EC8FB7F2FFFFFFA6C6F52B77EA2072ED
+        2374EE2476EF2475EF2476EF2274EE2072EC307AEAAECAF7FFFFFFAFCBF51E70
+        EB2073EC7DABF2FFFFFFFFFFFF0DFFFFFFF5F9FE3C82EB2475EE5693EDFFFFFF
+        AFCCF71E6FEA2676EF2778F02676F02677EF2677EF2576EF2777EF2878F02577
+        EF1F70E9B7D1F8FFFFFF76A7F02475EE2977ECDAE7FBFFFFFF00EBF2FDAECBF7
+        2474ED2575ECD9E7FBE7F0FD2C78EB2878F02A78F02A78EF2978EF2A78EF2978
+        EF2978EF2A78EF2978EF2A79F12A79F0317CECEBF2FDEFF5FD307BEC2476EE93
+        BAF4D8E6FB0DBCD4F979AAF32878F05492F0FFFFFF80AEF32877EF2C7AF12C7A
+        F12C7AF02B7AF02C7AF02B79F12B79F02C79F02B79F12676EF2576EE2374ED8E
+        B7F5FFFFFF73A6F22978F05A96F195BCF60089B5F55292F22A7AF19DC1F7F7FA
+        FE4A8DF12D7CF22E7CF22E7DF22E7DF22D7CF22C7CF22A7AF12C7CF23580F254
+        93F1AAC9F879AAF32475EF5594F2FEFEFFC3D9FA2979F0317EEF629CF20D6FA5
+        F43D86F12C7BF1CADEFBE1ECFC2D7BF0317EF3317EF3317EF3317EF3307DF33E
+        86F08AB5F5609AF3679FF3A1C3F7669FF33580F1317FF43881F1EEF4FEECF3FD
+        2A7AF12A79F04B8DF10069A1F53884F32E7CF2D6E5FCDAE8FC2B7AF23482F532
+        80F53280F53381F5307FF376A9F5FFFFFFB8D2FA337FF22E7DF23281F43381F5
+        3481F5327EF3E7F0FDF6FAFE2C7BF12C7CF3468BF30D76A9F7448AF4317FF5C6
+        DCFBE8F0FD3783F43784F63581F63681F53681F53682F63C85F476A8F796BDF8
+        4087F43783F73783F63681F63682F54289F3F3F8FEE8F1FE2F7EF42F7DF35293
+        F40094BDF95E9BF63582F695BDF9FEFEFF5B9AF63884F73B85F73984F63984F6
+        3A85F73985F63683F65796F6BFD7FB5093F53783F73B85F73683F665A0F6FFFF
+        FFB9D3FB3482F63E88F56FA5F70DC8DDFC89B5F93784F65596F7FFFFFF9CC1F9
+        3782F63E87F73C86F73D87F73C86F73D87F73D87F83884F770A7F8F3F8FE5596
+        F63C87F83784F7A6C8FAFFFFFF70A5F83885F76CA5F7A7C9FA00F2F7FEBDD6FC
+        3884F83A85F7CCDFFDF6F9FF488FF73D88F83F89F93E88F93D88F93E88F93E88
+        F93F89F93985F979ACF9C0D8FC3884F74B90F8F9FBFFE3EEFE3985F73985F8A4
+        C7FBE2EDFE0DFFFFFFFBFCFF5998F93F89F95897F9FFFFFFDEEBFD408AF93F8A
+        FA428BFA428BFA428AFA418AFA418AFA458CFA3F89FA3A86F84E92F8DDEAFEFF
+        FFFF6FA6F93E89F9488EFAEBF3FEFFFFFF00FFFFFFFFFFFFBFD8FD3B86FA3F8A
+        F986B5FCFFFFFFDAE8FE5999FA3C88FA418BFA428CFA438DFA428CFA418BFA3D
+        89FA5496FBDCE9FEFFFFFF9DC3FC3D88F93E89FA9EC4FCFFFFFFFFFFFF0DFFFF
+        FFFFFFFFFFFFFF88B7FC408BFB3F8BFB85B5FBFFFFFFFFFFFFA4C7FC7BAEFC5A
+        9AFB5094FB5B9CFC7DB0FBABCCFDFFFFFFFFFFFF9DC3FD3D89FA428DFC6DA5FB
+        FFFFFFFFFFFFFFFFFF00FFFFFFFFFFFFFFFFFFFFFFFF7BAFFC428CFC448DFC5D
+        9DFDC4DBFEFFFFFFFFFFFFF9FBFFF1F6FFFAFCFFFFFFFFFFFFFFD4E5FE6AA4FD
+        418DFB448EFC67A3FDF5F9FFFFFFFFFFFFFFFFFFFF0DFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFF8DBAFD418BFC4690FD428CFD5D9DFD96BFFDC4DBFED2E4FEC8DDFE
+        9FC5FE63A1FD448FFD468FFD428DFC7AAFFDF8FBFFFFFFFFFFFFFFFFFFFFFFFF
+        FF00FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFBDD7FE6AA5FE438EFD4690FD
+        468FFE448EFE448EFD448EFD468FFE4790FD448EFE619FFDABCCFEFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFF0DFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFFFFBCD6FF95BFFE6DA7FE569AFE5095FE5498FE68A4FE8FBBFEB4D1
+        FFF8FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF00FFFFFFFFFFFF
+        FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEEF5FFD0E2FF9EC5FF83B4FE7BAF
+        FE7FB2FE97C0FEC8DEFFEAF2FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+        FFFFFFFFFF0D}
+    end
   end
   object cds: TClientDataSet
     Aggregates = <>
@@ -995,8 +1095,8 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
     AfterCancel = cdsAfterCancel
     AfterDelete = cdsAfterDelete
     OnNewRecord = cdsNewRecord
-    Left = 448
-    Top = 65527
+    Left = 560
+    Top = 103
     object cdsID: TIntegerField
       FieldName = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -1100,14 +1200,23 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
       FieldName = 'COMANDA_NOME'
       Size = 200
     end
+    object cdsTAG: TStringField
+      DisplayLabel = 'Tag'
+      FieldName = 'TAG'
+      Size = 100
+    end
+    object cdsIMPRESSO: TStringField
+      FieldName = 'IMPRESSO'
+      Size = 1
+    end
   end
   object dsp: TDataSetProvider
     DataSet = qr
     UpdateMode = upWhereKeyOnly
     OnUpdateError = dspUpdateError
     BeforeUpdateRecord = BeforeUpdateRecord
-    Left = 480
-    Top = 65527
+    Left = 592
+    Top = 111
   end
   object qr: TSQLQuery
     MaxBlobSize = -1
@@ -1122,8 +1231,8 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
       ' left join SGC_FAMILIA_PROD f on f.ID = v.ID_FAMILIA'
       ''
       ' where p.ID > 0')
-    Left = 528
-    Top = 65527
+    Left = 624
+    Top = 111
     object qrID: TIntegerField
       FieldName = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -1208,11 +1317,19 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
       FieldName = 'COMANDA_NOME'
       Size = 200
     end
+    object qrTAG: TStringField
+      FieldName = 'TAG'
+      Size = 100
+    end
+    object qrIMPRESSO: TStringField
+      FieldName = 'IMPRESSO'
+      Size = 1
+    end
   end
   object ds: TDataSource
     DataSet = cds
-    Left = 560
-    Top = 65527
+    Left = 664
+    Top = 111
   end
   object RelVisual: TRelVisualBlue
     Cabecalho1Direita = '#Pag'

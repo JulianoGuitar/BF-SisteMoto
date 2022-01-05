@@ -49,7 +49,7 @@ type
     cdsIDALT: TStringField;
     cdsIDALTERADO: TStringField;
     Label3: TLabel;
-    bfdbEdit1: TbfdbEdit;
+    edtID: TbfdbEdit;
     qrCNPJ: TStringField;
     cdsCNPJ: TStringField;
     Label1: TLabel;
@@ -111,7 +111,6 @@ type
     ckbInativoCons: TCheckBox;
     ckbInativo: TDBCheckBox;
     edtConsID: TbfEdit;
-    cbxPessoa: TbfdbComboBox;
     cdsPESSOA: TStringField;
     qrPESSOA: TStringField;
     edtConsCidade: TbfEdit;
@@ -194,10 +193,6 @@ type
     qrNOME_PAIS: TStringField;
     cdsCOD_PAIS: TIntegerField;
     cdsNOME_PAIS: TStringField;
-    Label4: TLabel;
-    Label19: TLabel;
-    edtCodPais: TbfdbEditButton;
-    edtNomePais: TbfdbEdit;
     qrNOME_FANTASIA: TStringField;
     qrMAIL_NFE: TStringField;
     qrSIMPLES_NACIONAL: TStringField;
@@ -228,11 +223,7 @@ type
     bfdbGrid2: TbfdbGrid;
     cbxSimplesNacional: TbfdbComboBox;
     cbxTipoContribuinte: TbfdbComboBox;
-    Label23: TLabel;
-    edtNomeFantasia: TbfdbEdit;
     Label24: TLabel;
-    Label25: TLabel;
-    bfdbEdit2: TbfdbEdit;
     qrCLIENTE: TStringField;
     qrFORNECEDOR: TStringField;
     qrTRANSPORTADORA: TStringField;
@@ -273,15 +264,33 @@ type
     edtNomeVendedor: TbfdbEdit;
     edtCodVendedor: TbfdbEditButton;
     edtCodTransportadora: TbfdbEditButton;
+    TabSheet1: TTabSheet;
+    Label23: TLabel;
+    edtNomeFantasia: TbfdbEdit;
+    Label28: TLabel;
     edtCodSegmento: TbfdbEditButton;
     edtNomeSegmento: TbfdbEdit;
-    Label28: TLabel;
+    Label4: TLabel;
+    Label19: TLabel;
+    edtCodPais: TbfdbEditButton;
+    edtNomePais: TbfdbEdit;
+    Label25: TLabel;
+    bfdbEdit2: TbfdbEdit;
+    cbxPessoa: TbfdbComboBox;
+    DBCheckBox1: TDBCheckBox;
+    qrSOCIO: TStringField;
+    cdsSOCIO: TStringField;
+    qrCOD_SOCIO: TStringField;
+    cdsCOD_SOCIO: TStringField;
+    edtCOD_SOCIO: TbfdbEdit;
+    Label29: TLabel;
 
     procedure Direitos;
     procedure AbreEnderecos;
     procedure AbreContatos;
     function Pode_Salvar: boolean;
     function ExisteCNPJ: boolean;
+    function ExisteAssociado: boolean;
 
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -349,6 +358,8 @@ type
     procedure edtCodSegmentoButtonClick(Sender: TObject);
     procedure edtCodSegmentoChange(Sender: TObject);
     procedure edtCodSegmentoExit(Sender: TObject);
+    procedure edtCNPJExit(Sender: TObject);
+    procedure edtCOD_SOCIOExit(Sender: TObject);
 
   private
     procedure HabilitaControles;
@@ -420,6 +431,8 @@ begin
   begin
     sRetorno := cdsID.AsString+';'
                +cdsNOME.AsString+';'
+               +cdsCNPJ.AsString+';'
+               +cdsSOCIO.AsString+';'
                ;
 
     ModalResult := mrOk;
@@ -437,7 +450,7 @@ begin
       if active then close;
       SQL.Clear;
       SQL.Add('select * from SGC_PARTICIPANTES');
-      SQL.Add('where ID <> '+IntToStr(cdsID.AsInteger)+' ');
+      SQL.Add('where ID <> '+IntToStr(StrToIntDef(cdsID.AsString,0))+' ');
       SQL.Add('and CNPJ = '''+cdsCNPJ.AsString+''' ');
       open;
       if not IsEmpty then
@@ -454,7 +467,6 @@ begin
       close;
     end;
   end;
-  //result := false;
 end;
 
 procedure TfmSGC_CLIENTES.FormCreate(Sender: TObject);
@@ -967,8 +979,8 @@ procedure TfmSGC_CLIENTES.cdsNewRecord(DataSet: TDataSet);
 begin
   //cdsID.ReadOnly := false;
   HabilitaControles;
-  cdsPESSOA.AsString := '2';
-  cdsSIMPLES_NACIONAL.AsString := 'S';
+  cdsPESSOA.AsString := '1';
+  cdsSIMPLES_NACIONAL.AsString := 'N';
   cdsTIPO_CONTRIBUINTE.AsString := '1';
 end;
 
@@ -1092,7 +1104,7 @@ begin
        then cds.Insert
        else exit;
   pgc.ActivePage := tsCadastro;
-  cbxPessoa.SetFocus;
+  edtCNPJ.SetFocus;
   HabilitaControles;
   if cdsINATIVO_CLI.AsString <> 'S' then
   ckbInativo.Checked := false;
@@ -1236,7 +1248,7 @@ begin
 
   if (trim(cdsCNPJ.AsString) = '') and  (cbxPessoa.ItemIndex <> 2)  then
   begin
-    MessageBox(Handle, pchar('Informe o CPF ou CNPJ.'), 'Aviso', MB_ICONWARNING);
+    MessageBox(Handle, pchar('Informe o CPF.'), 'Aviso', MB_ICONWARNING);
     edtCNPJ.SetFocus;
     Exit;
   end;
@@ -1261,7 +1273,7 @@ begin
       end;
   end;
 
- // if ExisteCNPJ then exit;  //essa função funciona, descomentar quando for para valer
+  if ExisteCNPJ then exit;  //essa função funciona, descomentar quando for para valer
 
   if trim(cdsNOME.AsString) = '' then
   begin
@@ -1283,34 +1295,6 @@ begin
     edtCodCidadeExit(self);
     cdsUF.AsString := 'EX';
 
-    if trim(cdsENDERECO.AsString) = '' then
-    begin
-      MessageBox(Handle, pchar('Informe o Endereço.'), 'Aviso', MB_ICONWARNING);
-      edtEndereco.SetFocus;
-      Exit;
-    end;
-
-    if trim(cdsNUMERO.AsString) = '' then
-    begin
-      MessageBox(Handle, pchar('Informe o Número.'), 'Aviso', MB_ICONWARNING);
-      edtNumero.SetFocus;
-      Exit;
-    end;
-
-    if trim(cdsBAIRRO.AsString) = '' then
-    begin
-      MessageBox(Handle, pchar('Informe o Bairro.'), 'Aviso', MB_ICONWARNING);
-      edtBairro.SetFocus;
-      Exit;
-    end;
-
-    if cdsCEP.AsString = '' then
-    begin
-      MessageBox(Handle, pchar('Informe o CEP.'), 'Aviso', MB_ICONWARNING);
-      edtCEP.SetFocus;
-      Exit;
-    end;
-
     if cdsCOD_PAIS.AsInteger = 105 then
     begin
        MessageBox(Handle, pchar('Cliente estrangeiro não pode ser Brasileiro.'), 'Aviso', MB_ICONWARNING);
@@ -1318,47 +1302,10 @@ begin
        Exit;
     end;
 
-    if trim(cdsMAIL.AsString) = '' then
-    begin
-      MessageBox(Handle, pchar('Informe o Email.'), 'Aviso', MB_ICONWARNING);
-      edtEmail.SetFocus;
-      Exit;
-    end;
-
-    if trim(cdsFONE.AsString) = '' then
-    begin
-      MessageBox(Handle, pchar('Informe o Telefone.'), 'Aviso', MB_ICONWARNING);
-      edtFone.SetFocus;
-      Exit;
-    end;
-
-    if trim(cdsSIMPLES_NACIONAL.AsString) = '' then
-    begin
-      MessageBox(Handle, pchar('Informe se o Cliente faz parte do Simples Nacional.'), 'Aviso', MB_ICONWARNING);
-      cbxSimplesNacional.SetFocus;
-      Exit;
-    end;
-
-    if trim(cdsTIPO_CONTRIBUINTE.AsString) = '' then
-    begin
-      MessageBox(Handle, pchar('Informe o Tipo de Contribuição do Cliente.'), 'Aviso', MB_ICONWARNING);
-      cbxTipoContribuinte.SetFocus;
-      Exit;
-    end;
-
-    if (cdsTIPO_CONTRIBUINTE.AsString = '1') and (cdsINSC_EST.AsString = '') then
-    begin
-      MessageBox(Handle, pchar('Informe a Inscrição Estadual.'), 'Aviso', MB_ICONWARNING);
-      edtInscEstadual.SetFocus;
-      Exit;
-    end;
+  end;
 
 
-  end
-  else
-  begin
-
-
+    {
     if cdsCOD_CIDADE.AsString = '' then
     begin
       MessageBox(Handle, pchar('Informe a Cidade.'), 'Aviso', MB_ICONWARNING);
@@ -1400,7 +1347,7 @@ begin
       edtCEP.SetFocus;
       Exit;
     end;
-
+    }
     cdsCOD_PAIS.AsInteger := 105;
     cdsNOME_PAIS.AsString := 'Brasil';
 
@@ -1411,6 +1358,7 @@ begin
       Exit;
     end;
 
+    {
     if trim(cdsFONE.AsString) = '' then
     begin
       MessageBox(Handle, pchar('Informe o Telefone.'), 'Aviso', MB_ICONWARNING);
@@ -1438,9 +1386,21 @@ begin
       edtInscEstadual.SetFocus;
       Exit;
     end;
+    }
 
-
+  if (cdsSOCIO.AsString = 'S')
+  and (trim(cdsCOD_SOCIO.AsString) = '')
+  then
+  begin
+    MessageBox(Handle, pchar('Informe o código de associado.'), 'Aviso', MB_ICONWARNING);
+    edtCOD_SOCIO.SetFocus;
+    Exit;
   end;
+
+  if (cdsSOCIO.AsString = 'S')
+  and (trim(cdsCOD_SOCIO.AsString) <> '')
+  then
+    if ExisteAssociado then exit;  
 
   result := true;
 end;
@@ -1487,5 +1447,52 @@ end;
 //exports tem que ser a ultima coisa antes do end.
 exports
   SGC015;
+
+procedure TfmSGC_CLIENTES.edtCNPJExit(Sender: TObject);
+begin
+  if (edtCNPJ.Text <> '')
+  and (cds.State in [dsInsert, dsEdit])
+  then
+  begin
+    if ExisteCNPJ then cdsCNPJ.Clear;
+  end;
+end;
+
+function TfmSGC_CLIENTES.ExisteAssociado: boolean;
+begin
+  result := false;
+  if trim(cdsCOD_SOCIO.AsString) <> '' then
+  begin
+    with qrApoio do
+    begin
+      SQLConnection := dtmCon.SQLDB;
+      if active then close;
+      SQL.Clear;
+      SQL.Add('select * from SGC_PARTICIPANTES');
+      SQL.Add('where ID <> '+IntToStr(StrToIntDef(cdsID.AsString,0))+' ');
+      SQL.Add('and COD_SOCIO = '''+cdsCOD_SOCIO.AsString+''' ');
+      open;
+      if not IsEmpty then
+      begin
+        MessageBox(Handle, pchar('Código de associado já cadastrado'), 'Aviso', MB_ICONWARNING);
+        edtCOD_SOCIO.SetFocus;
+        close;
+        result := true;
+        exit;
+      end;
+      close;
+    end;
+  end;
+end;
+
+procedure TfmSGC_CLIENTES.edtCOD_SOCIOExit(Sender: TObject);
+begin
+  if (edtCOD_SOCIO.Text <> '')
+  and (cds.State in [dsInsert, dsEdit])
+  then
+  begin
+    if ExisteAssociado then cdsCOD_SOCIO.Clear;
+  end;
+end;
 
 end.

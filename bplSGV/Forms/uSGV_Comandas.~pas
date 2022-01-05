@@ -68,6 +68,9 @@ type
     cdsFECHADA: TStringField;
     cdsTOTAL: TFMTBCDField;
     cdsNOME_CLIENTE: TStringField;
+    qrSOCIO: TStringField;
+    cdsSOCIO: TStringField;
+    DBCheckBox1: TDBCheckBox;
 
     procedure Direitos;
     function Pode_Salvar: boolean;
@@ -201,6 +204,7 @@ begin
   if bModal then
   begin
     sRetorno := cdsID.AsString+';'
+               +cdsCOMANDA.AsString+';'
                +cdsNOME.AsString+';'
                ;
 
@@ -615,6 +619,8 @@ begin
   begin
     cdsID_CLIENTE.AsString := Separa_String(s,1);
     cdsNOME_CLIENTE.AsString := Separa_String(s,2);
+    cdsSOCIO.AsString := Separa_String(s,4);
+    cdsNOME.AsString := Separa_String(cdsNOME_CLIENTE.AsString,1,' ');
     Perform(WM_NEXTDLGCTL, 0, 0);
   end;
 end;
@@ -631,7 +637,17 @@ begin
   and (cds.State in [dsInsert, dsEdit])
   then
   begin
-    cdsNOME_CLIENTE.AsString := Query(' select nome from sgc_participantes where id = '''+trim(edtCodCli.Text)+''' ',sPath_Local,'nome');
+    with dtmCon.qrApoio do
+    begin
+      if active then close;
+      SQL.Clear;
+      SQL.Add(' select nome, socio from sgc_participantes where id = '''+trim(edtCodCli.Text)+'''  ');
+      Open;
+      cdsNOME_CLIENTE.AsString := FieldByName('nome').AsString;
+      cdsSOCIO.AsString := FieldByName('socio').AsString;
+      cdsNOME.AsString := Separa_String(cdsNOME_CLIENTE.AsString,1,' ');
+      close;
+    end;
   end;
 end;
 
@@ -844,6 +860,9 @@ begin
     ParamByName('u').AsString := sUsuario;
     ParamByName('c').AsInteger := StrToIntDef(edtConsComanda.Text,0);
     ExecSQL;
+
+    SQLConnection.Commit(td);
+
   except
     on e : Exception do
     begin

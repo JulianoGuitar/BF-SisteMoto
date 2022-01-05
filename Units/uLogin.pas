@@ -7,7 +7,7 @@ interface
                                                              
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ExtCtrls, Buttons;
+  Dialogs, StdCtrls, ExtCtrls, Buttons, EditJul;
 
 type
   TfmLogin = class(TForm)
@@ -15,8 +15,8 @@ type
     btOK: TBitBtn;
     Label2: TLabel;
     Label3: TLabel;
-    edjUsuario: TEdit;
-    edjSenha: TEdit;
+    edjUsuario: TEditJul;
+    edjSenha: TEditJul;
     procedure edjSenhaKeyPress(Sender: TObject; var Key: Char);
     procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);

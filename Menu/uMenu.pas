@@ -84,9 +84,9 @@ uses uFuncoes, uAltera_Senha, uFuncoesDB, uFuncoesTelas;
 
 procedure TfmMenu.Sobre1Click(Sender: TObject);
 begin
-  MessageBox(Handle, pchar('SisteMoto'+#13
-                          +'Versão Demo 1.0 | 22/12/2021'+#13
-                          +'(c)2021 Provisual TI'
+  MessageBox(Handle, pchar('SisteMoto V2'+#13
+                          +'Versão 1.0 | 05/01/2022'+#13
+                          +'(c)2022 Provisual TI'
                           ), 'SisteMoto', MB_ICONINFORMATION);
 end;
 

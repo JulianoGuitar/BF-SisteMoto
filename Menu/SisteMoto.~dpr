@@ -26,7 +26,7 @@ begin
   //fmSplash.lbl2.Caption := 'provisualpoa@gmail.com';
   fmSplash.Show;
   fmSplash.Refresh;
-  fmSplash.Informacao('Bem vindo ao SisteMoto!');
+  fmSplash.Informacao('Bem vindo!');
   u := LoginDB('SYSDBA','1');
   fmSplash.Informacao('Verificando usuário...');
   if u <> '' then

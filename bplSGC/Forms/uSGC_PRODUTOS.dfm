@@ -338,13 +338,29 @@ object fmSGC_PRODUTOS: TfmSGC_PRODUTOS
           Caption = 'Fabricante'
           FocusControl = edtFabricante
         end
-        object Label10: TLabel
+        object Label19: TLabel
           Left = 12
-          Top = 167
+          Top = 171
           Width = 27
           Height = 13
           Caption = 'Pre'#231'o'
-          FocusControl = edtCustoRep
+          FocusControl = bfdbEdit1
+        end
+        object Label23: TLabel
+          Left = 12
+          Top = 211
+          Width = 86
+          Height = 13
+          Caption = 'Pre'#231'o (Associado)'
+          FocusControl = bfdbEdit2
+        end
+        object Label24: TLabel
+          Left = 12
+          Top = 251
+          Width = 85
+          Height = 13
+          Caption = 'Pre'#231'o (Promo'#231#227'o)'
+          FocusControl = bfdbEdit3
         end
         object edtNomeProd: TbfdbEdit
           Left = 95
@@ -371,7 +387,7 @@ object fmSGC_PRODUTOS: TfmSGC_PRODUTOS
           Caption = 'Inativo'
           DataField = 'INATIVO'
           DataSource = ds
-          TabOrder = 10
+          TabOrder = 13
           ValueChecked = 'S'
           ValueUnchecked = 'N'
         end
@@ -432,13 +448,13 @@ object fmSGC_PRODUTOS: TfmSGC_PRODUTOS
           Visible = False
         end
         object pgcDados: TPageControl
-          Left = 35
-          Top = 264
+          Left = 11
+          Top = 312
           Width = 696
           Height = 181
           ActivePage = tbTributacao
           Anchors = [akLeft, akRight, akBottom]
-          TabOrder = 11
+          TabOrder = 14
           Visible = False
           object tbTributacao: TTabSheet
             Caption = 'Tributa'#231#227'o'
@@ -628,6 +644,14 @@ object fmSGC_PRODUTOS: TfmSGC_PRODUTOS
               Height = 13
               Caption = 'Moeda'
             end
+            object Label10: TLabel
+              Left = 404
+              Top = 36
+              Width = 54
+              Height = 13
+              Caption = 'Custo Rep.'
+              FocusControl = edtCustoRep
+            end
             object edtPesoLiq: TbfdbEdit
               Left = 556
               Top = 55
@@ -703,6 +727,15 @@ object fmSGC_PRODUTOS: TfmSGC_PRODUTOS
               ParentFont = False
               TabOrder = 1
             end
+            object edtCustoRep: TbfdbEdit
+              Left = 404
+              Top = 52
+              Width = 100
+              Height = 21
+              DataField = 'CUSTO_REP'
+              DataSource = ds
+              TabOrder = 6
+            end
           end
         end
         object edtUnidade: TbfdbEditButton
@@ -763,12 +796,30 @@ object fmSGC_PRODUTOS: TfmSGC_PRODUTOS
           DataSource = ds
           TabOrder = 9
         end
-        object edtCustoRep: TbfdbEdit
+        object bfdbEdit1: TbfdbEdit
           Left = 12
-          Top = 180
+          Top = 185
           Width = 100
           Height = 21
-          DataField = 'CUSTO_REP'
+          DataField = 'PRECO'
+          DataSource = ds
+          TabOrder = 10
+        end
+        object bfdbEdit2: TbfdbEdit
+          Left = 12
+          Top = 225
+          Width = 100
+          Height = 21
+          DataField = 'PRECO_SOCIO'
+          DataSource = ds
+          TabOrder = 11
+        end
+        object bfdbEdit3: TbfdbEdit
+          Left = 12
+          Top = 265
+          Width = 100
+          Height = 21
+          DataField = 'PRECO_ESPECIAL'
           DataSource = ds
           TabOrder = 12
         end
@@ -973,6 +1024,24 @@ object fmSGC_PRODUTOS: TfmSGC_PRODUTOS
       ProviderFlags = []
       Size = 100
     end
+    object cdsPRECO: TFMTBCDField
+      FieldName = 'PRECO'
+      Required = True
+      Precision = 18
+      Size = 8
+    end
+    object cdsPRECO_SOCIO: TFMTBCDField
+      FieldName = 'PRECO_SOCIO'
+      Required = True
+      Precision = 18
+      Size = 8
+    end
+    object cdsPRECO_ESPECIAL: TFMTBCDField
+      FieldName = 'PRECO_ESPECIAL'
+      Required = True
+      Precision = 18
+      Size = 8
+    end
   end
   object dsp: TDataSetProvider
     DataSet = qr
@@ -986,7 +1055,13 @@ object fmSGC_PRODUTOS: TfmSGC_PRODUTOS
     MaxBlobSize = -1
     Params = <>
     SQL.Strings = (
-      'select * from SGC_PRODUTOS')
+      ''
+      
+        'select p.*, f.nome NOME_FAMILIA ,g.cod_grupo || '#39' '#39' || g.sub_gru' +
+        'po || '#39' '#39' || g.descricao NOME_GRUPO from SGC_PRODUTOS p left joi' +
+        'n SGC_FAMILIA_PROD f on f.ID = p.ID_FAMILIA  left join SGC_UNIDA' +
+        'DES u on u.UNIDADE = p.UNIDADE'
+      ' left join SGC_GRUPO_PRODUTOS g on g.ID = p.ID_GRUPO')
     Left = 528
     Top = 65527
     object qrUSU_INCLUI: TStringField
@@ -1121,6 +1196,30 @@ object fmSGC_PRODUTOS: TfmSGC_PRODUTOS
       FieldName = 'NOME_GRUPO'
       ProviderFlags = []
       Size = 100
+    end
+    object qrPRECO: TFMTBCDField
+      DisplayLabel = 'Pre'#231'o'
+      FieldName = 'PRECO'
+      Required = True
+      EditFormat = '#,##0.00'
+      Precision = 18
+      Size = 8
+    end
+    object qrPRECO_SOCIO: TFMTBCDField
+      DisplayLabel = 'Pre'#231'o (S'#243'cio)'
+      FieldName = 'PRECO_SOCIO'
+      Required = True
+      EditFormat = '#,##0.00'
+      Precision = 18
+      Size = 8
+    end
+    object qrPRECO_ESPECIAL: TFMTBCDField
+      DisplayLabel = 'Pre'#231'o Especial'
+      FieldName = 'PRECO_ESPECIAL'
+      Required = True
+      EditFormat = '#,##0.00'
+      Precision = 18
+      Size = 8
     end
   end
   object ds: TDataSource

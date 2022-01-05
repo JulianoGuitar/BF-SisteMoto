@@ -3,7 +3,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
   Top = 0
   BorderStyle = bsSingle
   Caption = 'SGC015 | Clientes'
-  ClientHeight = 583
+  ClientHeight = 388
   ClientWidth = 732
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -21,7 +21,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
   OnKeyPress = FormKeyPress
   DesignSize = (
     732
-    583)
+    388)
   PixelsPerInch = 96
   TextHeight = 13
   object Label24: TLabel
@@ -35,7 +35,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
     Left = 0
     Top = 0
     Width = 732
-    Height = 583
+    Height = 388
     ActivePage = tsConsulta
     Align = alClient
     TabOrder = 0
@@ -45,12 +45,12 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
       OnShow = tsConsultaShow
       DesignSize = (
         724
-        555)
+        360)
       object GroupBox1: TGroupBox
         Left = 0
         Top = 0
         Width = 724
-        Height = 524
+        Height = 329
         Align = alTop
         Anchors = [akLeft, akTop, akRight, akBottom]
         Caption = 'Consulta'
@@ -150,6 +150,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           Height = 17
           Caption = 'Mostrar Inativo'
           TabOrder = 5
+          Visible = False
           OnClick = btConsultaClick
         end
         object edtConsID: TbfEdit
@@ -191,7 +192,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
       end
       object btEditar: TBitBtn
         Left = 450
-        Top = 527
+        Top = 332
         Width = 91
         Height = 25
         Anchors = [akRight, akBottom]
@@ -201,7 +202,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
       end
       object btTransporta: TBitBtn
         Left = 357
-        Top = 527
+        Top = 332
         Width = 91
         Height = 25
         Anchors = [akRight, akBottom]
@@ -213,7 +214,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
       end
       object btImprime: TBitBtn
         Left = 8
-        Top = 527
+        Top = 332
         Width = 110
         Height = 25
         Anchors = [akLeft, akBottom]
@@ -227,10 +228,10 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
       OnShow = tsCadastroShow
       DesignSize = (
         724
-        555)
+        360)
       object btSalva: TBitBtn
         Left = 359
-        Top = 527
+        Top = 332
         Width = 91
         Height = 25
         Anchors = [akRight, akBottom]
@@ -242,7 +243,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
       end
       object btDesiste: TBitBtn
         Left = 450
-        Top = 527
+        Top = 332
         Width = 91
         Height = 25
         Anchors = [akRight, akBottom]
@@ -253,7 +254,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
       end
       object btExclui: TBitBtn
         Left = 3
-        Top = 527
+        Top = 332
         Width = 91
         Height = 25
         Anchors = [akLeft, akBottom]
@@ -267,10 +268,13 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
         Left = 0
         Top = 0
         Width = 724
-        Height = 525
+        Height = 330
         Anchors = [akLeft, akTop, akRight, akBottom]
         Caption = 'Cadastro'
         TabOrder = 0
+        DesignSize = (
+          724
+          330)
         object Label2: TLabel
           Left = 11
           Top = 58
@@ -285,19 +289,19 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           Width = 11
           Height = 13
           Caption = 'ID'
-          FocusControl = bfdbEdit1
+          FocusControl = edtID
         end
         object Label1: TLabel
-          Left = 217
+          Left = 113
           Top = 20
-          Width = 48
+          Width = 19
           Height = 13
-          Caption = 'CPF/CNPJ'
+          Caption = 'CPF'
           FocusControl = edtCNPJ
         end
         object Label7: TLabel
           Left = 632
-          Top = 179
+          Top = 146
           Width = 13
           Height = 13
           Caption = 'UF'
@@ -305,7 +309,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
         end
         object Label8: TLabel
           Left = 11
-          Top = 218
+          Top = 185
           Width = 45
           Height = 13
           Caption = 'Endere'#231'o'
@@ -313,7 +317,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
         end
         object Label9: TLabel
           Left = 469
-          Top = 218
+          Top = 185
           Width = 37
           Height = 13
           Caption = 'N'#250'mero'
@@ -321,7 +325,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
         end
         object Label10: TLabel
           Left = 567
-          Top = 218
+          Top = 185
           Width = 65
           Height = 13
           Caption = 'Complemento'
@@ -329,7 +333,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
         end
         object Label11: TLabel
           Left = 11
-          Top = 254
+          Top = 221
           Width = 28
           Height = 13
           Caption = 'Bairro'
@@ -337,7 +341,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
         end
         object Label12: TLabel
           Left = 532
-          Top = 254
+          Top = 221
           Width = 19
           Height = 13
           Caption = 'CEP'
@@ -345,7 +349,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
         end
         object Label13: TLabel
           Left = 431
-          Top = 329
+          Top = 97
           Width = 24
           Height = 13
           Caption = 'Fone'
@@ -353,7 +357,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
         end
         object Label14: TLabel
           Left = 550
-          Top = 330
+          Top = 98
           Width = 33
           Height = 13
           Caption = 'Celular'
@@ -361,7 +365,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
         end
         object Label15: TLabel
           Left = 13
-          Top = 330
+          Top = 98
           Width = 24
           Height = 13
           Caption = 'Email'
@@ -369,7 +373,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
         end
         object Label17: TLabel
           Left = 11
-          Top = 179
+          Top = 146
           Width = 56
           Height = 13
           Caption = 'C'#243'd.Cidade'
@@ -377,51 +381,19 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
         end
         object Label18: TLabel
           Left = 120
-          Top = 179
+          Top = 146
           Width = 78
           Height = 13
           Caption = 'Nome da Cidade'
           FocusControl = edtNomeCidade
         end
-        object Label4: TLabel
-          Left = 11
-          Top = 293
-          Width = 42
+        object Label29: TLabel
+          Left = 12
+          Top = 283
+          Width = 84
           Height = 13
-          Caption = 'C'#243'd.Pa'#237's'
-          FocusControl = edtCodCidade
-        end
-        object Label19: TLabel
-          Left = 121
-          Top = 292
-          Width = 64
-          Height = 13
-          Caption = 'Nome do Pa'#237's'
-          FocusControl = edtCodCidade
-        end
-        object Label23: TLabel
-          Left = 11
-          Top = 95
-          Width = 71
-          Height = 13
-          Caption = 'Nome Fantasia'
-          FocusControl = edtNomeFantasia
-        end
-        object Label25: TLabel
-          Left = 215
-          Top = 330
-          Width = 46
-          Height = 13
-          Caption = 'Email NFe'
-          FocusControl = edtEmail
-        end
-        object Label28: TLabel
-          Left = 11
-          Top = 141
-          Width = 48
-          Height = 13
-          Caption = 'Segmento'
-          FocusControl = edtCodCidade
+          Caption = 'C'#243'digo Associado'
+          FocusControl = edtCOD_SOCIO
         end
         object edtNome: TbfdbEdit
           Left = 11
@@ -437,9 +409,9 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 4
+          TabOrder = 3
         end
-        object bfdbEdit1: TbfdbEdit
+        object edtID: TbfdbEdit
           Left = 11
           Top = 36
           Width = 94
@@ -457,7 +429,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           TabOrder = 0
         end
         object edtCNPJ: TbfdbEdit
-          Left = 217
+          Left = 113
           Top = 36
           Width = 200
           Height = 21
@@ -470,11 +442,12 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 2
+          TabOrder = 1
+          OnExit = edtCNPJExit
         end
         object edtUF: TbfdbEdit
           Left = 632
-          Top = 195
+          Top = 162
           Width = 34
           Height = 21
           TabStop = False
@@ -488,11 +461,11 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           Font.Style = []
           ParentFont = False
           ReadOnly = True
-          TabOrder = 10
+          TabOrder = 9
         end
         object edtEndereco: TbfdbEdit
           Left = 11
-          Top = 233
+          Top = 200
           Width = 456
           Height = 21
           CharCase = ecUpperCase
@@ -504,11 +477,11 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 11
+          TabOrder = 10
         end
         object edtNumero: TbfdbEdit
           Left = 469
-          Top = 233
+          Top = 200
           Width = 95
           Height = 21
           CharCase = ecUpperCase
@@ -520,11 +493,11 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 12
+          TabOrder = 11
         end
         object edtComplemento: TbfdbEdit
           Left = 565
-          Top = 233
+          Top = 200
           Width = 101
           Height = 21
           CharCase = ecUpperCase
@@ -536,12 +509,12 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 13
+          TabOrder = 12
         end
         object edtBairro: TbfdbEdit
           Left = 11
-          Top = 270
-          Width = 485
+          Top = 237
+          Width = 520
           Height = 21
           CharCase = ecUpperCase
           DataField = 'BAIRRO'
@@ -552,11 +525,11 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 14
+          TabOrder = 13
         end
         object edtCEP: TbfdbEdit
           Left = 532
-          Top = 270
+          Top = 237
           Width = 134
           Height = 21
           CharCase = ecUpperCase
@@ -568,11 +541,11 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 15
+          TabOrder = 14
         end
         object edtFone: TbfdbEdit
           Left = 431
-          Top = 345
+          Top = 113
           Width = 115
           Height = 21
           CharCase = ecUpperCase
@@ -584,11 +557,11 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 20
+          TabOrder = 5
         end
         object edtCel: TbfdbEdit
           Left = 548
-          Top = 345
+          Top = 113
           Width = 118
           Height = 21
           CharCase = ecUpperCase
@@ -600,12 +573,12 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 21
+          TabOrder = 6
         end
         object edtEmail: TbfdbEdit
-          Left = 11
-          Top = 345
-          Width = 200
+          Left = 12
+          Top = 113
+          Width = 417
           Height = 21
           CharCase = ecLowerCase
           DataField = 'MAIL'
@@ -616,11 +589,11 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 18
+          TabOrder = 4
         end
         object edtCodCidade: TbfdbEditButton
           Left = 11
-          Top = 195
+          Top = 162
           Width = 109
           Height = 21
           AutoSize = False
@@ -633,17 +606,17 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 8
+          TabOrder = 7
           OnChange = edtCodCidadeChange
           OnDblClick = edtCodCidadeButtonClick
           OnExit = edtCodCidadeExit
           NumGlyphs = 1
-          Text = 'edtCodCidade'
+          Text = 'EDTCODCIDADE'
           OnButtonClick = edtCodCidadeButtonClick
         end
         object edtNomeCidade: TbfdbEdit
           Left = 120
-          Top = 195
+          Top = 162
           Width = 511
           Height = 21
           TabStop = False
@@ -657,7 +630,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           Font.Style = []
           ParentFont = False
           ReadOnly = True
-          TabOrder = 9
+          TabOrder = 8
         end
         object btConsultaCNPJ: TBitBtn
           Left = 528
@@ -671,7 +644,8 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           Font.Name = 'Tahoma'
           Font.Style = [fsBold]
           ParentFont = False
-          TabOrder = 3
+          TabOrder = 2
+          Visible = False
           OnClick = btConsultaCNPJClick
         end
         object ckbInativo: TDBCheckBox
@@ -683,41 +657,20 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           Caption = 'Inativo'
           DataField = 'INATIVO_CLI'
           DataSource = ds
-          TabOrder = 22
+          TabOrder = 15
           ValueChecked = 'S'
           ValueUnchecked = 'N'
-        end
-        object cbxPessoa: TbfdbComboBox
-          Left = 109
-          Top = 36
-          Width = 100
-          Height = 21
-          Style = csDropDownList
-          CharCase = ecUpperCase
-          DataField = 'PESSOA'
-          DataSource = ds
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ItemHeight = 13
-          Items.Strings = (
-            '1 - F'#205'SICA'
-            '2 - JUR'#205'DICA'
-            '3 - EXTERIOR')
-          ParentFont = False
-          TabOrder = 1
-          OnExit = cbxPessoaExit
+          Visible = False
         end
         object pgcDados: TPageControl
-          Left = 2
-          Top = 369
+          Left = 194
+          Top = 286
           Width = 720
           Height = 154
-          ActivePage = tbFaturamento
-          Align = alBottom
-          TabOrder = 23
+          ActivePage = tbDocumentos
+          Anchors = [akLeft, akBottom]
+          TabOrder = 16
+          Visible = False
           object tbDocumentos: TTabSheet
             Caption = 'Documentos'
             object Label5: TLabel
@@ -862,6 +815,29 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
               TabOrder = 3
               SairComSeta = False
             end
+            object cbxPessoa: TbfdbComboBox
+              Left = 333
+              Top = 68
+              Width = 100
+              Height = 21
+              Style = csDropDownList
+              CharCase = ecUpperCase
+              DataField = 'PESSOA'
+              DataSource = ds
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ItemHeight = 13
+              Items.Strings = (
+                '1 - F'#205'SICA'
+                '2 - JUR'#205'DICA'
+                '3 - EXTERIOR')
+              ParentFont = False
+              TabOrder = 6
+              OnExit = cbxPessoaExit
+            end
           end
           object tbEndereco: TTabSheet
             Caption = 'Enderecos'
@@ -1002,6 +978,14 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
               Caption = 'Vendedor'
               FocusControl = edtNomeVendedor
             end
+            object Label25: TLabel
+              Left = 439
+              Top = 49
+              Width = 46
+              Height = 13
+              Caption = 'Email NFe'
+              FocusControl = edtEmail
+            end
             object edtNomeTransportadora: TbfdbEdit
               Left = 91
               Top = 69
@@ -1056,66 +1040,163 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
               Text = 'edtCodTransportadora'
               OnButtonClick = edtCodTransportadoraButtonClick
             end
+            object bfdbEdit2: TbfdbEdit
+              Left = 441
+              Top = 73
+              Width = 200
+              Height = 21
+              CharCase = ecLowerCase
+              DataField = 'MAIL_NFE'
+              DataSource = ds
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 4
+            end
+          end
+          object TabSheet1: TTabSheet
+            Caption = 'TabSheet1'
+            ImageIndex = 4
+            object Label23: TLabel
+              Left = 3
+              Top = 7
+              Width = 71
+              Height = 13
+              Caption = 'Nome Fantasia'
+              FocusControl = edtNomeFantasia
+            end
+            object Label28: TLabel
+              Left = 3
+              Top = 41
+              Width = 48
+              Height = 13
+              Caption = 'Segmento'
+              FocusControl = edtCodCidade
+            end
+            object Label4: TLabel
+              Left = 3
+              Top = 73
+              Width = 42
+              Height = 13
+              Caption = 'C'#243'd.Pa'#237's'
+              FocusControl = edtCodCidade
+            end
+            object Label19: TLabel
+              Left = 113
+              Top = 73
+              Width = 64
+              Height = 13
+              Caption = 'Nome do Pa'#237's'
+              FocusControl = edtCodCidade
+            end
+            object edtNomeFantasia: TbfdbEdit
+              Left = 3
+              Top = 17
+              Width = 655
+              Height = 21
+              CharCase = ecUpperCase
+              DataField = 'NOME_FANTASIA'
+              DataSource = ds
+              TabOrder = 0
+            end
+            object edtCodSegmento: TbfdbEditButton
+              Left = 3
+              Top = 49
+              Width = 109
+              Height = 21
+              AutoSize = False
+              DataField = 'ID_SEGMENTO'
+              DataSource = ds
+              TabOrder = 1
+              OnChange = edtCodSegmentoChange
+              OnExit = edtCodSegmentoExit
+              NumGlyphs = 1
+              Text = 'edtCodSegmento'
+              OnButtonClick = edtCodSegmentoButtonClick
+            end
+            object edtNomeSegmento: TbfdbEdit
+              Left = 113
+              Top = 49
+              Width = 511
+              Height = 21
+              TabStop = False
+              CharCase = ecUpperCase
+              DataField = 'NOME_SEGMENTO'
+              DataSource = ds
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              ReadOnly = True
+              TabOrder = 2
+            end
+            object edtCodPais: TbfdbEditButton
+              Left = 3
+              Top = 84
+              Width = 109
+              Height = 21
+              AutoSize = False
+              CharCase = ecUpperCase
+              DataField = 'COD_PAIS'
+              DataSource = ds
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              TabOrder = 3
+              OnChange = edtCodPaisChange
+              OnDblClick = edtCodPaisButtonClick
+              OnExit = edtCodPaisExit
+              NumGlyphs = 1
+              Text = 'edtCodPais'
+              OnButtonClick = edtCodPaisButtonClick
+            end
+            object edtNomePais: TbfdbEdit
+              Left = 113
+              Top = 84
+              Width = 545
+              Height = 21
+              TabStop = False
+              CharCase = ecUpperCase
+              DataField = 'NOME_PAIS'
+              DataSource = ds
+              Font.Charset = DEFAULT_CHARSET
+              Font.Color = clWindowText
+              Font.Height = -11
+              Font.Name = 'Tahoma'
+              Font.Style = []
+              ParentFont = False
+              ReadOnly = True
+              TabOrder = 4
+            end
           end
         end
-        object edtCodPais: TbfdbEditButton
-          Left = 11
-          Top = 308
-          Width = 109
-          Height = 21
-          AutoSize = False
-          CharCase = ecUpperCase
-          DataField = 'COD_PAIS'
+        object DBCheckBox1: TDBCheckBox
+          Left = 13
+          Top = 263
+          Width = 72
+          Height = 17
+          Caption = 'Associado'
+          DataField = 'SOCIO'
           DataSource = ds
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          TabOrder = 16
-          OnChange = edtCodPaisChange
-          OnDblClick = edtCodPaisButtonClick
-          OnExit = edtCodPaisExit
-          NumGlyphs = 1
-          Text = 'edtCodPais'
-          OnButtonClick = edtCodPaisButtonClick
-        end
-        object edtNomePais: TbfdbEdit
-          Left = 121
-          Top = 308
-          Width = 545
-          Height = 21
-          TabStop = False
-          CharCase = ecUpperCase
-          DataField = 'NOME_PAIS'
-          DataSource = ds
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          ReadOnly = True
           TabOrder = 17
+          ValueChecked = 'S'
+          ValueUnchecked = 'N'
         end
-        object edtNomeFantasia: TbfdbEdit
-          Left = 11
-          Top = 111
-          Width = 655
+        object edtCOD_SOCIO: TbfdbEdit
+          Left = 12
+          Top = 299
+          Width = 134
           Height = 21
           CharCase = ecUpperCase
-          DataField = 'NOME_FANTASIA'
-          DataSource = ds
-          TabOrder = 5
-        end
-        object bfdbEdit2: TbfdbEdit
-          Left = 217
-          Top = 345
-          Width = 200
-          Height = 21
-          CharCase = ecLowerCase
-          DataField = 'MAIL_NFE'
+          DataField = 'COD_SOCIO'
           DataSource = ds
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -1123,47 +1204,15 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           Font.Name = 'Tahoma'
           Font.Style = []
           ParentFont = False
-          TabOrder = 19
-        end
-        object edtCodSegmento: TbfdbEditButton
-          Left = 11
-          Top = 155
-          Width = 109
-          Height = 21
-          AutoSize = False
-          DataField = 'ID_SEGMENTO'
-          DataSource = ds
-          TabOrder = 6
-          OnChange = edtCodSegmentoChange
-          OnExit = edtCodSegmentoExit
-          NumGlyphs = 1
-          Text = 'edtCodSegmento'
-          OnButtonClick = edtCodSegmentoButtonClick
-        end
-        object edtNomeSegmento: TbfdbEdit
-          Left = 121
-          Top = 155
-          Width = 511
-          Height = 21
-          TabStop = False
-          CharCase = ecUpperCase
-          DataField = 'NOME_SEGMENTO'
-          DataSource = ds
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ParentFont = False
-          ReadOnly = True
-          TabOrder = 7
+          TabOrder = 18
+          OnExit = edtCOD_SOCIOExit
         end
       end
     end
   end
   object btSai: TBitBtn
     Left = 636
-    Top = 551
+    Top = 356
     Width = 91
     Height = 25
     Anchors = [akRight, akBottom]
@@ -1175,7 +1224,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
   object btInclui: TBitBtn
     Tag = 1
     Left = 545
-    Top = 551
+    Top = 356
     Width = 91
     Height = 25
     Anchors = [akRight, akBottom]
@@ -1229,6 +1278,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
       Size = 100
     end
     object cdsCNPJ: TStringField
+      DisplayLabel = 'CPF'
       FieldName = 'CNPJ'
       OnGetText = cdsCNPJGetText
       Size = 30
@@ -1422,6 +1472,15 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
       FieldName = 'NOME_SEGMENTO'
       ProviderFlags = []
       Size = 100
+    end
+    object cdsSOCIO: TStringField
+      FieldName = 'SOCIO'
+      Size = 1
+    end
+    object cdsCOD_SOCIO: TStringField
+      DisplayLabel = 'C'#243'd.Associado'
+      FieldName = 'COD_SOCIO'
+      Size = 10
     end
   end
   object dsp: TDataSetProvider
@@ -1631,6 +1690,14 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
       ProviderFlags = []
       Size = 100
     end
+    object qrSOCIO: TStringField
+      FieldName = 'SOCIO'
+      Size = 1
+    end
+    object qrCOD_SOCIO: TStringField
+      FieldName = 'COD_SOCIO'
+      Size = 10
+    end
   end
   object ds: TDataSource
     DataSet = cds
@@ -1663,7 +1730,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
       'left join SGC_CIDADES c on c.ID = e.COD_CIDADE'
       '')
     Left = 696
-    Top = 392
+    Top = 112
     object IntegerField1: TIntegerField
       FieldName = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -1753,7 +1820,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
     AfterDelete = cdsAfterDelete
     OnNewRecord = cdsNewRecord
     Left = 696
-    Top = 440
+    Top = 160
     object IntegerField6: TIntegerField
       FieldName = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -1841,12 +1908,12 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
     OnUpdateError = dspUpdateError
     BeforeUpdateRecord = BeforeUpdateRecord
     Left = 688
-    Top = 488
+    Top = 208
   end
   object dsEnderecos: TDataSource
     DataSet = cdsEnderecos
     Left = 688
-    Top = 536
+    Top = 256
   end
   object qrContatos: TSQLQuery
     MaxBlobSize = -1
@@ -1854,7 +1921,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
     SQL.Strings = (
       'select * from SGC_CONTATOS')
     Left = 648
-    Top = 392
+    Top = 112
     object IntegerField2: TIntegerField
       FieldName = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -1918,7 +1985,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
     AfterDelete = cdsAfterDelete
     OnNewRecord = cdsNewRecord
     Left = 648
-    Top = 433
+    Top = 153
     object cdsContatosID: TIntegerField
       FieldName = 'ID'
       ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
@@ -1980,13 +2047,13 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
     UpdateMode = upWhereKeyOnly
     OnUpdateError = dspUpdateError
     BeforeUpdateRecord = BeforeUpdateRecord
-    Left = 640
-    Top = 486
+    Left = 704
+    Top = 190
   end
   object dsContatos: TDataSource
     DataSet = cdsContatos
-    Left = 644
-    Top = 533
+    Left = 676
+    Top = 285
   end
   object qrApoio: TSQLQuery
     MaxBlobSize = -1

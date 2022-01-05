@@ -13,6 +13,8 @@ type
   TfmSplash = class(TForm)
     Image2: TImage;
     lblInformacao: TLabel;
+    Label1: TLabel;
+    Label2: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
 
     procedure Informacao(sOp:string);

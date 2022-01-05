@@ -1,6 +1,6 @@
 object fmLogin: TfmLogin
-  Left = 300
-  Top = 246
+  Left = 348
+  Top = 245
   ActiveControl = edjUsuario
   BorderIcons = [biSystemMenu]
   BorderStyle = bsDialog
@@ -77,17 +77,15 @@ object fmLogin: TfmLogin
     Height = 25
     Cancel = True
     Caption = 'Desistir'
-    DoubleBuffered = True
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ModalResult = 2
-    NumGlyphs = 2
-    ParentDoubleBuffered = False
     ParentFont = False
     TabOrder = 3
+    NumGlyphs = 2
   end
   object btOK: TBitBtn
     Left = 63
@@ -95,17 +93,15 @@ object fmLogin: TfmLogin
     Width = 73
     Height = 25
     Caption = 'Entrar'
-    DoubleBuffered = True
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -11
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ModalResult = 1
-    NumGlyphs = 2
-    ParentDoubleBuffered = False
     ParentFont = False
     TabOrder = 2
+    NumGlyphs = 2
   end
   object edjUsuario: TEdit
     Left = 63

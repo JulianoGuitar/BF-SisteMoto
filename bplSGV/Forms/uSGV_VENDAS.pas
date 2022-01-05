@@ -7,7 +7,7 @@ uses
   Dialogs, StdCtrls, Grids, bfdbGrid, DB, DBClient, Provider, FMTBcd,
   SqlExpr, ExtCtrls, DBCtrls, Mask, udtmConexao, ComCtrls,
   Buttons, bfEdit, bfdbEdit, DBGrids, bfdbMemo, RelVisualBlue, bfdbComboBox,
-  bfdbEditButton, DBXPRESS;
+  bfdbEditButton, DBXPRESS, bfComboBox;
 
 type
   TfmSGV_VENDAS = class(TForm)
@@ -88,7 +88,6 @@ type
     bfdbEdit1: TbfdbEdit;
     Label8: TLabel;
     bfdbEdit2: TbfdbEdit;
-    ckbAbertasCons: TCheckBox;
     Panel1: TPanel;
     btAbreComanda: TBitBtn;
     btFecharComanda: TBitBtn;
@@ -97,11 +96,24 @@ type
     btImprime: TBitBtn;
     btSalva: TBitBtn;
     btDesiste: TBitBtn;
+    qrTAG: TStringField;
+    cdsTAG: TStringField;
+    Label9: TLabel;
+    DBEdit1: TbfDBEdit;
+    qrIMPRESSO: TStringField;
+    cdsIMPRESSO: TStringField;
+    cbxComandaCons: TComboBox;
+    btFechaTurno: TBitBtn;
 
     procedure Direitos;
     function Pode_Salvar: boolean;
 
     procedure AbrirComanda(iOp:integer);
+    procedure BuscaProduto(sOp:string);
+    function TurnoAberto: boolean;
+    function TurnoFechado: boolean;
+    procedure AbreTurno;
+    function ComandasAbertas: boolean;
 
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -152,6 +164,7 @@ type
     procedure cdsQUANTIDADEChange(Sender: TField);
     procedure btFecharComandaClick(Sender: TObject);
     procedure btAbreComandaClick(Sender: TObject);
+    procedure btFechaTurnoClick(Sender: TObject);
 
   private
     procedure HabilitaControles;
@@ -179,6 +192,7 @@ implementation
 uses uFuncoesDB, uFuncoes, uFuncoesTelas;
 
 {$R *.dfm}
+
 
 function SGV001(sOpUsuario, sOpLocal, sOpFiltros, sOpDBSel: pchar; cOpBlueField, cOpNormal : TColor; iEmpresa, iOp: integer; bOpModal: boolean = false): pchar;
 begin
@@ -218,6 +232,8 @@ begin
 
   end;
 end;
+
+
 
 procedure TfmSGV_VENDAS.btTransportaClick(Sender: TObject);
 begin
@@ -290,6 +306,8 @@ begin
     bDBAberto := AbreDataModule(dtmCon, sPath_Local, sBancoDeDados);
   end;
 
+  if pgc.ActivePage = tsCadastro then btDesisteClick(self);
+
   if not bDBAberto then exit;
   with qr do
   begin
@@ -315,9 +333,10 @@ begin
     if trim(edtConsultaParceiro.Text) <> ''
     then SQL.Add(' and f.nome = '''+trim(edtConsultaParceiro.Text)+''' ');
 
-    if ckbAbertasCons.Checked
-    then SQL.Add(' and coalesce(v.fechada,''N'') = ''N'' ')
-    else SQL.Add(' and coalesce(v.fechada,''N'') = ''S'' ');
+    case cbxComandaCons.ItemIndex of
+      0 : SQL.Add(' and coalesce(v.fechada,''N'') = ''N'' ');
+      1 : SQL.Add(' and coalesce(v.fechada,''N'') = ''S'' ');
+    end;
   end;
 
   if cds.Active
@@ -453,15 +472,16 @@ s
 end;
 procedure TfmSGV_VENDAS.dbgConsultaDblClick(Sender: TObject);
 begin
-  if bModal
+{  if bModal
   and not cds.IsEmpty
   then btTransportaClick(self);
-  btIncluiClick(btEditar);
+  btIncluiClick(btEditar);}
 end;
 
 procedure TfmSGV_VENDAS.cdsNewRecord(DataSet: TDataSet);
 begin
   cdsID.ReadOnly := false;
+  cdsIMPRESSO.AsString := 'N';
   HabilitaControles;
 
 end;
@@ -563,6 +583,7 @@ procedure TfmSGV_VENDAS.btSalvaClick(Sender: TObject);
 begin
   if Pode_Salvar
   then cds.Post;
+  HabilitaControles;
 end;
 
 procedure TfmSGV_VENDAS.btImprimeClick(Sender: TObject);
@@ -577,9 +598,7 @@ begin
     cds.IndexFieldNames := 'NOME_FAMILIA;DT_INCLUI;COMANDA;COMANDA_NOME';
 
     Cabecalho1Esquerda := 'SisteMoto '+sEmpresa;
-    if ckbAbertasCons.Checked
-    then  Cabecalho3Esquerda := 'Comandas Abertas'
-    else  Cabecalho3Esquerda := 'Comandas Fechadas';
+    Cabecalho3Esquerda := cbxComandaCons.Text;
 
 //    if (edtConsulta.Text <> '') or (edtConsultaNOME.Text <> '') then
 //    Cabecalho3Esquerda := ('Filtrando por: '+edtConsulta.Text+' Descrição: '+edtConsultaNOME.Text);
@@ -613,14 +632,28 @@ begin
 
 procedure TfmSGV_VENDAS.btIncluiClick(Sender: TObject);
 begin
+  if not cds.Active then btConsultaClick(self);
   if not cds.Active then exit;
   if not bCad then Exit;
+
   if (TBitBtn(sender).Tag = 0)
   and cds.IsEmpty then exit;
   if (TBitBtn(sender).Tag = 1)
   then if (bInc)
        then
        begin
+         if TurnoAberto then
+         begin
+           MessageBox(Handle, pchar('Turno de ontem não foi fechado!'), 'Encerrar Turno', MB_ICONWARNING);
+           exit;
+         end;
+         if TurnoFechado then
+         begin
+           if MessageBox(Handle, pchar('Turno ainda não foi aberto. Deseja abrir?'), 'Abrir Turno', MB_YESNO+MB_ICONQUESTION) = id_yes
+           then AbreTurno
+           else exit;
+         end;
+
          cds.Insert;
          if StrToIntDef(edtConsComanda.Text,0) <> 0
          then cdsCOMANDA.AsInteger := StrToIntDef(edtConsComanda.Text,0);
@@ -713,13 +746,27 @@ begin
   then
   begin
     cdsCOD_PROD.AsString := Separa_String(s,2);
-    cdsNOME_PROD.AsString := Separa_String(s,3);
+
+    BuscaProduto(cdsCOD_PROD.AsString);
+
+    {cdsNOME_PROD.AsString := Separa_String(s,3);
     cdsID_FAMILIA.AsString := Separa_String(s,4);
     cdsNOME_FAMILIA.AsString := Separa_String(s,5);
     cdsUNIDADE.AsString := Separa_String(s,6);
-    cdsVALOR.AsFloat := StrToFloatDef(Separa_String(s,7),0);
+    x1 := StrToFloatDef(Separa_String(s,7),0);
+    x2 := StrToFloatDef(Separa_String(s,8),0);
+    x3 := StrToFloatDef(Separa_String(s,9),0);
+
+    if bSocio
+    then x := x2
+    else x := x1;
+
+    //if (x3 > 0) and (x3 < x) then x := x3; //promoção
+
+    cdsVALOR.AsFloat := x;
     cdsQUANTIDADE.AsFloat := 1;
     cdsTOTAL.AsFloat := cdsVALOR.AsFloat;
+    }
     Perform(WM_NEXTDLGCTL, 0, 0);
   end;
 end;
@@ -736,22 +783,7 @@ begin
   and (cds.State in [dsInsert, dsEdit])
   then
   begin
-    with dtmCon.qrApoio do
-    begin
-      if active then close;
-      SQL.Clear;
-      SQL.Add(' select p.*, f.nome NOME_FAMILIA from SGC_PRODUTOS p left join SGC_FAMILIA_PROD f on f.ID = p.ID_FAMILIA where p.cod_prod = '''+trim(edtCodProd.Text)+''' ');
-      Open;
-      cdsNOME_PROD.AsString := FieldByName('nome').AsString;
-      cdsID_FAMILIA.AsString := FieldByName('ID_FAMILIA').AsString;
-      cdsNOME_FAMILIA.AsString := FieldByName('NOME_FAMILIA').AsString;
-      cdsUNIDADE.AsString := FieldByName('UNIDADE').AsString;
-      cdsVALOR.AsFloat := FieldByName('CUSTO_REP').AsFloat;
-      cdsQUANTIDADE.AsFloat := 1;
-      cdsTOTAL.AsFloat := cdsVALOR.AsFloat;
-      close;
-    end;
-
+    BuscaProduto(trim(edtCodProd.Text));
   end;
 end;
 
@@ -777,20 +809,20 @@ end;
 procedure TfmSGV_VENDAS.dbgConsultaKeyPress(Sender: TObject;
   var Key: Char);
 begin
-  if key = chr(vk_return) then
+{  if key = chr(vk_return) then
   begin
     if bModal
     and not cds.IsEmpty
     then btTransportaClick(self);
     btIncluiClick(btEditar);
-  end;
+  end;}
 end;
 
 procedure TfmSGV_VENDAS.
 dbgConsultaKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-if key = vk_f9 then edtComanda.SetFocus;
+  if key = vk_f9 then edtComanda.SetFocus;
 end;
 
 procedure TfmSGV_VENDAS.FormKeyPress(Sender: TObject; var Key: Char);
@@ -957,6 +989,9 @@ begin
     ParamByName('u').AsString := sUsuario;
     ParamByName('c').AsInteger := StrToIntDef(edtConsComanda.Text,0);
     ExecSQL;
+
+    SQLConnection.Commit(td);
+
   except
     on e : Exception do
     begin
@@ -983,8 +1018,16 @@ begin
 //  and (cds.State in [dsInsert, dsEdit])
   then
   begin
-    edtConsComanda.Text := Separa_String(s,2);
-    btConsultaClick(self);
+    if pgc.ActivePage = tsCadastro then
+    begin
+      edtComanda.Text := Separa_String(s,2);
+      edtComanda.SetFocus;
+    end
+    else
+    begin
+      edtConsComanda.Text := Separa_String(s,2);
+      btConsultaClick(self);
+    end;
   end;
 end;
 
@@ -992,9 +1035,180 @@ procedure TfmSGV_VENDAS.btAbreComandaClick(Sender: TObject);
 begin
   AbrirComanda(1);
 end;
-//exports tem que ser a ultima coisa antes do end.
+
+procedure TfmSGV_VENDAS.BuscaProduto(sOp:string);
+var x, x1, x2, x3 : extended;
+    bSocio : boolean;
+begin
+  with dtmCon.qrApoio do
+  begin
+    if active then close;
+    SQL.Clear;
+    SQL.Add(' select p.*, f.nome NOME_FAMILIA from SGC_PRODUTOS p left join SGC_FAMILIA_PROD f on f.ID = p.ID_FAMILIA ');
+    SQL.Add(' where p.cod_prod = :p ');
+    ParamByName('p').AsString := sOp;
+    Open;
+    cdsNOME_PROD.AsString := FieldByName('nome').AsString;
+    cdsID_FAMILIA.AsString := FieldByName('ID_FAMILIA').AsString;
+    cdsNOME_FAMILIA.AsString := FieldByName('NOME_FAMILIA').AsString;
+    cdsUNIDADE.AsString := FieldByName('UNIDADE').AsString;
+
+    x1 := FieldByName('PRECO').AsFloat;
+    x2 := FieldByName('PRECO_SOCIO').AsFloat;
+    x3 := FieldByName('PRECO_ESPECIAL').AsFloat;
+    close;
+
+    bSocio := Query(' select SOCIO from SGV_COMANDAS where COMANDA = '''+trim(edtComanda.Text)+''' and coalesce(fechada,''N'') = ''N'' order by ID ',sPath_Local
+             ,'SOCIO') = 'S';
+
+    if bSocio
+    and (x2 > 0)
+    then x := x2
+    else x := x1;
+
+    //if (x3 > 0) and (x3 < x) then x := x3; //promoção
+
+    cdsVALOR.AsFloat := x;
+    cdsQUANTIDADE.AsFloat := 1;
+    cdsTOTAL.AsFloat := cdsVALOR.AsFloat;
+
+  end;
+end;
+
+function TfmSGV_VENDAS.TurnoAberto: boolean;
+begin
+  result := false;
+
+  with dtmCon.qrApoio do
+  begin
+    if active then close;
+    SQL.Clear;
+    SQL.Add(' select * from SGV_TURNOS where coalesce(fechado,''N'') = ''N'' and dt_inclui < :dt ');
+    ParamByName('dt').AsDateTime := date;
+    Open;
+    result := not IsEmpty;
+    close;
+  end;
+end;
+
+function TfmSGV_VENDAS.TurnoFechado: boolean;
+begin
+  result := false;
+
+  with dtmCon.qrApoio do
+  begin
+    if active then close;
+    SQL.Clear;
+    SQL.Add(' select * from SGV_TURNOS where coalesce(fechado,''N'') = ''N''  ');
+    Open;
+    result := IsEmpty;
+    close;
+  end;
+end;
+
+procedure TfmSGV_VENDAS.AbreTurno;
+var
+  td : TTransactionDesc;
+begin
+
+  with dtmCon.qrApoio do
+  try
+    td.TransactionID := Cardinal(FormatDateTime('ddmmyyyy',date)+FormatDateTime('hhnnss',time));
+    td.IsolationLevel := xilREADCOMMITTED;
+    SQLConnection.StartTransaction(td);
+
+    if active then close;
+    SQL.Clear;
+
+    //trigger em SGV_COMANDAS fecha o SGV_VENDAS
+    SQL.Add(' INSERT INTO SGV_TURNOS (USU_INCLUI) VALUES (:u)  ');
+    ParamByName('u').AsString := sUsuario;
+    ExecSQL;
+
+    SQLConnection.Commit(td);
+
+  except
+    on e : Exception do
+    begin
+      SQLConnection.Rollback(td);
+      MessageBox(Handle, pChar('Mensagem do sistema:'+#13+e.message), 'Erro', MB_ICONERROR);
+      exit;
+    end;
+  end;
+
+end;
+
 exports
   SGV001;
+
+procedure TfmSGV_VENDAS.btFechaTurnoClick(Sender: TObject);
+var
+  td : TTransactionDesc;
+  x : extended;
+  s : string;
+begin
+  if TurnoFechado then
+  begin
+    MessageBox(Handle, pchar('Não existe turno aberto.'), 'Aviso', MB_ICONWARNING);
+    exit;
+  end;
+
+  if ComandasAbertas then
+  begin
+    MessageBox(Handle, pchar('Existem comandas abertas.'), 'Aviso', MB_ICONWARNING);
+    exit;
+  end;
+
+  if MessageBox(Handle, pchar('Confirma fechar o turno?'), 'Fechar Turno', MB_YESNO+MB_ICONQUESTION+MB_DEFBUTTON2) = id_no
+  then exit;
+
+  with dtmCon.qrApoio do
+  try
+    td.TransactionID := Cardinal(FormatDateTime('ddmmyyyy',date)+FormatDateTime('hhnnss',time));
+    td.IsolationLevel := xilREADCOMMITTED;
+    SQLConnection.StartTransaction(td);
+
+    if active then close;
+    SQL.Clear;
+
+
+    SQL.Add(' update SGV_TURNOS set FECHADO = ''S'', usu_altera = :u, dt_altera = ''now''  ');
+    SQL.Add(' where coalesce(fechado,''N'') = ''N'' ');
+    ParamByName('u').AsString := sUsuario;
+    ExecSQL;
+
+    SQLConnection.Commit(td);
+
+  except
+    on e : Exception do
+    begin
+      SQLConnection.Rollback(td);
+      MessageBox(Handle, pChar('Mensagem do sistema:'+#13+e.message), 'Erro', MB_ICONERROR);
+      exit;
+    end;
+  end;
+
+  MessageBox(Handle, pchar('Turno fechado.'), 'Aviso', MB_ICONWARNING);
+
+  btImprimeClick(self);
+
+  btConsultaClick(self);
+end;
+
+function TfmSGV_VENDAS.ComandasAbertas: boolean;
+begin
+  result := false;
+
+  with dtmCon.qrApoio do
+  begin
+    if active then close;
+    SQL.Clear;
+    SQL.Add(' select * from SGV_VENDAS where coalesce(FECHADA,''N'') = ''N''  ');
+    Open;
+    result := not IsEmpty;
+    close;
+  end;
+end;
 
 end.
 
