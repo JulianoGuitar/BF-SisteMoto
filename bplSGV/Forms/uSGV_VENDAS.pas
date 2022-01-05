@@ -7,7 +7,7 @@ uses
   Dialogs, StdCtrls, Grids, bfdbGrid, DB, DBClient, Provider, FMTBcd,
   SqlExpr, ExtCtrls, DBCtrls, Mask, udtmConexao, ComCtrls,
   Buttons, bfEdit, bfdbEdit, DBGrids, bfdbMemo, RelVisualBlue, bfdbComboBox,
-  bfdbEditButton, DBXPRESS, bfComboBox;
+  bfdbEditButton, DBXPRESS, bfComboBox, Menus;
 
 type
   TfmSGV_VENDAS = class(TForm)
@@ -92,7 +92,6 @@ type
     btAbreComanda: TBitBtn;
     btFecharComanda: TBitBtn;
     btInclui: TBitBtn;
-    btConsulta: TBitBtn;
     btImprime: TBitBtn;
     btSalva: TBitBtn;
     btDesiste: TBitBtn;
@@ -104,6 +103,12 @@ type
     cdsIMPRESSO: TStringField;
     cbxComandaCons: TComboBox;
     btFechaTurno: TBitBtn;
+    btPedido: TBitBtn;
+    btConsulta: TBitBtn;
+    qrCANCELADO: TStringField;
+    cdsCANCELADO: TStringField;
+    PopupMenu1: TPopupMenu;
+    CancelaItem1: TMenuItem;
 
     procedure Direitos;
     function Pode_Salvar: boolean;
@@ -114,6 +119,8 @@ type
     function TurnoFechado: boolean;
     procedure AbreTurno;
     function ComandasAbertas: boolean;
+    procedure LimpaFiltros;
+    procedure ImprimeRelatorio(iOp: integer);
 
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormCreate(Sender: TObject);
@@ -165,6 +172,8 @@ type
     procedure btFecharComandaClick(Sender: TObject);
     procedure btAbreComandaClick(Sender: TObject);
     procedure btFechaTurnoClick(Sender: TObject);
+    procedure btPedidoClick(Sender: TObject);
+    procedure CancelaItem1Click(Sender: TObject);
 
   private
     procedure HabilitaControles;
@@ -174,8 +183,12 @@ type
     sRetorno,
     sEmpresa,
     sUsuario, sPath_Local, sBancoDeDados: string;
+    bRelatorioPeriodo,
     bDBAberto, bModal,
     bCad, bInc, bAlt, bExc : boolean;
+
+    dtRel1, dtRel2 : tDateTime;
+
     dtmCon : TdtmConexao;
     //id : string;
     iEmp, id : integer;
@@ -189,7 +202,7 @@ const
 
 implementation
 
-uses uFuncoesDB, uFuncoes, uFuncoesTelas;
+uses uFuncoesDB, uFuncoes, uFuncoesTelas, uConsulta_Padrao, uFechaComanda;
 
 {$R *.dfm}
 
@@ -337,6 +350,20 @@ begin
       0 : SQL.Add(' and coalesce(v.fechada,''N'') = ''N'' ');
       1 : SQL.Add(' and coalesce(v.fechada,''N'') = ''S'' ');
     end;
+
+    if cbxComandaCons.ItemIndex = 3
+    then SQL.Add(' and coalesce(v.cancelado,''N'') = ''S'' ')
+    else SQL.Add(' and coalesce(v.cancelado,''N'') = ''N'' ');
+
+    if bRelatorioPeriodo then
+    begin
+      SQL.Add(' and (v.dt_inclui between :d1 and :d2 ) ');
+      ParamByName('d1').AsDateTime := dtRel1;
+      ParamByName('d2').AsDateTime := dtRel2;
+    end;
+
+
+
   end;
 
   if cds.Active
@@ -586,50 +613,6 @@ begin
   HabilitaControles;
 end;
 
-procedure TfmSGV_VENDAS.btImprimeClick(Sender: TObject);
-begin
-
-  if (not cds.Active) or cds.IsEmpty then exit;
-
-  with RelVisual do
-  begin
-    TituloRelatorio := Caption;
-
-    cds.IndexFieldNames := 'NOME_FAMILIA;DT_INCLUI;COMANDA;COMANDA_NOME';
-
-    Cabecalho1Esquerda := 'SisteMoto '+sEmpresa;
-    Cabecalho3Esquerda := cbxComandaCons.Text;
-
-//    if (edtConsulta.Text <> '') or (edtConsultaNOME.Text <> '') then
-//    Cabecalho3Esquerda := ('Filtrando por: '+edtConsulta.Text+' Descrição: '+edtConsultaNOME.Text);
-
-    Cabecalhos.Clear;
-
-    Limpa_Campos;
-
-    DefinicaoCampos.Add('G1;100;E;;NOME_FAMILIA; ');
-
-    DefinicaoCampos.Add('D0;40;E;dd/mm/yyyy hh:nn:ss;DT_INCLUI;Data/Hora');
-    DefinicaoCampos.Add('D0;20;D;;COMANDA; ');
-    DefinicaoCampos.Add('D0;52;E;;COMANDA_NOME;Comanda');
-  //  DefinicaoCampos.Add('D0;15;D;;COD_PROD;Código');
-    DefinicaoCampos.Add('D0;55;E;;NOME_PROD;Produto');
-
-    DefinicaoCampos.Add('D1;15;D;##,##0;QUANTIDADE;Qtde.');
-
-    DefinicaoCampos.Add('D0;22;D;##,##0.00;VALOR;Preço');
-    DefinicaoCampos.Add('D1;22;D;##,##0.00;TOTAL;Total');
-
-    DefinicaoCampos.Add('D0;200;D;;NOME_FAMILIA;Parceiro');
-
-
-    Execute;
-  end;
-
-
-
-  end;
-
 procedure TfmSGV_VENDAS.btIncluiClick(Sender: TObject);
 begin
   if not cds.Active then btConsultaClick(self);
@@ -789,7 +772,7 @@ end;
 
 procedure TfmSGV_VENDAS.edtConsultaCodChange(Sender: TObject);
 begin
-if cds.Active then cds.Close;
+  if cds.Active then cds.Close;
 
 end;
 
@@ -933,8 +916,9 @@ end;
 procedure TfmSGV_VENDAS.btFecharComandaClick(Sender: TObject);
 var
   td : TTransactionDesc;
-  x : extended;
-  s : string;
+  x, p, t : extended;
+  s, f, c : string;
+  b : boolean;
 begin
   if StrToIntDef(edtConsComanda.Text,0) = 0 then
   begin
@@ -942,6 +926,10 @@ begin
     edtConsComanda.SetFocus;
     exit;
   end;
+
+  c := edtConsComanda.Text;
+  LimpaFiltros;
+  edtConsComanda.Text := c;
 
   if cds.IsEmpty then btConsultaClick(self);
 
@@ -951,17 +939,37 @@ begin
     edtConsComanda.SetFocus;
     exit;
   end;
+  
+  fmFechaComanda := TfmFechaComanda.Create(self);
+  fmFechaComanda.cds.CreateDataSet;
 
   x := 0;
   cds.First;
-  s := 'Comanda '+cdsCOMANDA.AsString+' '+cdsCOMANDA_NOME.AsString;
+  //s := 'Comanda '+cdsCOMANDA.AsString+' '+cdsCOMANDA_NOME.AsString;
+  fmFechaComanda.cds.Append;
+  fmFechaComanda.cdsCOMANDA.AsInteger := cdsCOMANDA.AsInteger;
+  fmFechaComanda.cdsCOMANDA_NOME.AsString := cdsCOMANDA_NOME.AsString;
+  fmFechaComanda.cdsFORMA.AsString := 'DINHEIRO';
+  fmFechaComanda.bfdbComboBox1.ItemIndex := 0;
   while not cds.Eof do
   begin
     x := x + cdsTOTAL.AsFloat;
     cds.Next;
   end;
+  fmFechaComanda.cdsTOTAL.AsFloat := x;
+  fmFechaComanda.cdsPAGO.AsFloat := 0;
+//  fmFechaComanda.cdsTROCO.AsFloat := 0;
 
-  if
+  fmFechaComanda.ShowModal;
+  b := fmFechaComanda.ModalResult = mrok;
+  f := fmFechaComanda.cdsFORMA.AsString;
+  p := fmFechaComanda.cdsPAGO.AsFloat;
+  t := fmFechaComanda.cdsTROCO.AsFloat;  
+  fmFechaComanda.Release;
+
+  if not b then exit;
+
+  {if
   MessageBox(Handle, pchar(s+#13+#13
                           +'Valor total: R$ '+FormatFloat('#,##0.00',x)+#13
                           +#13
@@ -970,7 +978,7 @@ begin
                           +'Confirma fechar a comanda?'
                           ), 'Fechar comanda', MB_YESNO+MB_ICONQUESTION) = id_no
   then exit;
-
+  }
 
   //amarrar o ID da comanda em aberto aqui para não dar confusão!
   with dtmCon.qrApoio do
@@ -983,9 +991,12 @@ begin
     SQL.Clear;
 
     //trigger em SGV_COMANDAS fecha o SGV_VENDAS
-    SQL.Add(' update SGV_COMANDAS set FECHADA = ''S'', TOTAL = :x, usu_altera = :u, dt_altera = ''now''  ');
+    SQL.Add(' update SGV_COMANDAS set FECHADA = ''S'', TOTAL = :x, PAGO = :p, TROCO = :t, FORMA = :f, usu_altera = :u, dt_altera = ''now''  ');
     SQL.Add(' where comanda = :c and coalesce(fechada,''N'') = ''N'' ');
     ParamByName('x').AsFloat := x;
+    ParamByName('p').AsFloat := p;
+    ParamByName('t').AsFloat := t;
+    ParamByName('f').AsString := f;
     ParamByName('u').AsString := sUsuario;
     ParamByName('c').AsInteger := StrToIntDef(edtConsComanda.Text,0);
     ExecSQL;
@@ -1003,9 +1014,9 @@ begin
 
   MessageBox(Handle, pchar('Comanda encerrada.'), 'Aviso', MB_ICONWARNING);
 
-  btImprimeClick(self);
+  ImprimeRelatorio(1);
 
-  edtConsComanda.Clear;
+  LimpaFiltros;
   btConsultaClick(self);
 end;
 
@@ -1210,6 +1221,203 @@ begin
   end;
 end;
 
+procedure TfmSGV_VENDAS.btPedidoClick(Sender: TObject);
+begin
+  MessageBox(Handle, pchar('Em construção.'), 'Aviso', MB_ICONWARNING);
+end;
+
+procedure TfmSGV_VENDAS.LimpaFiltros;
+begin
+  edtConsComanda.Clear;
+  edtConsultaNOME.Clear;
+  edtConsultaCod.Clear;
+  edtConsultaProduto.Clear;
+  edtConsultaParceiro.Clear;
+  cbxComandaCons.ItemIndex := 0;
+end;
+
+procedure TfmSGV_VENDAS.btImprimeClick(Sender: TObject);
+begin
+  ImprimeRelatorio(2);
+end;
+
+procedure TfmSGV_VENDAS.ImprimeRelatorio(iOp: integer);
+begin
+
+  bRelatorioPeriodo := false;
+
+
+  if iOp = 2 then
+  begin
+    fmConsulta := TfmConsulta.Create(self);
+    fmConsulta.dsp.DataSet := dtmCon.qrApoio;
+    fmConsulta.Caption := 'Turnos';
+    fmConsulta.edtINFO.Text := 'Selecione um turno para imprimir';
+
+    with dtmCon.qrApoio do
+    begin
+      if active then close;
+      SQL.Clear;
+      SQL.Add(' select  t.dt_inclui ABERTURA, t.dt_altera FECHAMENTO, t.usu_altera OPERADOR ');//t.id,
+      SQL.Add(' from sgv_turnos t where t.fechado = ''S'' order by t.dt_inclui ');
+    end;
+    fmConsulta.cds.Open;
+    fmConsulta.cds.Last;
+
+    fmConsulta.dbg.Columns[0].Width := 150;
+    fmConsulta.dbg.Columns[1].Width := 150;
+    fmConsulta.dbg.Columns[2].Width := 100;
+
+
+    fmConsulta.ShowModal;
+
+    if fmConsulta.ModalResult = mrok then
+    begin
+      if fmConsulta.cds.IsEmpty then MessageBox(Handle, pchar('Nenhum turno selecionado.'), 'Aviso', MB_ICONWARNING);
+      bRelatorioPeriodo := true;
+      dtRel1 := fmConsulta.cds.FieldByName('ABERTURA').AsDateTime;
+      dtRel2 := fmConsulta.cds.FieldByName('FECHAMENTO').AsDateTime;
+    end;
+    if fmConsulta.cds.active then fmConsulta.cds.close;
+    fmConsulta.Release;
+
+    if not bRelatorioPeriodo then exit;
+
+    cbxComandaCons.ItemIndex := 1;
+
+    btConsultaClick(self);
+  end;
+
+
+  if (iop <> 1)
+  and cds.IsEmpty
+  then
+  begin
+    MessageBox(Handle, pchar('Nenhum lançamento encontrado.'), 'Aviso', MB_ICONWARNING);
+    cbxComandaCons.ItemIndex := 0;
+    btConsultaClick(self);
+    exit;
+  end;
+
+  with RelVisual do
+  begin
+    TituloRelatorio := Caption;
+
+    cds.IndexFieldNames := 'NOME_FAMILIA;DT_INCLUI;COMANDA;COMANDA_NOME';
+
+    Cabecalho1Esquerda := 'SisteMoto '+sEmpresa;
+    Cabecalho3Esquerda := cbxComandaCons.Text;
+    Cabecalho2Centro := '';
+    case iOp of
+      1 : Cabecalho2Centro := 'Comanda fechada';
+      2 : Cabecalho2Centro := 'Turno '+FormatDateTime('dd/mm/yy hh:nn',dtRel1)+' - '+FormatDateTime('dd/mm/yy hh:nn',dtRel2);
+    end;
+
+    Cabecalho3Centro := '';
+    if (edtConsComanda.Text <> '')
+    or (edtConsultaNOME.Text <> '')
+    or (edtConsultaCod.Text <> '')
+    or (edtConsultaProduto.Text <> '')
+    or (edtConsultaParceiro.Text <> '')
+    then
+    Cabecalho3Centro := ('Filtros: '+trim(edtConsComanda.Text+' '+edtConsultaNOME.Text+' '+edtConsultaCod.Text+' '+edtConsultaProduto.Text+' '+edtConsultaParceiro.Text));
+
+    Cabecalhos.Clear;
+
+    Limpa_Campos;
+
+    DefinicaoCampos.Add('G1;100;E;;NOME_FAMILIA; ');
+
+    DefinicaoCampos.Add('D0;40;E;dd/mm/yyyy hh:nn:ss;DT_INCLUI;Data/Hora');
+    DefinicaoCampos.Add('D0;20;D;;COMANDA; ');
+    DefinicaoCampos.Add('D0;52;E;;COMANDA_NOME;Comanda');
+  //  DefinicaoCampos.Add('D0;15;D;;COD_PROD;Código');
+    DefinicaoCampos.Add('D0;55;E;;NOME_PROD;Produto');
+
+    DefinicaoCampos.Add('D1;15;D;##,##0;QUANTIDADE;Qtde.');
+
+    DefinicaoCampos.Add('D0;22;D;##,##0.00;VALOR;Preço');
+    DefinicaoCampos.Add('D1;22;D;##,##0.00;TOTAL;Total');
+
+    DefinicaoCampos.Add('D0;200;D;;NOME_FAMILIA;Parceiro');
+
+
+    Execute;
+  end;
+
+  bRelatorioPeriodo := false;
+
+  if iOp = 2 then
+  begin
+    cbxComandaCons.ItemIndex := 0;
+    btConsultaClick(self);
+  end;
+end;
+
+procedure TfmSGV_VENDAS.CancelaItem1Click(Sender: TObject);
+var td : TTransactionDesc;
+begin
+  if cds.IsEmpty then exit;
+
+  if not bExc then
+  begin
+    MessageBox(Handle, pchar('Usuário não tem pemissão.'), 'Aviso', MB_ICONWARNING);
+    exit;
+  end;
+
+  if cdsFECHADA.AsString = 'S' then
+  begin
+    MessageBox(Handle, pchar('Comanda já foi fechada!'), 'Aviso', MB_ICONWARNING);
+    exit;
+  end;
+  if cdsIMPRESSO.AsString = 'S' then
+  begin
+    MessageBox(Handle, pchar('Item já foi impresso!'), 'Aviso', MB_ICONWARNING);
+    exit;
+  end;
+
+  if MessageBox(Handle, pchar('Confirma cancelar o item?'+#13
+                             +cdsCOMANDA.AsString+' '+cdsCOMANDA_NOME.AsString+#13
+                             +cdsNOME_FAMILIA.AsString+#13
+                             +cdsCOD_PROD.AsString+' '+cdsNOME_PROD.AsString+#13
+                             +#13+'Confirma?')
+                             ,'Cancelar venda', MB_YESNO+MB_ICONQUESTION+MB_DEFBUTTON2) = id_no
+  then exit;
+
+  with dtmCon.qrApoio do
+  try
+    td.TransactionID := Cardinal(FormatDateTime('ddmmyyyy',date)+FormatDateTime('hhnnss',time));
+    td.IsolationLevel := xilREADCOMMITTED;
+    SQLConnection.StartTransaction(td);
+
+    if active then close;
+    SQL.Clear;
+
+    //trigger em SGV_COMANDAS fecha o SGV_VENDAS
+    SQL.Add(' update SGV_VENDAS set FECHADA = ''S'', CANCELADO = ''S'', usu_altera = :u, dt_altera = ''now'', idalterado = idalt  ');
+    SQL.Add(' where ID = :id ');
+    ParamByName('id').AsFloat := cdsID.AsInteger;
+    ParamByName('u').AsString := sUsuario;
+    ExecSQL;
+
+    SQLConnection.Commit(td);
+
+  except
+    on e : Exception do
+    begin
+      SQLConnection.Rollback(td);
+      MessageBox(Handle, pChar('Mensagem do sistema:'+#13+e.message), 'Erro', MB_ICONERROR);
+      exit;
+    end;
+  end;
+
+  MessageBox(Handle, pchar('Item cancelado.'), 'Aviso', MB_ICONWARNING);
+
+  btConsultaClick(self);
+
+end;
+
 end.
+
 
 

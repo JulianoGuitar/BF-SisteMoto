@@ -259,6 +259,7 @@ object fmSGC_CIDADES: TfmSGC_CIDADES
           Height = 13
           Caption = 'Regi'#245'es'
           FocusControl = DBEdit1
+          Visible = False
         end
         object bfdbEdit2: TbfdbEdit
           Left = 11
@@ -333,6 +334,7 @@ object fmSGC_CIDADES: TfmSGC_CIDADES
           Font.Style = []
           ParentFont = False
           TabOrder = 4
+          Visible = False
           OnChange = edtIDRegiaoChange
           OnDblClick = edtIDRegiaoButtonClick
           OnExit = edtIDRegiaoExit
@@ -356,6 +358,7 @@ object fmSGC_CIDADES: TfmSGC_CIDADES
           Font.Style = []
           ParentFont = False
           TabOrder = 5
+          Visible = False
         end
       end
     end

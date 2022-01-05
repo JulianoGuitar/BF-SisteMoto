@@ -1,9 +1,10 @@
 object fmSGD_AcessoS: TfmSGD_AcessoS
   Left = 0
   Top = 0
-  Width = 745
-  Height = 430
+  BorderStyle = bsSingle
   Caption = 'SGD003 | Acessos'
+  ClientHeight = 391
+  ClientWidth = 729
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,6 +14,7 @@ object fmSGD_AcessoS: TfmSGD_AcessoS
   FormStyle = fsMDIChild
   KeyPreview = True
   OldCreateOrder = False
+  Position = poDefault
   Visible = True
   OnClose = FormClose
   OnCreate = FormCreate
@@ -512,6 +514,7 @@ object fmSGD_AcessoS: TfmSGD_AcessoS
       Size = 100
     end
     object cdsGRUPOMENU: TIntegerField
+      Alignment = taLeftJustify
       DisplayLabel = 'Grupo'
       FieldName = 'GRUPOMENU'
     end

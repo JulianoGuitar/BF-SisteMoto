@@ -1,6 +1,7 @@
 package SGV;
 
 {$R *.res}
+{$R 'BFBMP.res'}
 {$ALIGN 8}
 {$ASSERTIONS ON}
 {$BOOLEVAL OFF}
@@ -25,10 +26,21 @@ package SGV;
 {$IMPLICITBUILD ON}
 
 requires
-  BPLBase;
+  BPLBase,
+  vcl,
+  rtl,
+  dbrtl,
+  dsnap,
+  vcldb,
+  VclSmp,
+  vclx,
+  qrpt,
+  bdertl;
 
 contains
-  uSGV_VENDAS in 'Forms\uSGV_VENDAS.pas' {fmSGC_PRODUTOS},
-  uSGV_Comandas in 'Forms\uSGV_Comandas.pas' {fmSGV_COMANDAS};
+  uSGV_VENDAS in 'Forms\uSGV_VENDAS.pas' {fmSGV_VENDAS},
+  uSGV_Comandas in 'Forms\uSGV_Comandas.pas' {fmSGV_COMANDAS},
+  uConsulta_Padrao in 'Forms\uConsulta_Padrao.pas' {fmConsulta},
+  uFechaComanda in 'Forms\uFechaComanda.pas' {fmFechaComanda};
 
 end.

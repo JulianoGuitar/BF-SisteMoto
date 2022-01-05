@@ -31,9 +31,7 @@ requires
   rtl,
   dbrtl,
   dsnap,
-  dbexpress,
-  vcldb,
-  BlueFieldvcl;
+  vcldb;
 
 contains
   uSGC_BANCOS in 'Forms\uSGC_BANCOS.pas' {fmSGC_BANCOS},

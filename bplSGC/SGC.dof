@@ -145,14 +145,29 @@ C:\Projetos\Componentes\acbrtrunk2\Lib\Delphi\LibD7\Win32\DCLACBr_MDFeDamdfeRL.b
 Count=1
 Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
 [HistoryLists\hlSearchPath]
-Count=1
+Count=5
 Item0=C:\Projetos\BF SisteMoto\CompBlueField\DCU;C:\Projetos\BF SisteMoto\Dcp
+Item1=C:\Projetos\BF SisteMoto\CompBlueField\DCU
+Item2=C:\Projetos\Componentes\CompJul
+Item3=C:\Arquivos de programas\Borland\Delphi7\CompJul
+Item4=C:\Arquivos de programas\Borland\Delphi7\XP;C:\Arquivos de programas\Borland\Delphi7\CompJul
 [HistoryLists\hlUnitOutputDirectory]
 Count=1
 Item0=C:\Projetos\BF SisteMoto\Dcu
+[HistoryLists\hlOutputDirectorry]
+Count=8
+Item0=C:\Projetos\AlphaQuimica
+Item1=c:\projetos\Embacaps
+Item2=c:\Juliano\Embacaps
+Item3=c:\Projetos\Novo_Embacaps
+Item4=D:\Projetos\Embacaps
+Item5=D:\Projetos\Pacote
+Item6=D:\Projetos\Pacote\Embacaps
+Item7=D:\Projetos\Pacote\Menu
 [HistoryLists\hlBPLOutput]
-Count=1
+Count=2
 Item0=C:\ProjetosBin\BF SisteMoto
+Item1=C:\Projetos\BlueField
 [HistoryLists\hlDCPOutput]
 Count=1
 Item0=C:\Projetos\BF SisteMoto\Dcp

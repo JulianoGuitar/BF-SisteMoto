@@ -1,6 +1,6 @@
 object fmSGD_USUARIOS: TfmSGD_USUARIOS
-  Left = 0
-  Top = 0
+  Left = 425
+  Top = 362
   Width = 709
   Height = 321
   Caption = 'SGD001 | Usu'#225'rios'
@@ -13,6 +13,7 @@ object fmSGD_USUARIOS: TfmSGD_USUARIOS
   FormStyle = fsMDIChild
   KeyPreview = True
   OldCreateOrder = False
+  Position = poDefault
   Visible = True
   OnClose = FormClose
   OnCreate = FormCreate

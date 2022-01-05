@@ -67,7 +67,7 @@ type
     qrFAX: TStringField;
     qrMAIL: TStringField;
     qrTIPO_EMP: TIntegerField;
-    COD_CONTROLE: TIntegerField;
+    cdsCOD_CONTROLE: TIntegerField;
     cdsINSC_EST: TStringField;
     cdsINSC_MUN: TStringField;
     cdsUF: TStringField;
@@ -81,7 +81,7 @@ type
     cdsMAIL: TStringField;
     cdsTIPO_EMP: TIntegerField;
     Label4: TLabel;
-    bfdbEdit4: TbfdbEdit;
+    edtCOD_CONTROLE: TbfdbEdit;
     Label5: TLabel;
     edtInscEstadual: TbfdbEdit;
     Label6: TLabel;
@@ -123,6 +123,8 @@ type
     qrINATIVO: TStringField;
     ckbInativo: TDBCheckBox;
     edtConsID: TbfEdit;
+
+
 
     procedure Direitos;
     function Pode_Salvar: boolean;
@@ -172,6 +174,8 @@ type
 
   private
     procedure HabilitaControles;
+    function Add_Espaco(sOp : string; iOp_Length : integer; boOp_Antes: boolean = false) : string;
+    function Num_Emp(sOp: string): string;
     { Private declarations }
   public
     cCorBluefield, cCorNormal : tColor;
@@ -285,6 +289,7 @@ begin
                     or ((cds.State in [dsEdit]) and bAlt)
                     ;
   //BtnEditar.Enabled   := (DSPadrao.DataSet.State in [dsBrowse]);
+  edtCNPJ.ReadOnly := not (cds.State in [dsInsert]);
   btExclui.Enabled  := bExc and (cds.State in [dsBrowse, dsEdit]);
  // btDesiste.Enabled := (cds.State in [dsInsert, dsEdit]);
 //  BtnPesquisa.Enabled := not (DSPadrao.DataSet.State in [dsInsert, dsEdit]);
@@ -749,7 +754,13 @@ begin
     Exit;
   end;
 
-  
+  if cdsCOD_CONTROLE.AsString <> Num_Emp(cdsNOME.AsString) then
+  begin
+    MessageDlg('O código de controle não confere.',MtWarning,[mbOk],0);
+    edtCod_Controle.SetFocus;
+    exit;
+  end;
+
 
   result := true;
 end;
@@ -778,5 +789,62 @@ end;
 //exports tem que ser a ultima coisa antes do end.
 exports
   SGC001;
+
+function TfmSGC_EMPRESAS.Add_Espaco(sOp : string; iOp_Length : integer; boOp_Antes: boolean = false) : string;
+var
+  i : integer;
+begin
+  sOp := copy(sOp,1,iOp_Length);
+  if boOp_Antes then
+    for i := (Length(sOP)+1) to iOp_Length do sOp := ' ' + sOp
+  else
+    for i := (Length(sOp)+1) to iOp_Length do sOp := sOp + ' ';
+
+  result := sOp;
+end;
+
+function TfmSGC_EMPRESAS.Num_Emp(sOp: string): string;
+var
+  iCont, iRet, iNum : integer;
+  s : string;
+begin
+  s := Add_Espaco(AnsiUpperCase(sOp),50);
+  iRet := 0;
+  for iCont := 1 to 50 do
+  begin
+    iNum := 1;
+    case char(s[iCont]) of
+      'A' : iNum := 2;
+      'B' : iNum := 3;
+      'C' : iNum := 4;
+      'D' : iNum := 5;
+      'E' : iNum := 6;
+      'F' : iNum := 7;
+      'G' : iNum := 8;
+      'H' : iNum := 9;
+      'I' : iNum := 10;
+      'J' : iNum := 11;
+      'K' : iNum := 12;
+      'L' : iNum := 13;
+      'M' : iNum := 14;
+      'N' : iNum := 15;
+      'O' : iNum := 16;
+      'P' : iNum := 17;
+      'Q' : iNum := 18;
+      'R' : iNum := 19;
+      'S' : iNum := 20;
+      'T' : iNum := 21;
+      'U' : iNum := 22;
+      'V' : iNum := 23;
+      'X' : iNum := 24;
+      'Z' : iNum := 25;
+    end;
+    iNum := iNum * iCont * 101;
+    iRet := iRet + iNum;
+  end;
+  result := IntToStr(iRet);
+end;
+
+(******************************************************************************)
 
 end.

@@ -1,9 +1,10 @@
 object fmSGD_ModuloS: TfmSGD_ModuloS
   Left = 0
   Top = 0
-  Width = 709
-  Height = 321
+  BorderStyle = bsSingle
   Caption = 'SGD002 | Modulos'
+  ClientHeight = 282
+  ClientWidth = 693
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,6 +14,7 @@ object fmSGD_ModuloS: TfmSGD_ModuloS
   FormStyle = fsMDIChild
   KeyPreview = True
   OldCreateOrder = False
+  Position = poDefault
   Visible = True
   OnClose = FormClose
   OnCreate = FormCreate

@@ -1,9 +1,10 @@
 object fmSGD_USUARIOS: TfmSGD_USUARIOS
   Left = 425
   Top = 362
-  Width = 709
-  Height = 321
+  BorderStyle = bsSingle
   Caption = 'SGD001 | Usu'#225'rios'
+  ClientHeight = 282
+  ClientWidth = 693
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

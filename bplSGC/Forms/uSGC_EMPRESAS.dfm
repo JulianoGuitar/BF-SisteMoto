@@ -29,7 +29,7 @@ object fmSGC_EMPRESAS: TfmSGC_EMPRESAS
     Top = 0
     Width = 732
     Height = 385
-    ActivePage = tsConsulta
+    ActivePage = tsCadastro
     Align = alClient
     TabOrder = 0
     object tsConsulta: TTabSheet
@@ -267,10 +267,10 @@ object fmSGC_EMPRESAS: TfmSGC_EMPRESAS
         object Label4: TLabel
           Left = 495
           Top = 20
-          Width = 76
+          Width = 92
           Height = 13
-          Caption = 'C'#243'digo Bluefield'
-          FocusControl = bfdbEdit4
+          Caption = 'C'#243'digo de Controle'
+          FocusControl = edtCOD_CONTROLE
         end
         object Label5: TLabel
           Left = 149
@@ -433,7 +433,7 @@ object fmSGC_EMPRESAS: TfmSGC_EMPRESAS
           ParentFont = False
           TabOrder = 1
         end
-        object bfdbEdit4: TbfdbEdit
+        object edtCOD_CONTROLE: TbfdbEdit
           Left = 495
           Top = 36
           Width = 136
@@ -662,7 +662,7 @@ object fmSGC_EMPRESAS: TfmSGC_EMPRESAS
           OnDblClick = edtCodCidadeButtonClick
           OnExit = edtCodCidadeExit
           NumGlyphs = 1
-          Text = 'edtCodCidade'
+          Text = 'EDTCODCIDADE'
           OnButtonClick = edtCodCidadeButtonClick
         end
         object edtNomeCidade: TbfdbEdit
@@ -695,6 +695,7 @@ object fmSGC_EMPRESAS: TfmSGC_EMPRESAS
           Font.Style = [fsBold]
           ParentFont = False
           TabOrder = 2
+          Visible = False
           OnClick = btConsultaCNPJClick
         end
         object ckbInativo: TDBCheckBox
@@ -784,7 +785,7 @@ object fmSGC_EMPRESAS: TfmSGC_EMPRESAS
       OnGetText = cdsCNPJGetText
       Size = 30
     end
-    object COD_CONTROLE: TIntegerField
+    object cdsCOD_CONTROLE: TIntegerField
       DisplayLabel = 'C'#243'd.Controle'
       FieldName = 'COD_CONTROLE'
     end

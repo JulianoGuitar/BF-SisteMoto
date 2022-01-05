@@ -1,9 +1,10 @@
 object fmSGD_USUARIOS_ACESSO: TfmSGD_USUARIOS_ACESSO
   Left = 0
   Top = 0
-  Width = 724
-  Height = 321
+  BorderStyle = bsSingle
   Caption = 'SGD010 | Controle de Acesso'
+  ClientHeight = 316
+  ClientWidth = 708
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,20 +14,21 @@ object fmSGD_USUARIOS_ACESSO: TfmSGD_USUARIOS_ACESSO
   FormStyle = fsMDIChild
   KeyPreview = True
   OldCreateOrder = False
+  Position = poDefault
   Visible = True
   OnClose = FormClose
   OnCreate = FormCreate
   OnKeyPress = FormKeyPress
   DesignSize = (
     708
-    282)
+    316)
   PixelsPerInch = 96
   TextHeight = 13
   object pgc: TPageControl
     Left = 0
     Top = 0
     Width = 708
-    Height = 282
+    Height = 316
     ActivePage = tsConsulta
     Align = alClient
     TabOrder = 0
@@ -36,12 +38,12 @@ object fmSGD_USUARIOS_ACESSO: TfmSGD_USUARIOS_ACESSO
       OnShow = tsConsultaShow
       DesignSize = (
         700
-        254)
+        288)
       object GroupBox1: TGroupBox
         Left = 0
         Top = 0
         Width = 700
-        Height = 223
+        Height = 257
         Align = alTop
         Anchors = [akLeft, akTop, akRight, akBottom]
         Caption = 'Consulta'
@@ -59,7 +61,7 @@ object fmSGD_USUARIOS_ACESSO: TfmSGD_USUARIOS_ACESSO
           Left = 2
           Top = 51
           Width = 696
-          Height = 170
+          Height = 204
           Align = alBottom
           Anchors = [akLeft, akTop, akRight, akBottom]
           DataSource = ds
@@ -177,7 +179,7 @@ object fmSGD_USUARIOS_ACESSO: TfmSGD_USUARIOS_ACESSO
       end
       object btEditar: TBitBtn
         Left = 426
-        Top = 226
+        Top = 260
         Width = 91
         Height = 25
         Anchors = [akRight, akBottom]
@@ -187,7 +189,7 @@ object fmSGD_USUARIOS_ACESSO: TfmSGD_USUARIOS_ACESSO
       end
       object btTransporta: TBitBtn
         Left = 334
-        Top = 226
+        Top = 260
         Width = 91
         Height = 25
         Anchors = [akRight, akBottom]
@@ -199,7 +201,7 @@ object fmSGD_USUARIOS_ACESSO: TfmSGD_USUARIOS_ACESSO
       end
       object btImprime: TBitBtn
         Left = 8
-        Top = 226
+        Top = 260
         Width = 110
         Height = 25
         Anchors = [akLeft, akBottom]
@@ -212,10 +214,10 @@ object fmSGD_USUARIOS_ACESSO: TfmSGD_USUARIOS_ACESSO
       Caption = 'Cadastro'
       DesignSize = (
         700
-        254)
+        288)
       object btSalva: TBitBtn
         Left = 335
-        Top = 226
+        Top = 260
         Width = 91
         Height = 25
         Anchors = [akRight, akBottom]
@@ -227,7 +229,7 @@ object fmSGD_USUARIOS_ACESSO: TfmSGD_USUARIOS_ACESSO
       end
       object btDesiste: TBitBtn
         Left = 426
-        Top = 226
+        Top = 260
         Width = 91
         Height = 25
         Anchors = [akRight, akBottom]
@@ -238,7 +240,7 @@ object fmSGD_USUARIOS_ACESSO: TfmSGD_USUARIOS_ACESSO
       end
       object btExclui: TBitBtn
         Left = 3
-        Top = 226
+        Top = 260
         Width = 91
         Height = 25
         Anchors = [akLeft, akBottom]
@@ -252,7 +254,7 @@ object fmSGD_USUARIOS_ACESSO: TfmSGD_USUARIOS_ACESSO
         Left = 0
         Top = 0
         Width = 700
-        Height = 224
+        Height = 258
         Anchors = [akLeft, akTop, akRight, akBottom]
         Caption = 'Cadastro'
         TabOrder = 0
@@ -519,7 +521,7 @@ object fmSGD_USUARIOS_ACESSO: TfmSGD_USUARIOS_ACESSO
   end
   object btSai: TBitBtn
     Left = 612
-    Top = 250
+    Top = 284
     Width = 91
     Height = 25
     Anchors = [akRight, akBottom]
@@ -531,7 +533,7 @@ object fmSGD_USUARIOS_ACESSO: TfmSGD_USUARIOS_ACESSO
   object btInclui: TBitBtn
     Tag = 1
     Left = 521
-    Top = 250
+    Top = 284
     Width = 91
     Height = 25
     Anchors = [akRight, akBottom]

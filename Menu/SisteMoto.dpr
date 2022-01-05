@@ -27,7 +27,7 @@ begin
   fmSplash.Show;
   fmSplash.Refresh;
   fmSplash.Informacao('Bem vindo!');
-  u := LoginDB('','');
+  u := LoginDB('SYSDBA','');
   fmSplash.Informacao('Verificando usuário...');
   if u <> '' then
   begin

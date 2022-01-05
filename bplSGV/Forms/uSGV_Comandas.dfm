@@ -350,7 +350,7 @@ object fmSGV_COMANDAS: TfmSGV_COMANDAS
           OnDblClick = edtCodCliButtonClick
           OnExit = edtCodCliExit
           NumGlyphs = 1
-          Text = 'EDTCODCLI'
+          Text = 'edtCodCli'
           OnButtonClick = edtCodCliButtonClick
         end
         object DBCheckBox1: TDBCheckBox
@@ -358,6 +358,7 @@ object fmSGV_COMANDAS: TfmSGV_COMANDAS
           Top = 144
           Width = 72
           Height = 17
+          TabStop = False
           Caption = 'Associado'
           DataField = 'SOCIO'
           DataSource = ds
@@ -442,6 +443,7 @@ object fmSGV_COMANDAS: TfmSGV_COMANDAS
       Size = 200
     end
     object cdsID_CLIENTE: TIntegerField
+      Alignment = taLeftJustify
       DisplayLabel = 'C'#243'd.Cliente'
       FieldName = 'ID_CLIENTE'
     end

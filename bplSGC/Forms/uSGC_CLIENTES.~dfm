@@ -36,7 +36,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
     Top = 0
     Width = 732
     Height = 388
-    ActivePage = tsCadastro
+    ActivePage = tsConsulta
     Align = alClient
     TabOrder = 0
     object tsConsulta: TTabSheet

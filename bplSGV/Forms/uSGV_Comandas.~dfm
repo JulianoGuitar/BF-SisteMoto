@@ -358,9 +358,11 @@ object fmSGV_COMANDAS: TfmSGV_COMANDAS
           Top = 144
           Width = 72
           Height = 17
+          TabStop = False
           Caption = 'Associado'
           DataField = 'SOCIO'
           DataSource = ds
+          ReadOnly = True
           TabOrder = 4
           ValueChecked = 'S'
           ValueUnchecked = 'N'
