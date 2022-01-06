@@ -26,8 +26,12 @@ begin
   //fmSplash.lbl2.Caption := 'provisualpoa@gmail.com';
   fmSplash.Show;
   fmSplash.Refresh;
+
+  GetDir(
+
   fmSplash.Informacao('Bem vindo!');
-  u := LoginDB('','');
+  u := Query(' select USULOG from SGC_EMPRESAS where ID = 1 ','','USULOG');
+  u := LoginDB(u,'');
   fmSplash.Informacao('Verificando usuário...');
   if u <> '' then
   begin

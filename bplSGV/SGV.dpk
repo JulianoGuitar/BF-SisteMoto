@@ -31,7 +31,8 @@ requires
   rtl,
   dbrtl,
   dsnap,
-  vcldb;
+  vcldb,
+  vcljpg;
 
 contains
   uSGV_VENDAS in 'Forms\uSGV_VENDAS.pas' {fmSGV_VENDAS},

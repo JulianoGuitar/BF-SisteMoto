@@ -85,7 +85,7 @@ uses uFuncoes, uAltera_Senha, uFuncoesDB, uFuncoesTelas;
 procedure TfmMenu.Sobre1Click(Sender: TObject);
 begin
   MessageBox(Handle, pchar('SisteMoto V2'+#13
-                          +'Versão 1.0 | 03/01/2022'+#13
+                          +'Versão 1.0 | 05/01/2022'+#13
                           +'(c)2022 Provisual TI'
                           ), 'SisteMoto', MB_ICONINFORMATION);
 end;
@@ -132,7 +132,7 @@ begin
     SQL.Add(' left join sgd_grupomenu g on g.id = u.grupomenu ');
     SQL.Add(' where u.usuario = :u ');
     SQL.Add(' and a.mostramenu = ''S'' ');
-    SQL.Add(' order by u.USUARIO, u.modulo, u.grupomenu, u.ACESSO ');
+    SQL.Add(' order by u.USUARIO, m.nome_modulo, u.modulo, u.grupomenu, u.ACESSO ');
     ParamByName('u').AsString := sUsuario;
     Open;
 

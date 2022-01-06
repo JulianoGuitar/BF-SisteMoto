@@ -26,7 +26,8 @@ package BPLBase;
 {$IMPLICITBUILD ON}
 
 requires
-  BlueFieldvcl;
+  BlueFieldvcl,
+  dbexpress;
 
 contains
   udtmConexao in '..\Units\udtmConexao.pas' {dtmConexao: TDataModule},

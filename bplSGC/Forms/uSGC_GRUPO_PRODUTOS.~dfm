@@ -1,9 +1,10 @@
 object fmSGC_GRUPO_PRODUTOS: TfmSGC_GRUPO_PRODUTOS
   Left = 0
   Top = 0
-  Width = 709
-  Height = 321
+  BorderStyle = bsSingle
   Caption = 'SGC012 | Grupo de Produtos'
+  ClientHeight = 282
+  ClientWidth = 693
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,6 +14,7 @@ object fmSGC_GRUPO_PRODUTOS: TfmSGC_GRUPO_PRODUTOS
   FormStyle = fsMDIChild
   KeyPreview = True
   OldCreateOrder = False
+  Position = poDefault
   Visible = True
   OnClose = FormClose
   OnCreate = FormCreate
@@ -234,6 +236,7 @@ object fmSGC_GRUPO_PRODUTOS: TfmSGC_GRUPO_PRODUTOS
           Height = 13
           Caption = 'ID'
           FocusControl = bfdbEdit1
+          Visible = False
         end
         object Label2: TLabel
           Left = 11
@@ -274,6 +277,7 @@ object fmSGC_GRUPO_PRODUTOS: TfmSGC_GRUPO_PRODUTOS
           Font.Style = []
           ParentFont = False
           TabOrder = 0
+          Visible = False
         end
         object edtDescricao: TbfdbEdit
           Left = 11

@@ -352,7 +352,7 @@ object fmSGD_AcessoS: TfmSGD_AcessoS
           OnExit = DBEdit3Exit
           ClickKey = 122
           NumGlyphs = 1
-          Text = 'DBEdit3'
+          Text = 'DBEDIT3'
           OnButtonClick = DBEdit3ButtonClick
         end
         object DBEdit4: TbfdbEdit
@@ -394,7 +394,7 @@ object fmSGD_AcessoS: TfmSGD_AcessoS
           OnExit = DBEdit5Exit
           ClickKey = 122
           NumGlyphs = 1
-          Text = 'DBEdit5'
+          Text = 'DBEDIT5'
           OnButtonClick = DBEdit5ButtonClick
         end
         object DBEdit6: TbfdbEdit
@@ -514,6 +514,7 @@ object fmSGD_AcessoS: TfmSGD_AcessoS
       Size = 100
     end
     object cdsGRUPOMENU: TIntegerField
+      Alignment = taLeftJustify
       DisplayLabel = 'Grupo'
       FieldName = 'GRUPOMENU'
     end

@@ -236,6 +236,7 @@ object fmSGC_GRUPO_PRODUTOS: TfmSGC_GRUPO_PRODUTOS
           Height = 13
           Caption = 'ID'
           FocusControl = bfdbEdit1
+          Visible = False
         end
         object Label2: TLabel
           Left = 11
@@ -276,6 +277,7 @@ object fmSGC_GRUPO_PRODUTOS: TfmSGC_GRUPO_PRODUTOS
           Font.Style = []
           ParentFont = False
           TabOrder = 0
+          Visible = False
         end
         object edtDescricao: TbfdbEdit
           Left = 11
@@ -351,6 +353,7 @@ object fmSGC_GRUPO_PRODUTOS: TfmSGC_GRUPO_PRODUTOS
   end
   object cds: TClientDataSet
     Aggregates = <>
+    IndexFieldNames = 'COD_GRUPO;SUB_GRUPO'
     Params = <>
     ProviderName = 'dsp'
     AfterInsert = cdsAfterInsert

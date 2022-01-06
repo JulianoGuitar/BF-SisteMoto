@@ -77,10 +77,12 @@ object fmMenu: TfmMenu
       object Encontrarprograma1: TMenuItem
         Caption = 'Encontrar tela...'
         ImageIndex = 12
+        Visible = False
         OnClick = Encontrarprograma1Click
       end
       object Cascade1: TMenuItem
         Caption = 'Janelas em Cascata'
+        Visible = False
         OnClick = Cascade1Click
       end
       object Closeall1: TMenuItem
@@ -98,6 +100,7 @@ object fmMenu: TfmMenu
       object ImagemdeFundo1: TMenuItem
         Caption = 'Imagem de Fundo'
         ImageIndex = 3
+        Visible = False
         OnClick = ImagemdeFundo1Click
       end
       object N5: TMenuItem

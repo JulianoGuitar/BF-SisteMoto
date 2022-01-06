@@ -29,7 +29,7 @@ object fmSGD_AcessoS: TfmSGD_AcessoS
     Top = 0
     Width = 729
     Height = 391
-    ActivePage = tsConsulta
+    ActivePage = tsCadastro
     Align = alClient
     TabOrder = 0
     object tsConsulta: TTabSheet

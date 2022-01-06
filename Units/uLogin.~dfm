@@ -103,7 +103,7 @@ object fmLogin: TfmLogin
     TabOrder = 2
     NumGlyphs = 2
   end
-  object edjUsuario: TEdit
+  object edjUsuario: TbfEdit
     Left = 63
     Top = 5
     Width = 141
@@ -118,7 +118,7 @@ object fmLogin: TfmLogin
     ParentFont = False
     TabOrder = 0
   end
-  object edjSenha: TEdit
+  object edjSenha: TbfEdit
     Left = 63
     Top = 32
     Width = 141

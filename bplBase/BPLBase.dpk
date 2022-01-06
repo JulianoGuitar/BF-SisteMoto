@@ -27,7 +27,8 @@ package BPLBase;
 
 requires
   BlueFieldvcl,
-  dbexpress;
+  dbexpress,
+  Rave50VCL;
 
 contains
   udtmConexao in '..\Units\udtmConexao.pas' {dtmConexao: TDataModule},

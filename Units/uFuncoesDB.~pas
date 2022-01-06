@@ -14,6 +14,7 @@ function FechaDataModule(dtmOp: TdtmConexao): boolean;
 function AbreTransacao(dtmOp: TdtmConexao): boolean;
 
 function QueryExec(sOpSQL,sPath_Local:string):boolean;
+function QueryExecDTM(sOpSQL:string; dtmOp: TdtmConexao):boolean;
 function Query(sOpSQL,sPath_Local,sOpCampoRetorno:string): string;
 function QueryDbGrid(sOpSQL:string; dbg:TCustomDbgrid; dtmOp: TdtmConexao): string;
 function DireitosUsuario(sOpUSUARIO,sOpACESSO:string; qrOp:TSQLQuery): string;
@@ -22,7 +23,7 @@ function LoginDB(sUsuario,sSenha:string):string;
 
 implementation
 
-uses uFuncoes, RTLConsts, uLogin;
+uses uFuncoes, uLogin; //, RTLConsts
 
 function AbreDataModule(dtmOp: TdtmConexao; sOpPath: string; sOpDB : string = 'FIREBIRD'): boolean;
 begin
@@ -155,6 +156,9 @@ var
 begin
   result := '';
 
+  if trim(sPath_Local) = ''
+  then sPath_Local := GetCurrentDir;
+
   dtmCon := TdtmConexao.Create(Application);
   bDBAberto := AbreDataModule(dtmCon,sPath_Local,'FIREBIRD');
   if not bDBAberto then
@@ -187,7 +191,7 @@ end;
 
 function LoginDB(sUsuario,sSenha:string):string;
 var
-  sPath_Local, u, s : string;
+  sPath_Local, u, s, a : string;
   dtmCon : TdtmConexao;
   bDBAberto : boolean;
 begin
@@ -211,6 +215,47 @@ begin
   with dtmCon.qr do
   begin
     if active then close;
+
+    SQL.Clear;
+    SQL.Add(' select * from SGC_EMPRESAS where ID = 1 ');
+    Open;
+    if IsEmpty then
+    begin
+      Close;
+      MessageBox(Application.Handle, pchar('Empresa não habilitada.'), 'Provisual TI', MB_ICONWARNING);
+      FechaDataModule(dtmCon);
+      Result := '';
+      Exit;
+    end;
+
+    if (FieldByName('DTULT').AsDateTime < date)
+    or (FieldByName('DTULT').AsDateTime < FieldByName('DTLOG').AsDateTime)
+    then
+    begin
+      Close;
+      MessageBox(Application.Handle, pchar('Sua versão demo expirou. Entre em contato:'+#13
+                                          +'provisualpoa@gmail.com'#13
+                                          +'+55 51 98402 5128' ), 'Provisual TI', MB_ICONWARNING);
+      FechaDataModule(dtmCon);
+      Result := '';
+      Exit;
+    end;
+
+    if (FieldByName('DTLOG').AsDateTime < now) then
+    begin
+
+      if u = 'SYSDBA'
+      then a := ''
+      else a := ', USU_LOG = '''+u+''' ';
+      if not QueryExecDTM('update SGC_EMPRESAS set DTLOG = ''now'' '+a+', idalterado = idalt where ID = 1 ',dtmCon)
+      then
+      begin
+        FechaDataModule(dtmCon);
+        Result := '';
+        Exit;
+      end;
+    end;
+
     SQL.Clear;
     SQL.Add(' select * from SGD_USUARIOS where usuario = :u ');
     ParamByName('u').AsString := u;
@@ -218,7 +263,7 @@ begin
     if IsEmpty then
     begin
       Close;
-      MessageBox(Application.Handle, pchar('Usuário não cadastrado.'), 'BlueField', MB_ICONWARNING);
+      MessageBox(Application.Handle, pchar('Usuário não cadastrado.'), 'Erro', MB_ICONWARNING);
       FechaDataModule(dtmCon);
       Result := LoginDB(u,s);
       Exit;
@@ -226,7 +271,7 @@ begin
     if s <> FieldByName('senha').AsString then
     begin
       Close;
-      MessageBox(Application.Handle, pchar('Senha inválida.'), 'BlueField', MB_ICONWARNING);
+      MessageBox(Application.Handle, pchar('Senha inválida.'), 'Erro', MB_ICONWARNING);
       FechaDataModule(dtmCon);
       Result := LoginDB(u,s);
       Exit;
@@ -238,27 +283,15 @@ begin
   FechaDataModule(dtmCon);
 
 end;
-
-function QueryExec(sOpSQL,sPath_Local:string):boolean;
+function QueryExecDTM(sOpSQL:string; dtmOp: TdtmConexao):boolean;
 var
-  dtmCon : TdtmConexao;
-  bDBAberto : boolean;
   td : TTransactionDesc;
 begin
   result := false;
-  if trim(sPath_Local) = ''
-  then sPath_Local := GetCurrentDir;
 
-  dtmCon := TdtmConexao.Create(Application);
-  bDBAberto := AbreDataModule(dtmCon,sPath_Local,'FIREBIRD');
-  if not bDBAberto then
-  begin
-    FechaDataModule(dtmCon);
-    exit;
-  end;
+//  MessageBox(Application.Handle, pChar(sOpSQL), 'SQL', MB_ICONASTERISK);
 
-
-  with dtmCon.qr do
+  with dtmOp.qr do
   try
     td.TransactionID := Cardinal(FormatDateTime('ddmmyyyy',date)+FormatDateTime('hhnnss',time));
     td.IsolationLevel := xilREADCOMMITTED;
@@ -274,13 +307,55 @@ begin
     begin
       MessageBox(Application.Handle, pChar('Mensagem do sistema:'+#13+e.message), 'Erro', MB_ICONERROR);
       SQLConnection.Rollback(td);
-      FechaDataModule(dtmCon);
       exit;
     end;
   end;
   result := true;
 
-  FechaDataModule(dtmCon);
+
+end;
+
+function QueryExec(sOpSQL,sPath_Local:string):boolean;
+var
+  dtmConQR : TdtmConexao;
+  bDBAberto : boolean;
+  td : TTransactionDesc;
+begin
+  result := false;
+  if trim(sPath_Local) = ''
+  then sPath_Local := GetCurrentDir;
+
+  dtmConQR := TdtmConexao.Create(Application);
+  bDBAberto := AbreDataModule(dtmConQR,sPath_Local,'FIREBIRD');
+  if not bDBAberto then
+  begin
+    FechaDataModule(dtmConQR);
+    exit;
+  end;
+
+  with dtmConQR.qr do
+  try
+    td.TransactionID := Cardinal(FormatDateTime('ddmmyyyy',date)+FormatDateTime('hhnnss',time));
+    td.IsolationLevel := xilREADCOMMITTED;
+    SQLConnection.StartTransaction(td);
+
+    sql.Text := sOpSQL;
+    ExecSQL;
+
+    SQLConnection.Commit(td);
+
+  except
+    on e : Exception do
+    begin
+      MessageBox(Application.Handle, pChar('Mensagem do sistema:'+#13+e.message), 'Erro', MB_ICONERROR);
+      SQLConnection.Rollback(td);
+      FechaDataModule(dtmConQR);
+      exit;
+    end;
+  end;
+  result := true;
+
+  FechaDataModule(dtmConQR);
 
 end;
 

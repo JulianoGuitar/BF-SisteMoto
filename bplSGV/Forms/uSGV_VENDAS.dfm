@@ -244,7 +244,8 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
             'Comandas Abertas'
             'Comandas Fechadas'
             'Todas Comandas '
-            'Itens Cancelados')
+            'Itens Cancelados'
+            'Itens N'#227'o Impressos')
         end
         object btConsulta: TBitBtn
           Left = 719
@@ -1444,5 +1445,48 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
       Caption = 'Cancela Item'
       OnClick = CancelaItem1Click
     end
+    object N1: TMenuItem
+      Caption = '-'
+    end
+    object MarcarcomoNoImpresso1: TMenuItem
+      Tag = 1
+      Caption = 'Marcar como "N'#227'o Impresso"'
+    end
+  end
+  object RvSystem1: TRvSystem
+    TitleSetup = 'Op'#231#245'es'
+    TitleStatus = 'Status'
+    TitlePreview = 'Visualizar Impress'#227'o'
+    SystemSetups = [ssAllowSetup, ssAllowDestPreview, ssAllowDestPrinter, ssAllowPrinterSetup, ssAllowPreviewSetup]
+    DefaultDest = rdPrinter
+    SystemFiler.StatusFormat = 'Gerando p'#225'gina %p'
+    SystemPreview.FormState = wsMaximized
+    SystemPreview.ZoomFactor = 110.000000000000000000
+    SystemPrinter.MarginBottom = 7.000000000000000000
+    SystemPrinter.MarginLeft = 10.000000000000000000
+    SystemPrinter.MarginRight = 10.000000000000000000
+    SystemPrinter.MarginTop = 7.000000000000000000
+    SystemPrinter.ScaleX = 100.000000000000000000
+    SystemPrinter.ScaleY = 100.000000000000000000
+    SystemPrinter.StatusFormat = 'Imprimindo p'#225'gina %p'
+    SystemPrinter.Title = 'Recibo de Pagamento'
+    SystemPrinter.Units = unMM
+    SystemPrinter.UnitsFactor = 25.400000000000000000
+    OnPrint = RvSystem1Print
+    OnBeforePrint = RvSystem1BeforePrint
+    Left = 500
+    Top = 184
+  end
+  object RvRenderPDF1: TRvRenderPDF
+    DisplayName = 'Adobe Acrobat (PDF)'
+    FileExtension = '*.pdf'
+    EmbedFonts = False
+    ImageQuality = 90
+    MetafileDPI = 300
+    FontEncoding = feWinAnsiEncoding
+    DocInfo.Creator = 'Rave Reports (http://www.nevrona.com/rave)'
+    DocInfo.Producer = 'Nevrona Designs'
+    Left = 560
+    Top = 184
   end
 end

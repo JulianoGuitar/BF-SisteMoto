@@ -61,7 +61,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           Width = 88
           Height = 21
           Caption = 'Consultar'
-          TabOrder = 6
+          TabOrder = 7
           OnClick = btConsultaClick
         end
         object dbgConsulta: TbfdbGrid
@@ -77,7 +77,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           Font.Style = []
           Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
           ParentFont = False
-          TabOrder = 7
+          TabOrder = 8
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
           TitleFont.Height = -9
@@ -103,7 +103,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
             item
               Expanded = False
               FieldName = 'CNPJ'
-              Width = 189
+              Width = 126
               Visible = True
             end
             item
@@ -116,6 +116,11 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
               Expanded = False
               FieldName = 'UF'
               Width = 21
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'COD_SOCIO'
               Visible = True
             end>
         end
@@ -134,7 +139,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
         object edtCNPJCons: TbfEdit
           Left = 313
           Top = 32
-          Width = 191
+          Width = 127
           Height = 21
           CharCase = ecUpperCase
           TabOrder = 2
@@ -166,9 +171,9 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           SairComEnter = False
         end
         object edtConsCidade: TbfEdit
-          Left = 505
+          Left = 440
           Top = 32
-          Width = 171
+          Width = 173
           Height = 21
           CharCase = ecUpperCase
           TabOrder = 3
@@ -178,12 +183,24 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           SairComEnter = False
         end
         object edtConsUF: TbfEdit
-          Left = 677
+          Left = 613
           Top = 32
           Width = 21
           Height = 21
           CharCase = ecUpperCase
           TabOrder = 4
+          OnChange = edtConsultaChange
+          OnKeyDown = edtConsultaKeyDown
+          OnKeyPress = edtConsultaKeyPress
+          SairComEnter = False
+        end
+        object edtConsAssociado: TbfEdit
+          Left = 634
+          Top = 32
+          Width = 66
+          Height = 21
+          CharCase = ecUpperCase
+          TabOrder = 6
           OnChange = edtConsultaChange
           OnKeyDown = edtConsultaKeyDown
           OnKeyPress = edtConsultaKeyPress
@@ -611,7 +628,7 @@ object fmSGC_CLIENTES: TfmSGC_CLIENTES
           OnDblClick = edtCodCidadeButtonClick
           OnExit = edtCodCidadeExit
           NumGlyphs = 1
-          Text = 'EDTCODCIDADE'
+          Text = 'edtCodCidade'
           OnButtonClick = edtCodCidadeButtonClick
         end
         object edtNomeCidade: TbfdbEdit

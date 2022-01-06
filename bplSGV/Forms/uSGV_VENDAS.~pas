@@ -7,7 +7,8 @@ uses
   Dialogs, StdCtrls, Grids, bfdbGrid, DB, DBClient, Provider, FMTBcd,
   SqlExpr, ExtCtrls, DBCtrls, Mask, udtmConexao, ComCtrls,
   Buttons, bfEdit, bfdbEdit, DBGrids, bfdbMemo, RelVisualBlue, bfdbComboBox,
-  bfdbEditButton, DBXPRESS, bfComboBox, Menus;
+  bfdbEditButton, DBXPRESS, bfComboBox, Menus, RpRender, RpRenderPDF,
+  RpDefine, RpBase, RpSystem, RpMemo;
 
 type
   TfmSGV_VENDAS = class(TForm)
@@ -109,6 +110,10 @@ type
     cdsCANCELADO: TStringField;
     PopupMenu1: TPopupMenu;
     CancelaItem1: TMenuItem;
+    RvSystem1: TRvSystem;
+    RvRenderPDF1: TRvRenderPDF;
+    MarcarcomoNoImpresso1: TMenuItem;
+    N1: TMenuItem;
 
     procedure Direitos;
     function Pode_Salvar: boolean;
@@ -174,6 +179,8 @@ type
     procedure btFechaTurnoClick(Sender: TObject);
     procedure btPedidoClick(Sender: TObject);
     procedure CancelaItem1Click(Sender: TObject);
+    procedure RvSystem1BeforePrint(Sender: TObject);
+    procedure RvSystem1Print(Sender: TObject);
 
   private
     procedure HabilitaControles;
@@ -182,8 +189,10 @@ type
     cCorBluefield, cCorNormal : tColor;
     sRetorno,
     sEmpresa,
+    sParceiroPedido,
     sUsuario, sPath_Local, sBancoDeDados: string;
     bRelatorioPeriodo,
+    bRelatorioPedido,
     bDBAberto, bModal,
     bCad, bInc, bAlt, bExc : boolean;
 
@@ -355,6 +364,12 @@ begin
     then SQL.Add(' and coalesce(v.cancelado,''N'') = ''S'' ')
     else SQL.Add(' and coalesce(v.cancelado,''N'') = ''N'' ');
 
+    if cbxComandaCons.ItemIndex = 4 then
+    begin
+      SQL.Add(' and coalesce(v.fechada,''N'') = ''N'' ');
+      SQL.Add(' and coalesce(v.impresso,''N'') = ''N'' ');
+    end;
+
     if bRelatorioPeriodo then
     begin
       SQL.Add(' and (v.dt_inclui between :d1 and :d2 ) ');
@@ -369,7 +384,9 @@ begin
   if cds.Active
   then cds.Close;
 
-  cds.IndexFieldNames := 'DT_INCLUI;COMANDA;COMANDA_NOME';
+  if cbxComandaCons.ItemIndex = 4
+  then cds.IndexFieldNames := 'COMANDA;COMANDA_NOME;DT_INCLUI'
+  else cds.IndexFieldNames := 'DT_INCLUI;COMANDA;COMANDA_NOME';
 
   dbgConsulta.DataSource := ds;
   cds.Open;
@@ -1222,8 +1239,110 @@ begin
 end;
 
 procedure TfmSGV_VENDAS.btPedidoClick(Sender: TObject);
+var
+  td : TTransactionDesc;
 begin
-  MessageBox(Handle, pchar('Em construção.'), 'Aviso', MB_ICONWARNING);
+
+    LimpaFiltros;
+    cbxComandaCons.ItemIndex := 4;
+    btConsultaClick(self);
+
+    if cds.IsEmpty then
+    begin
+      MessageBox(Handle, pchar('Nada para imprimir.'), 'Aviso', MB_ICONWARNING);
+      LimpaFiltros;
+      cbxComandaCons.ItemIndex := 0;
+      btConsultaClick(self);
+      exit;
+    end;
+
+
+    bRelatorioPedido := false;
+    sParceiroPedido := '';
+
+    fmConsulta := TfmConsulta.Create(self);
+    fmConsulta.dsp.DataSet := dtmCon.qrApoio;
+    fmConsulta.Caption := 'Parceiro';
+    fmConsulta.Width := 400;
+    fmConsulta.Height := 350;
+    fmConsulta.edtINFO.Text := 'Selecione um parceiro para imprimir';
+
+    with dtmCon.qrApoio do
+    begin
+      if active then close;
+      SQL.Clear;
+      SQL.Add(' select distinct f.nome PARCEIRO from SGV_VENDAS v left join SGC_FAMILIA_PROD f on f.ID = v.ID_FAMILIA ');
+      SQL.Add(' where coalesce(v.fechada,''N'') = ''N'' ');
+      SQL.Add(' and coalesce(v.impresso,''N'') = ''N'' ');
+      SQL.Add(' order by f.nome ');
+    end;
+    fmConsulta.cds.Open;
+    fmConsulta.cds.Last;
+
+    fmConsulta.dbg.Columns[0].Width := 300;
+
+    fmConsulta.ShowModal;
+
+    if fmConsulta.ModalResult = mrok then
+    begin
+      if fmConsulta.cds.IsEmpty
+      then MessageBox(Handle, pchar('Nenhum parceiro selecionado.'), 'Aviso', MB_ICONWARNING)
+      else bRelatorioPedido := true;
+      sParceiroPedido := fmConsulta.cds.FieldByName('PARCEIRO').AsString;
+    end;
+    if fmConsulta.cds.active then fmConsulta.cds.close;
+    fmConsulta.Release;
+
+    if not bRelatorioPedido then exit;
+
+    cbxComandaCons.ItemIndex := 4;
+    edtConsultaParceiro.Text := sParceiroPedido;
+
+    btConsultaClick(self);
+//  MessageBox(Handle, pchar('Em construção.'), 'Aviso', MB_ICONWARNING);
+  // AbreTela('SGV307','SGV.BPL',sUsuario,sPath_Local,'', sBancoDeDados,cCorBluefield,cCorNormal,iEmp, 1,true);
+
+    RvSystem1.Execute;
+
+    if MessageBox(Handle, pchar('Impressão ok?'), 'Impressão Pedido', MB_YESNO+MB_ICONQUESTION) = id_yes
+    then
+    with dtmCon.qrApoio do
+    try
+      td.TransactionID := Cardinal(FormatDateTime('ddmmyyyy',date)+FormatDateTime('hhnnss',time));
+      td.IsolationLevel := xilREADCOMMITTED;
+      SQLConnection.StartTransaction(td);
+
+      if active then close;
+      cds.First;
+      while not cds.Eof do
+      begin
+        SQL.Clear;
+        SQL.Add(' update SGV_VENDAS set IMPRESSO = ''S'', usu_impresso = :u, dt_impresso = ''now'', idalterado = idalt  ');
+        SQL.Add(' where ID = :id ');
+        ParamByName('id').AsFloat := cdsID.AsInteger;
+        ParamByName('u').AsString := sUsuario;
+        ExecSQL;
+
+        cds.Next;
+      end;
+
+
+      SQLConnection.Commit(td);
+
+    except
+      on e : Exception do
+      begin
+        SQLConnection.Rollback(td);
+        MessageBox(Handle, pChar('Mensagem do sistema:'+#13+e.message), 'Erro', MB_ICONERROR);
+        exit;
+      end;
+    end;
+
+    bRelatorioPedido := false;
+
+    LimpaFiltros;
+    cbxComandaCons.ItemIndex := 0;
+    btConsultaClick(self);
 end;
 
 procedure TfmSGV_VENDAS.LimpaFiltros;
@@ -1273,8 +1392,9 @@ begin
 
     if fmConsulta.ModalResult = mrok then
     begin
-      if fmConsulta.cds.IsEmpty then MessageBox(Handle, pchar('Nenhum turno selecionado.'), 'Aviso', MB_ICONWARNING);
-      bRelatorioPeriodo := true;
+      if fmConsulta.cds.IsEmpty then
+      MessageBox(Handle, pchar('Nenhum turno selecionado.'), 'Aviso', MB_ICONWARNING)
+      else bRelatorioPeriodo := true;
       dtRel1 := fmConsulta.cds.FieldByName('ABERTURA').AsDateTime;
       dtRel2 := fmConsulta.cds.FieldByName('FECHAMENTO').AsDateTime;
     end;
@@ -1356,25 +1476,56 @@ end;
 
 procedure TfmSGV_VENDAS.CancelaItem1Click(Sender: TObject);
 var td : TTransactionDesc;
+  t : integer;
+  a : string;
 begin
   if cds.IsEmpty then exit;
+
+  t := (sender as TMenuItem).Tag;
+
+  if not bExc then
+  begin
+    MessageBox(Handle, pchar('Usuário não tem pemissão.'), 'Aviso', MB_ICONWARNING);
+    exit;
+  end;
+
   if cdsFECHADA.AsString = 'S' then
   begin
     MessageBox(Handle, pchar('Comanda já foi fechada!'), 'Aviso', MB_ICONWARNING);
     exit;
   end;
-  if cdsIMPRESSO.AsString = 'S' then
-  begin
-    MessageBox(Handle, pchar('Item já foi impresso!'), 'Aviso', MB_ICONWARNING);
-    exit;
+
+  case t of
+    0 :
+    begin
+      a := 'Deseja mesmo cancelar este item?';
+      if (cdsIMPRESSO.AsString = 'S')
+      then
+      begin
+        MessageBox(Handle, pchar('Item já foi impresso!'), 'Aviso', MB_ICONWARNING);
+        exit;
+      end;
+    end;
+    1 :
+    begin
+      a := 'Deseja reenviar este item para impressão?';
+      if (cdsIMPRESSO.AsString <> 'S')
+      then
+      begin
+        MessageBox(Handle, pchar('Item ainda não foi impresso!'), 'Aviso', MB_ICONWARNING);
+        exit;
+      end;
+    end;
   end;
 
-  if MessageBox(Handle, pchar('Confirma cancelar o item?'+#13
+
+
+  if MessageBox(Handle, pchar(a+#13
                              +cdsCOMANDA.AsString+' '+cdsCOMANDA_NOME.AsString+#13
                              +cdsNOME_FAMILIA.AsString+#13
                              +cdsCOD_PROD.AsString+' '+cdsNOME_PROD.AsString+#13
                              +#13+'Confirma?')
-                             ,'Cancelar venda', MB_YESNO+MB_ICONQUESTION+MB_DEFBUTTON2) = id_no
+                             ,'Confirmar operação', MB_YESNO+MB_ICONQUESTION+MB_DEFBUTTON2) = id_no
   then exit;
 
   with dtmCon.qrApoio do
@@ -1387,7 +1538,11 @@ begin
     SQL.Clear;
 
     //trigger em SGV_COMANDAS fecha o SGV_VENDAS
-    SQL.Add(' update SGV_VENDAS set FECHADA = ''S'', CANCELADO = ''S'', usu_altera = :u, dt_altera = ''now'', idalterado = idalt  ');
+    SQL.Add(' update SGV_VENDAS set usu_altera = :u, dt_altera = ''now'', idalterado = idalt  ');
+    case t of
+      0 : SQL.Add(', FECHADA = ''S'', CANCELADO = ''S'' ');
+      1 : SQL.Add(', IMPRESSO = ''N'' ');
+    end;
     SQL.Add(' where ID = :id ');
     ParamByName('id').AsFloat := cdsID.AsInteger;
     ParamByName('u').AsString := sUsuario;
@@ -1404,9 +1559,115 @@ begin
     end;
   end;
 
-  MessageBox(Handle, pchar('Item cancelado.'), 'Aviso', MB_ICONWARNING);
+  case t of
+    0 : MessageBox(Handle, pchar('Item cancelado.'), 'Aviso', MB_ICONWARNING);
+    1 : MessageBox(Handle, pchar('Item pode ser impresso novamente.'), 'Aviso', MB_ICONWARNING);
+  end;
 
   btConsultaClick(self);
+
+end;
+
+procedure TfmSGV_VENDAS.RvSystem1BeforePrint(Sender: TObject);
+begin
+  with Sender as TBaseReport do
+  begin
+    SetPaperSize(DMPAPER_USER,80,297);
+    SetFont('Arial',10);
+
+    ClearTabs;
+    SetTab(MarginLeft, pjCenter, 30, 0,BOXLINERIGHT,0);
+    SetTab(na, pjLeft, 50, 0,BOXLINERIGHT,0);
+    SetTab(na, pjright, 60, 0,BOXLINERIGHT,0);
+    SetTab(na, pjRight, 5, 0,BOXLINERIGHT,0);
+    SetTab(na, pjRight, 80, 0,BOXLINENONE,0);
+    SaveTabs(1);
+  end;
+end;
+
+procedure TfmSGV_VENDAS.RvSystem1Print(Sender: TObject);
+var
+  i, l : integer;
+  xTop, xX, xY, xHeight : extended;
+  memoBuf : TMemoBuf;
+  Finished : Boolean;
+  ssPedido : string;
+begin
+
+  with Sender as TBaseReport do
+  begin
+    SetFont('Arial',8);
+    Newline;
+    if LinesLeft <= 0 then NewPage;
+
+    ssPedido := '';
+
+    cds.First;
+    while not cds.EOF do
+    begin
+      if ssPedido <> Trim(cdsCOMANDA.AsString) then
+      begin
+        if ssPedido <> '' then
+        begin
+          NewLine;
+          if LinesLeft <= 0 then NewPage;
+
+          MoveTo(MarginLeft,LineTop);
+          LineTo(PageWidth-MarginRight,LineTop);
+
+          NewLine;
+          if LinesLeft <= 0 then NewPage;
+          NewLine;
+          if LinesLeft <= 0 then NewPage;
+
+        end;
+
+        ssPedido := Trim(cdsCOMANDA.AsString);
+
+        Bold := True;
+        PrintLeft(cdsNOME_FAMILIA.AsString, MarginLeft);
+        Bold := False;
+        NewLine;
+        if LinesLeft <= 0 then NewPage;
+        NewLine;
+        if LinesLeft <= 0 then NewPage;
+
+        PrintLeft(FormatDateTime('dd/mm/yy hh:mm:ss', cdsDT_INCLUI.AsDateTime)
+                 +' | '+cdsCOMANDA.AsString+' '+cdsCOMANDA_NOME.AsString
+                 , MarginLeft);
+        NewLine;
+        if LinesLeft <= 0 then NewPage;
+
+        if cdsTAG.AsString <> '' then
+        begin
+          PrintLeft('TAG: '+cdsTAG.AsString, MarginLeft);
+          NewLine;
+          if LinesLeft <= 0 then NewPage;
+        end;
+      end;
+
+      PrintLeft(cdsQUANTIDADE.AsString, MarginLeft);
+      Print(' - '+cdsNOME_PROD.AsString);
+      NewLine;
+      if LinesLeft <= 0 then NewPage;
+
+      if Trim(cdsOBS.AsString) <> '' then
+      begin
+        PrintLeft(cdsOBS.AsString, MarginLeft);
+        NewLine;
+        if LinesLeft <= 0 then NewPage;
+      end;
+
+      cds.Next;
+
+      if cds.Eof then
+      begin
+        NewLine;
+        MoveTo(MarginLeft,LineTop);
+        LineTo(PageWidth-MarginRight,LineTop);
+      end;
+    end;
+  end;
 
 end;
 

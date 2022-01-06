@@ -284,6 +284,7 @@ type
     cdsCOD_SOCIO: TStringField;
     edtCOD_SOCIO: TbfdbEdit;
     Label29: TLabel;
+    edtConsAssociado: TbfEdit;
 
     procedure Direitos;
     procedure AbreEnderecos;
@@ -767,11 +768,12 @@ begin
     then SQL.Add(' and e.NOME like ''%'+trim(edtConsulta.Text)+'%'' ');
     if trim(edtCNPJCons.Text) <> ''
     then SQL.Add(' and e.CNPJ = '''+trim(edtCNPJCons.Text)+''' ');
-    if AnsiUpperCase(trim(edtConsCidade.Text)) <> ''
-    then SQL.Add(' and UPPER(c.NOME) like ''%'+trim(edtConsCidade.Text)+'%'' ');
-    if  AnsiUpperCase(trim(edtConsUF.Text)) <> ''
+    if trim(edtConsCidade.Text) <> ''
+    then SQL.Add(' and UPPER(c.NOME) like ''%'+trim(AnsiUpperCase(edtConsCidade.Text))+'%'' ');
+    if  trim(edtConsUF.Text) <> ''
     then SQL.Add(' and e.UF = '''+trim(edtConsUF.Text)+''' ');
-
+    if  trim(edtConsAssociado.Text) <> ''
+    then SQL.Add(' and e.COD_SOCIO = '''+trim(edtConsAssociado.Text)+''' ');
     if ckbInativoCons.Checked then
     SQL.Add(' and e.INATIVO_CLI = ''S'' ')
     else
