@@ -23,7 +23,7 @@ package SGV;
 {$WRITEABLECONST OFF}
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
-{$IMPLICITBUILD ON}
+{$IMPLICITBUILD OFF}
 
 requires
   BPLBase,
@@ -38,7 +38,6 @@ contains
   uSGV_VENDAS in 'Forms\uSGV_VENDAS.pas' {fmSGV_VENDAS},
   uSGV_Comandas in 'Forms\uSGV_Comandas.pas' {fmSGV_COMANDAS},
   uConsulta_Padrao in 'Forms\uConsulta_Padrao.pas' {fmConsulta},
-  uFechaComanda in 'Forms\uFechaComanda.pas' {fmFechaComanda},
-  uSGV_RECIBO_COMANDA in 'Forms\uSGV_RECIBO_COMANDA.pas' {fmSGV_RECIBO_COMANDA};
+  uFechaComanda in 'Forms\uFechaComanda.pas' {fmFechaComanda};
 
 end.

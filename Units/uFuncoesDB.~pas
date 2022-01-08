@@ -233,9 +233,9 @@ begin
     then
     begin
       Close;
-      MessageBox(Application.Handle, pchar('Sua versão demo expirou. Entre em contato:'+#13
-                                          +'provisualpoa@gmail.com'#13
-                                          +'+55 51 98402 5128' ), 'Provisual TI', MB_ICONWARNING);
+      MessageBox(Application.Handle, pchar('Sua versão demo expirou. Entre em contato :)'+#13+#13
+                                          +'provisualpoa@gmail.com'#13+#13
+                                          +'+55 51 98402 5128' ), 'Provisual TI', MB_ICONINFORMATION);
       FechaDataModule(dtmCon);
       Result := '';
       Exit;
@@ -246,7 +246,7 @@ begin
 
       if u = 'SYSDBA'
       then a := ''
-      else a := ', USU_LOG = '''+u+''' ';
+      else a := ', USULOG = '''+u+''' ';
       if not QueryExecDTM('update SGC_EMPRESAS set DTLOG = ''now'' '+a+', idalterado = idalt where ID = 1 ',dtmCon)
       then
       begin

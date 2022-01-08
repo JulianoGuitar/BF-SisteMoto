@@ -27,8 +27,6 @@ begin
   fmSplash.Show;
   fmSplash.Refresh;
 
-  GetDir(
-
   fmSplash.Informacao('Bem vindo!');
   u := Query(' select USULOG from SGC_EMPRESAS where ID = 1 ','','USULOG');
   u := LoginDB(u,'');

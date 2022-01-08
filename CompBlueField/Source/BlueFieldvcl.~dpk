@@ -22,7 +22,7 @@ package BlueFieldvcl;
 {$MINENUMSIZE 1}
 {$IMAGEBASE $400000}
 {$DESCRIPTION 'Componentes BlueField © 2018 þ®ø¥¡§µå£ 1.0.0.0'}
-{$IMPLICITBUILD ON}
+{$IMPLICITBUILD OFF}
 
 requires
   vcl,

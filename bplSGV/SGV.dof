@@ -136,38 +136,15 @@ ProductVersion=1.0.0.0
 Comments=
 [Excluded Packages]
 C:\Projetos\Componentes\Fortes\Binary\LibD7\frce.bpl=Fortes Report Comunity Edition
-C:\Projetos\Componentes\acbrtrunk2\Lib\Delphi\LibD7\Win32\DCLACBr_NFeDanfeRL.bpl=ACBr - (design-time) DANFe em Fortes Report - (http://www.projetoacbr.com.br/)
-C:\Projetos\Componentes\acbrtrunk2\Lib\Delphi\LibD7\Win32\DCLACBr_NFSeDanfseRL.bpl=ACBr - (design-time) DANFSe em Fortes Report - (http://www.projetoacbr.com.br/)
-C:\Projetos\Componentes\acbrtrunk2\Lib\Delphi\LibD7\Win32\DCLACBr_CTeDacteRL.bpl=ACBr - (design-time) DACTe em Fortes Report - (http://www.projetoacbr.com.br/)
-C:\Projetos\Componentes\acbrtrunk2\Lib\Delphi\LibD7\Win32\DCLACBr_BoletoRL.bpl=ACBr - (design-time) Boleto Impressão em Fortes Report - (http://www.projectoacbr.com.br/)
-C:\Projetos\Componentes\acbrtrunk2\Lib\Delphi\LibD7\Win32\DCLACBr_MDFeDamdfeRL.bpl=ACBr - (design-time) DAMDFe em Fortes Report - (http://www.projetoacbr.com.br/)
 [HistoryLists\hlUnitAliases]
 Count=1
 Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;
-[HistoryLists\hlSearchPath]
-Count=5
-Item0=C:\Projetos\BF SisteMoto\CompBlueField\DCU;C:\Projetos\BF SisteMoto\Dcp
-Item1=C:\Projetos\BF SisteMoto\CompBlueField\DCU
-Item2=C:\Projetos\Componentes\CompJul
-Item3=C:\Arquivos de programas\Borland\Delphi7\CompJul
-Item4=C:\Arquivos de programas\Borland\Delphi7\XP;C:\Arquivos de programas\Borland\Delphi7\CompJul
 [HistoryLists\hlUnitOutputDirectory]
 Count=1
 Item0=C:\Projetos\BF SisteMoto\Dcu
-[HistoryLists\hlOutputDirectorry]
-Count=8
-Item0=C:\Projetos\AlphaQuimica
-Item1=c:\projetos\Embacaps
-Item2=c:\Juliano\Embacaps
-Item3=c:\Projetos\Novo_Embacaps
-Item4=D:\Projetos\Embacaps
-Item5=D:\Projetos\Pacote
-Item6=D:\Projetos\Pacote\Embacaps
-Item7=D:\Projetos\Pacote\Menu
 [HistoryLists\hlBPLOutput]
-Count=2
+Count=1
 Item0=C:\ProjetosBin\BF SisteMoto
-Item1=C:\Projetos\BlueField
 [HistoryLists\hlDCPOutput]
 Count=1
 Item0=C:\Projetos\BF SisteMoto\Dcp

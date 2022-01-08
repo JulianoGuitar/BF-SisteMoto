@@ -6,6 +6,7 @@ unit uFuncoesDB;
 interface
 
 uses
+  midaslib,
   Sysutils, Windows, Forms, Controls, Grids, DBGrids,
   udtmConexao, DB, SqlExpr, DBXpress;
 

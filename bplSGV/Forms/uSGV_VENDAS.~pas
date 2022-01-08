@@ -1448,18 +1448,18 @@ begin
 
     DefinicaoCampos.Add('G1;100;E;;NOME_FAMILIA; ');
 
-    DefinicaoCampos.Add('D0;40;E;dd/mm/yyyy hh:nn:ss;DT_INCLUI;Data/Hora');
-    DefinicaoCampos.Add('D0;20;D;;COMANDA; ');
-    DefinicaoCampos.Add('D0;52;E;;COMANDA_NOME;Comanda');
+    DefinicaoCampos.Add('D0;20;E;dd/mm/yy hh:nn;DT_INCLUI;Data/Hora');
+    DefinicaoCampos.Add('D0;10;D;;COMANDA; ');
+    DefinicaoCampos.Add('D0;20;E;;COMANDA_NOME;Comanda');
   //  DefinicaoCampos.Add('D0;15;D;;COD_PROD;Código');
-    DefinicaoCampos.Add('D0;55;E;;NOME_PROD;Produto');
+    DefinicaoCampos.Add('D0;30;E;;NOME_PROD;Produto');
 
-    DefinicaoCampos.Add('D1;15;D;##,##0;QUANTIDADE;Qtde.');
+//    DefinicaoCampos.Add('D1;15;D;##,##0;QUANTIDADE;Qtde.');
 
-    DefinicaoCampos.Add('D0;22;D;##,##0.00;VALOR;Preço');
-    DefinicaoCampos.Add('D1;22;D;##,##0.00;TOTAL;Total');
+//    DefinicaoCampos.Add('D0;22;D;##,##0.00;VALOR;Preço');
+    DefinicaoCampos.Add('D1;20;D;##,##0.00;TOTAL;Total');
 
-    DefinicaoCampos.Add('D0;200;D;;NOME_FAMILIA;Parceiro');
+    DefinicaoCampos.Add('D0;400;D;;NOME_FAMILIA;Parceiro');
 
 
     Execute;

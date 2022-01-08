@@ -136,11 +136,6 @@ ProductVersion=1.0.0.0
 Comments=
 [Excluded Packages]
 C:\Projetos\Componentes\Fortes\Binary\LibD7\frce.bpl=Fortes Report Comunity Edition
-C:\Projetos\Componentes\acbrtrunk2\Lib\Delphi\LibD7\Win32\DCLACBr_NFeDanfeRL.bpl=ACBr - (design-time) DANFe em Fortes Report - (http://www.projetoacbr.com.br/)
-C:\Projetos\Componentes\acbrtrunk2\Lib\Delphi\LibD7\Win32\DCLACBr_NFSeDanfseRL.bpl=ACBr - (design-time) DANFSe em Fortes Report - (http://www.projetoacbr.com.br/)
-C:\Projetos\Componentes\acbrtrunk2\Lib\Delphi\LibD7\Win32\DCLACBr_CTeDacteRL.bpl=ACBr - (design-time) DACTe em Fortes Report - (http://www.projetoacbr.com.br/)
-C:\Projetos\Componentes\acbrtrunk2\Lib\Delphi\LibD7\Win32\DCLACBr_BoletoRL.bpl=ACBr - (design-time) Boleto Impressão em Fortes Report - (http://www.projectoacbr.com.br/)
-C:\Projetos\Componentes\acbrtrunk2\Lib\Delphi\LibD7\Win32\DCLACBr_MDFeDamdfeRL.bpl=ACBr - (design-time) DAMDFe em Fortes Report - (http://www.projetoacbr.com.br/)
 [HistoryLists\hlUnitAliases]
 Count=1
 Item0=WinTypes=Windows;WinProcs=Windows;DbiTypes=BDE;DbiProcs=BDE;DbiErrs=BDE;

@@ -1424,13 +1424,13 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
     RodapeGrupo = True
     LinhaGrupo = True
     LinhaRodapeGrupo = True
-    MarginLeft = 10.000000000000000000
+    MarginLeft = 5.000000000000000000
     MarginTop = 10.000000000000000000
-    MarginRight = 10.000000000000000000
+    MarginRight = 5.000000000000000000
     MarginBottom = 10.000000000000000000
     Fonte.Charset = DEFAULT_CHARSET
     Fonte.Color = clWindowText
-    Fonte.Height = -11
+    Fonte.Height = -8
     Fonte.Name = 'Tahoma'
     Fonte.Style = []
     TXTCharSeparador = ';'

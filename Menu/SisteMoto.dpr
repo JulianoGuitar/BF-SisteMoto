@@ -1,6 +1,7 @@
 program SisteMoto;
 
 uses
+  Midaslib,
   Forms,
   uMenu in 'uMenu.pas' {fmMenu},
   udtmConexao in '..\Units\udtmConexao.pas' {dtmConexao: TDataModule},

@@ -1424,13 +1424,13 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
     RodapeGrupo = True
     LinhaGrupo = True
     LinhaRodapeGrupo = True
-    MarginLeft = 10.000000000000000000
+    MarginLeft = 5.000000000000000000
     MarginTop = 10.000000000000000000
-    MarginRight = 10.000000000000000000
+    MarginRight = 5.000000000000000000
     MarginBottom = 10.000000000000000000
     Fonte.Charset = DEFAULT_CHARSET
     Fonte.Color = clWindowText
-    Fonte.Height = -11
+    Fonte.Height = -9
     Fonte.Name = 'Tahoma'
     Fonte.Style = []
     TXTCharSeparador = ';'
@@ -1457,7 +1457,8 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
     TitleSetup = 'Op'#231#245'es'
     TitleStatus = 'Status'
     TitlePreview = 'Visualizar Impress'#227'o'
-    SystemSetups = [ssAllowSetup, ssAllowCopies, ssAllowDestPreview, ssAllowDestPrinter, ssAllowDestFile, ssAllowPrinterSetup, ssAllowPreviewSetup]
+    SystemSetups = [ssAllowSetup, ssAllowDestPreview, ssAllowDestPrinter, ssAllowPrinterSetup, ssAllowPreviewSetup]
+    DefaultDest = rdPrinter
     SystemFiler.StatusFormat = 'Gerando p'#225'gina %p'
     SystemPreview.FormState = wsMaximized
     SystemPreview.ZoomFactor = 110.000000000000000000
