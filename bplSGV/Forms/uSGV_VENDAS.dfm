@@ -1,6 +1,6 @@
 object fmSGV_VENDAS: TfmSGV_VENDAS
-  Left = 219
-  Top = 163
+  Left = 288
+  Top = 114
   BorderStyle = bsSingle
   Caption = 'SGV001 | Vendas'
   ClientHeight = 473
@@ -18,6 +18,7 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
   Visible = True
   OnClose = FormClose
   OnCreate = FormCreate
+  OnKeyDown = FormKeyDown
   OnKeyPress = FormKeyPress
   DesignSize = (
     845
@@ -32,7 +33,7 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
     ActivePage = tsConsulta
     Align = alClient
     TabHeight = 26
-    TabOrder = 0
+    TabOrder = 1
     object tsConsulta: TTabSheet
       Caption = 'Vendas'
       ImageIndex = 1
@@ -40,23 +41,21 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
       DesignSize = (
         837
         437)
-      object GroupBox1: TGroupBox
+      object gbItens: TGroupBox
         Left = 0
-        Top = 0
+        Top = 144
         Width = 837
-        Height = 437
-        Align = alClient
-        TabOrder = 0
-        DesignSize = (
-          837
-          437)
+        Height = 293
+        Align = alBottom
+        Caption = 'Itens'
+        TabOrder = 1
+        Visible = False
         object dbgConsulta: TbfdbGrid
           Left = 2
-          Top = 29
+          Top = 36
           Width = 833
-          Height = 406
-          Align = alBottom
-          Anchors = [akLeft, akTop, akRight, akBottom]
+          Height = 255
+          Align = alClient
           DataSource = ds
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
@@ -66,7 +65,7 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
           Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
           ParentFont = False
           PopupMenu = PopupMenu1
-          TabOrder = 7
+          TabOrder = 0
           TitleFont.Charset = DEFAULT_CHARSET
           TitleFont.Color = clWindowText
           TitleFont.Height = -9
@@ -77,18 +76,6 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
           OnKeyUp = dbgConsultaKeyUp
           SairComEnter = False
           Columns = <
-            item
-              Expanded = False
-              FieldName = 'COMANDA'
-              Width = 60
-              Visible = True
-            end
-            item
-              Expanded = False
-              FieldName = 'COMANDA_NOME'
-              Width = 129
-              Visible = True
-            end
             item
               Expanded = False
               FieldName = 'COD_PROD'
@@ -162,157 +149,69 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
               Visible = True
             end>
         end
-        object edtConsultaCod: TbfEdit
-          Left = 196
-          Top = 8
-          Width = 54
-          Height = 21
-          CharCase = ecUpperCase
-          TabOrder = 2
-          OnChange = edtConsultaCodChange
-          OnKeyDown = edtConsultaCodKeyDown
-          OnKeyPress = edtConsultaCodKeyPress
-          SairComEnter = False
-        end
-        object edtConsultaNOME: TbfEdit
-          Left = 66
-          Top = 8
-          Width = 130
-          Height = 21
-          CharCase = ecUpperCase
-          TabOrder = 1
-          OnChange = edtConsultaCodChange
-          OnKeyDown = edtConsultaCodKeyDown
-          OnKeyPress = edtConsultaCodKeyPress
-          SairComEnter = False
-        end
-        object edtConsComanda: TbfEdit
+        object Panel2: TPanel
           Left = 2
-          Top = 8
-          Width = 63
+          Top = 15
+          Width = 833
           Height = 21
-          CharCase = ecUpperCase
-          TabOrder = 0
-          OnChange = edtConsultaCodChange
-          OnKeyDown = edtConsultaCodKeyDown
-          OnKeyPress = edtConsultaCodKeyPress
-          SairComEnter = False
-        end
-        object edtConsultaProduto: TbfEdit
-          Left = 251
-          Top = 8
-          Width = 165
-          Height = 21
-          CharCase = ecUpperCase
-          TabOrder = 3
-          OnChange = edtConsultaCodChange
-          OnKeyDown = edtConsultaCodKeyDown
-          OnKeyPress = edtConsultaCodKeyPress
-          SairComEnter = False
-        end
-        object edtConsultaParceiro: TbfEdit
-          Left = 416
-          Top = 8
-          Width = 101
-          Height = 21
-          CharCase = ecUpperCase
-          TabOrder = 4
-          OnChange = edtConsultaCodChange
-          OnKeyDown = edtConsultaCodKeyDown
-          OnKeyPress = edtConsultaCodKeyPress
-          SairComEnter = False
-        end
-        object cbxComandaCons: TComboBox
-          Left = 584
-          Top = 8
-          Width = 135
-          Height = 21
-          Style = csDropDownList
-          Anchors = [akTop, akRight]
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clWindowText
-          Font.Height = -11
-          Font.Name = 'Tahoma'
-          Font.Style = []
-          ItemHeight = 13
-          ItemIndex = 0
-          ParentFont = False
-          TabOrder = 5
-          Text = 'Comandas Abertas'
-          OnClick = btConsultaClick
-          Items.Strings = (
-            'Comandas Abertas'
-            'Comandas Fechadas'
-            'Todas Comandas '
-            'Itens Cancelados'
-            'Itens N'#227'o Impressos')
-        end
-        object btConsulta: TBitBtn
-          Left = 719
-          Top = 3
-          Width = 117
-          Height = 28
-          Anchors = [akTop, akRight]
-          Caption = 'Atualizar'
-          TabOrder = 6
-          OnClick = btConsultaClick
-          Glyph.Data = {
-            F6060000424DF606000000000000360000002800000018000000180000000100
-            180000000000C0060000120B0000120B00000000000000000000FFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE0EB
-            FB9ABEF26EA1EE689DED6B9FEE6B9FEE6B9FEE6B9FEE6B9FEE6B9FEE6B9FEE6B
-            9FEE689DED6FA2EE9CBFF2E2ECFBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFF8FB7F11D6EE5186BE81A6EEA1A6EEB1A6EEB1A6EEB1A6EEB1A6EEB1A6E
-            EB1A6EEB1A6EEB1A6EEB1A6EEB1A6EEA186CE7206FE595BAF2FFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFF76A6EF196DE91F72ED1B6EEA1F70E92472E72372E82372E8
-            2372E82372E82372E82372E82372E82372E82472E71F70E91C6EEA1F71ED186C
-            E883AFF0FFFFFFFFFFFFEEF4FDACCAF51A6DE82274EE2372E888B2F1E0EBFBEE
-            F4FDEBF2FDEBF2FDEBF2FDEBF2FDEBF2FDEBF2FDEBF2FDEBF2FDEEF4FDE0EBFB
-            85B0F12171E92273EE196CE7B8D1F7F2F7FE9CBFF45592EE2375EE1F6FEAB7D1
-            F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFA6C6F51F71EC2274ED659CEFAECBF64E8EED2071EB
-            2877F0619AEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5492EE2877F02A76EC62
-            9AEF3F85EE2475ED2979F18AB5F4FFFFFFFFFFFFFFFFFFFFFFFFB7D1F8D5E5FB
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7DAD
-            F22A79F02374ED478AEF4388F02677EF2D7DF27AAAF4FFFFFFFFFFFFFFFFFFFF
-            FFFF7AABF42F7BEDE0ECFCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFF70A5F32E7DF22777EF5190F178AAF53F87F23380F44389F2F1F6
-            FEFFFFFFFFFFFFFFFFFF93BAF62E7CF23D86F0E3EEFDFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFE3EDFD3B85F1337FF4488BF284B1F5C9DDFB7FAFF6
-            3480F53480F4649FF4F5F9FEFFFFFFFFFFFF9BC0F83280F43581F5458AF3DAE8
-            FDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6EFFD5795F43482F53380F483B2F7CF
-            E1FCFFFFFFE6EFFD418AF53B86F73683F6498DF583B2F89CC1FA5F9BF53682F6
-            3985F73684F63A84F4DAE8FDFFFFFFF5F9FF9BC1FA75A9F74288F53884F63A86
-            F7458CF5EBF2FEFFFFFFFFFFFFFFFFFFCEE1FC448CF73B86F83E89F83B86F83A
-            85F73C86F83C87F83C87F83E88F83E88F73A85F7E0ECFDFFFFFF90BAF93583F6
-            408AF83B86F8448CF6D0E2FCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEDF4FE80B1
-            FA4D91F8418BF93F89F93C88F83F89F93F89F9428BF93B88F966A0FAF9FBFFFF
-            FFFF8AB7FB3584F84A90F87FB0FAEDF4FEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFF4F8FFD3E4FDDAE8FD80B1FB408AFB468EFB3C88FA7EAF
-            FBFDFEFFFFFFFFEFF5FEBBD5FDD0E2FDF3F7FFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA0C4FD458EFC
-            408BFB86B5FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFF99C1FD3E8AFD85B5FDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFF89B7FE83B4FEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE4EFFFF9FBFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
-            FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+          Align = alTop
+          BevelOuter = bvNone
+          TabOrder = 1
+          DesignSize = (
+            833
+            21)
+          object edtConsultaCod: TbfEdit
+            Left = 1
+            Top = 0
+            Width = 56
+            Height = 21
+            CharCase = ecUpperCase
+            TabOrder = 0
+            OnChange = edtConsultaCodChange
+            OnKeyDown = edtConsultaCodKeyDown
+            OnKeyPress = edtConsultaCodKeyPress
+            SairComEnter = False
+          end
+          object edtConsultaProduto: TbfEdit
+            Left = 58
+            Top = 0
+            Width = 165
+            Height = 21
+            CharCase = ecUpperCase
+            TabOrder = 1
+            OnChange = edtConsultaCodChange
+            OnKeyDown = edtConsultaCodKeyDown
+            OnKeyPress = edtConsultaCodKeyPress
+            SairComEnter = False
+          end
+          object edtConsultaParceiro: TbfEdit
+            Left = 223
+            Top = 0
+            Width = 102
+            Height = 21
+            CharCase = ecUpperCase
+            TabOrder = 2
+            OnChange = edtConsultaCodChange
+            OnKeyDown = edtConsultaCodKeyDown
+            OnKeyPress = edtConsultaCodKeyPress
+            SairComEnter = False
+          end
+          object btFechaItem: TBitBtn
+            Left = 812
+            Top = 0
+            Width = 21
+            Height = 21
+            Anchors = [akTop, akRight]
+            Caption = 'X'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -9
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 3
+            OnClick = btFechaItemClick
+          end
         end
       end
       object btEditar: TBitBtn
@@ -322,7 +221,7 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
         Height = 25
         Anchors = [akRight, akBottom]
         Caption = 'Visualizar'
-        TabOrder = 2
+        TabOrder = 3
         Visible = False
         OnClick = btIncluiClick
       end
@@ -333,10 +232,202 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
         Height = 25
         Anchors = [akRight, akBottom]
         Caption = 'Transportar'
-        TabOrder = 1
+        TabOrder = 2
         Visible = False
         OnClick = btTransportaClick
         NumGlyphs = 2
+      end
+      object GroupBox3: TGroupBox
+        Left = 0
+        Top = 0
+        Width = 837
+        Height = 144
+        Align = alClient
+        Caption = 'Comandas'
+        TabOrder = 0
+        object dbgCMD: TbfdbGrid
+          Left = 2
+          Top = 36
+          Width = 833
+          Height = 106
+          Align = alClient
+          DataSource = dsCMD
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clWindowText
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          Options = [dgTitles, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgAlwaysShowSelection, dgConfirmDelete, dgCancelOnExit]
+          ParentFont = False
+          TabOrder = 1
+          TitleFont.Charset = DEFAULT_CHARSET
+          TitleFont.Color = clWindowText
+          TitleFont.Height = -9
+          TitleFont.Name = 'Tahoma'
+          TitleFont.Style = []
+          OnDblClick = dbgCMDDblClick
+          OnKeyPress = dbgCMDKeyPress
+          SairComEnter = False
+          Columns = <
+            item
+              Expanded = False
+              FieldName = 'COMANDA'
+              Width = 62
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'NOME'
+              Width = 195
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'ID_CLIENTE'
+              Width = 61
+              Visible = True
+            end
+            item
+              Expanded = False
+              FieldName = 'NOME_CLIENTE'
+              Width = 283
+              Visible = True
+            end>
+        end
+        object Panel3: TPanel
+          Left = 2
+          Top = 15
+          Width = 833
+          Height = 21
+          Align = alTop
+          BevelOuter = bvNone
+          TabOrder = 0
+          DesignSize = (
+            833
+            21)
+          object btConsulta: TBitBtn
+            Left = 716
+            Top = -7
+            Width = 117
+            Height = 28
+            Anchors = [akTop, akRight]
+            Caption = 'Atualizar (F5)'
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -9
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            TabOrder = 3
+            OnClick = btConsultaClick
+            Glyph.Data = {
+              F6060000424DF606000000000000360000002800000018000000180000000100
+              180000000000C0060000120B0000120B00000000000000000000FFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE0EB
+              FB9ABEF26EA1EE689DED6B9FEE6B9FEE6B9FEE6B9FEE6B9FEE6B9FEE6B9FEE6B
+              9FEE689DED6FA2EE9CBFF2E2ECFBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFF8FB7F11D6EE5186BE81A6EEA1A6EEB1A6EEB1A6EEB1A6EEB1A6EEB1A6E
+              EB1A6EEB1A6EEB1A6EEB1A6EEB1A6EEA186CE7206FE595BAF2FFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFF76A6EF196DE91F72ED1B6EEA1F70E92472E72372E82372E8
+              2372E82372E82372E82372E82372E82372E82472E71F70E91C6EEA1F71ED186C
+              E883AFF0FFFFFFFFFFFFEEF4FDACCAF51A6DE82274EE2372E888B2F1E0EBFBEE
+              F4FDEBF2FDEBF2FDEBF2FDEBF2FDEBF2FDEBF2FDEBF2FDEBF2FDEEF4FDE0EBFB
+              85B0F12171E92273EE196CE7B8D1F7F2F7FE9CBFF45592EE2375EE1F6FEAB7D1
+              F7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFA6C6F51F71EC2274ED659CEFAECBF64E8EED2071EB
+              2877F0619AEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF5492EE2877F02A76EC62
+              9AEF3F85EE2475ED2979F18AB5F4FFFFFFFFFFFFFFFFFFFFFFFFB7D1F8D5E5FB
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF7DAD
+              F22A79F02374ED478AEF4388F02677EF2D7DF27AAAF4FFFFFFFFFFFFFFFFFFFF
+              FFFF7AABF42F7BEDE0ECFCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFF70A5F32E7DF22777EF5190F178AAF53F87F23380F44389F2F1F6
+              FEFFFFFFFFFFFFFFFFFF93BAF62E7CF23D86F0E3EEFDFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFE3EDFD3B85F1337FF4488BF284B1F5C9DDFB7FAFF6
+              3480F53480F4649FF4F5F9FEFFFFFFFFFFFF9BC0F83280F43581F5458AF3DAE8
+              FDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE6EFFD5795F43482F53380F483B2F7CF
+              E1FCFFFFFFE6EFFD418AF53B86F73683F6498DF583B2F89CC1FA5F9BF53682F6
+              3985F73684F63A84F4DAE8FDFFFFFFF5F9FF9BC1FA75A9F74288F53884F63A86
+              F7458CF5EBF2FEFFFFFFFFFFFFFFFFFFCEE1FC448CF73B86F83E89F83B86F83A
+              85F73C86F83C87F83C87F83E88F83E88F73A85F7E0ECFDFFFFFF90BAF93583F6
+              408AF83B86F8448CF6D0E2FCFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEDF4FE80B1
+              FA4D91F8418BF93F89F93C88F83F89F93F89F9428BF93B88F966A0FAF9FBFFFF
+              FFFF8AB7FB3584F84A90F87FB0FAEDF4FEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFF4F8FFD3E4FDDAE8FD80B1FB408AFB468EFB3C88FA7EAF
+              FBFDFEFFFFFFFFEFF5FEBBD5FDD0E2FDF3F7FFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFA0C4FD458EFC
+              408BFB86B5FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFF99C1FD3E8AFD85B5FDFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFF89B7FE83B4FEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE4EFFFF9FBFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
+              FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
+          end
+          object cbxComandaCons: TComboBox
+            Left = 584
+            Top = 0
+            Width = 135
+            Height = 21
+            Style = csDropDownList
+            Anchors = [akTop, akRight]
+            Font.Charset = DEFAULT_CHARSET
+            Font.Color = clWindowText
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ItemHeight = 13
+            ItemIndex = 0
+            ParentFont = False
+            TabOrder = 2
+            Text = 'Comandas Abertas'
+            OnClick = btConsultaClick
+            Items.Strings = (
+              'Comandas Abertas'
+              'Comandas Fechadas'
+              'Todas Comandas '
+              'Itens Cancelados'
+              'Itens N'#227'o Impressos')
+          end
+          object edtConsultaNOME: TbfEdit
+            Left = 66
+            Top = 0
+            Width = 195
+            Height = 21
+            CharCase = ecUpperCase
+            TabOrder = 1
+            OnChange = edtConsComandaChange
+            OnKeyDown = edtConsComandaKeyDown
+            OnKeyPress = edtConsultaCodKeyPress
+            SairComEnter = False
+          end
+          object edtConsComanda: TbfEdit
+            Left = 2
+            Top = 0
+            Width = 63
+            Height = 21
+            CharCase = ecUpperCase
+            TabOrder = 0
+            OnChange = edtConsComandaChange
+            OnKeyDown = edtConsComandaKeyDown
+            OnKeyPress = edtConsultaCodKeyPress
+            SairComEnter = False
+          end
+        end
       end
     end
     object tsCadastro: TTabSheet
@@ -372,9 +463,9 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
         object Label4: TLabel
           Left = 29
           Top = 80
-          Width = 38
+          Width = 133
           Height = 13
-          Caption = 'Produto'
+          Caption = 'Produto (F9 para consultar)'
         end
         object Label6: TLabel
           Left = 499
@@ -572,7 +663,7 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
           Top = 314
           Width = 117
           Height = 31
-          Caption = 'Registrar'
+          Caption = 'Registrar (F11)'
           Enabled = False
           TabOrder = 11
           OnClick = btSalvaClick
@@ -666,7 +757,7 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
     Height = 25
     Anchors = [akRight, akBottom]
     Caption = 'Sair'
-    TabOrder = 1
+    TabOrder = 2
     Visible = False
     OnClick = btSaiClick
     NumGlyphs = 2
@@ -677,17 +768,23 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
     Width = 845
     Height = 32
     Anchors = [akLeft, akTop, akRight]
-    TabOrder = 2
+    TabOrder = 0
     DesignSize = (
       845
       32)
     object btDesiste: TBitBtn
-      Left = 235
+      Left = 253
       Top = 1
-      Width = 117
+      Width = 126
       Height = 31
       Anchors = [akLeft, akBottom]
-      Caption = 'Voltar'
+      Caption = 'Voltar (Esc)'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -9
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 3
       OnClick = btDesisteClick
       Glyph.Data = {
@@ -750,11 +847,17 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
     end
     object btInclui: TBitBtn
       Tag = 1
-      Left = 235
+      Left = 253
       Top = 1
-      Width = 117
+      Width = 126
       Height = 31
-      Caption = 'Vender'
+      Caption = 'Vender (F12)'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -9
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 2
       OnClick = btIncluiClick
       Glyph.Data = {
@@ -818,9 +921,15 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
     object btAbreComanda: TBitBtn
       Left = 1
       Top = 1
-      Width = 117
+      Width = 126
       Height = 31
-      Caption = 'Abrir Comanda'
+      Caption = 'Abrir Comanda (F2)'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -9
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 0
       OnClick = btAbreComandaClick
       Glyph.Data = {
@@ -882,11 +991,17 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
         E9FFDBE9FFFDFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     end
     object btFecharComanda: TBitBtn
-      Left = 118
+      Left = 127
       Top = 1
-      Width = 117
+      Width = 126
       Height = 31
-      Caption = 'Fechar Comanda'
+      Caption = 'Fechar Comanda (F3)'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -9
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 1
       OnClick = btFecharComandaClick
       Glyph.Data = {
@@ -948,12 +1063,18 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
         E2FFE5EFFFFEFEFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     end
     object btImprime: TBitBtn
-      Left = 726
+      Left = 714
       Top = 1
-      Width = 117
+      Width = 126
       Height = 31
       Anchors = [akRight, akBottom]
       Caption = 'Relat'#243'rio'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -9
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 4
       OnClick = btImprimeClick
       Glyph.Data = {
@@ -1015,12 +1136,18 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
         BBFE8EBCFEE3EEFFF9FBFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
     end
     object btFechaTurno: TBitBtn
-      Left = 609
+      Left = 597
       Top = 1
-      Width = 117
+      Width = 126
       Height = 31
       Anchors = [akTop, akRight]
-      Caption = 'Fechar Turno'
+      Caption = 'Fechar Turno (F10)'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -9
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 5
       OnClick = btFechaTurnoClick
       Glyph.Data = {
@@ -1088,12 +1215,18 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
         FFFFFFFFFF0D}
     end
     object btPedido: TBitBtn
-      Left = 352
+      Left = 379
       Top = 1
-      Width = 117
+      Width = 126
       Height = 31
       Anchors = [akLeft, akBottom]
-      Caption = 'Imprimir Pedido'
+      Caption = 'Imprimir Pedido (F6)'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -9
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
       TabOrder = 6
       OnClick = btPedidoClick
       Glyph.Data = {
@@ -1463,8 +1596,8 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
     SystemPreview.FormState = wsMaximized
     SystemPreview.ZoomFactor = 110.000000000000000000
     SystemPrinter.MarginBottom = 7.000000000000000000
-    SystemPrinter.MarginLeft = 10.000000000000000000
-    SystemPrinter.MarginRight = 10.000000000000000000
+    SystemPrinter.MarginLeft = 5.000000000000000000
+    SystemPrinter.MarginRight = 5.000000000000000000
     SystemPrinter.MarginTop = 7.000000000000000000
     SystemPrinter.ScaleX = 100.000000000000000000
     SystemPrinter.ScaleY = 100.000000000000000000
@@ -1488,5 +1621,159 @@ object fmSGV_VENDAS: TfmSGV_VENDAS
     DocInfo.Producer = 'Nevrona Designs'
     Left = 560
     Top = 184
+  end
+  object cdsCMD: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspCMD'
+    Left = 720
+    Top = 87
+    object cdsCMDID: TIntegerField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object cdsCMDUSU_INCLUI: TStringField
+      FieldName = 'USU_INCLUI'
+      Size = 30
+    end
+    object cdsCMDDT_INCLUI: TSQLTimeStampField
+      FieldName = 'DT_INCLUI'
+    end
+    object cdsCMDUSU_ALTERA: TStringField
+      FieldName = 'USU_ALTERA'
+      Size = 30
+    end
+    object cdsCMDDT_ALTERA: TSQLTimeStampField
+      FieldName = 'DT_ALTERA'
+    end
+    object cdsCMDIDALT: TStringField
+      FieldName = 'IDALT'
+      Size = 100
+    end
+    object cdsCMDIDALTERADO: TStringField
+      FieldName = 'IDALTERADO'
+      Size = 100
+    end
+    object cdsCMDCOMANDA: TIntegerField
+      DisplayLabel = 'Comanda'
+      FieldName = 'COMANDA'
+      Required = True
+    end
+    object cdsCMDNOME: TStringField
+      DisplayLabel = 'Nome'
+      FieldName = 'NOME'
+      Required = True
+      Size = 200
+    end
+    object cdsCMDID_CLIENTE: TIntegerField
+      Alignment = taLeftJustify
+      DisplayLabel = 'C'#243'd.Cliente'
+      FieldName = 'ID_CLIENTE'
+    end
+    object cdsCMDFECHADA: TStringField
+      DisplayLabel = 'Fechada'
+      FieldName = 'FECHADA'
+      FixedChar = True
+      Size = 1
+    end
+    object cdsCMDTOTAL: TFMTBCDField
+      DisplayLabel = 'Total'
+      FieldName = 'TOTAL'
+      DisplayFormat = '#,##0.00'
+      Precision = 18
+      Size = 8
+    end
+    object cdsCMDNOME_CLIENTE: TStringField
+      DisplayLabel = 'Cliente'
+      FieldName = 'NOME_CLIENTE'
+      ProviderFlags = []
+      Size = 100
+    end
+    object cdsCMDSOCIO: TStringField
+      DisplayLabel = 'Associado'
+      FieldName = 'SOCIO'
+      Size = 1
+    end
+  end
+  object dspCMD: TDataSetProvider
+    DataSet = qrCMD
+    UpdateMode = upWhereKeyOnly
+    Left = 800
+    Top = 111
+  end
+  object qrCMD: TSQLQuery
+    MaxBlobSize = -1
+    Params = <>
+    SQL.Strings = (
+      'select c.*, p.nome NOME_CLIENTE'
+      ' from SGV_COMANDAS c'
+      ' left join sgc_participantes p on p.id = c.id_cliente'
+      ''
+      ''
+      ' where c.ID > 0')
+    Left = 728
+    Top = 111
+    object qrCMDID: TIntegerField
+      FieldName = 'ID'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object qrCMDUSU_INCLUI: TStringField
+      FieldName = 'USU_INCLUI'
+      Size = 30
+    end
+    object qrCMDDT_INCLUI: TSQLTimeStampField
+      FieldName = 'DT_INCLUI'
+    end
+    object qrCMDUSU_ALTERA: TStringField
+      FieldName = 'USU_ALTERA'
+      Size = 30
+    end
+    object qrCMDDT_ALTERA: TSQLTimeStampField
+      FieldName = 'DT_ALTERA'
+    end
+    object qrCMDIDALT: TStringField
+      FieldName = 'IDALT'
+      Size = 100
+    end
+    object qrCMDIDALTERADO: TStringField
+      FieldName = 'IDALTERADO'
+      Size = 100
+    end
+    object qrCMDCOMANDA: TIntegerField
+      FieldName = 'COMANDA'
+      Required = True
+    end
+    object qrCMDNOME: TStringField
+      FieldName = 'NOME'
+      Required = True
+      Size = 200
+    end
+    object qrCMDID_CLIENTE: TIntegerField
+      FieldName = 'ID_CLIENTE'
+    end
+    object qrCMDFECHADA: TStringField
+      FieldName = 'FECHADA'
+      FixedChar = True
+      Size = 1
+    end
+    object qrCMDTOTAL: TFMTBCDField
+      FieldName = 'TOTAL'
+      Precision = 18
+      Size = 8
+    end
+    object qrCMDNOME_CLIENTE: TStringField
+      FieldName = 'NOME_CLIENTE'
+      ProviderFlags = []
+      Size = 100
+    end
+    object qrCMDSOCIO: TStringField
+      FieldName = 'SOCIO'
+      Size = 1
+    end
+  end
+  object dsCMD: TDataSource
+    DataSet = cdsCMD
+    Left = 768
+    Top = 111
   end
 end

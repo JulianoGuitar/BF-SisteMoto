@@ -6,6 +6,7 @@ unit uFuncoesDB;
 interface
 
 uses
+  midaslib,
   Sysutils, Windows, Forms, Controls, Grids, DBGrids,
   udtmConexao, DB, SqlExpr, DBXpress;
 
@@ -233,8 +234,9 @@ begin
     then
     begin
       Close;
-      MessageBox(Application.Handle, pchar('Sua versão demo expirou. Entre em contato :)'+#13+#13
-                                          +'provisualpoa@gmail.com'#13+#13
+      MessageBox(Application.Handle, pchar('Há um problema na instalação do programa. (Código 111)'+#13
+                                          +'Entre em contato com o suporte técico.'+#13+#13
+                                          +'provisualpoa@gmail.com'#13
                                           +'+55 51 98402 5128' ), 'Provisual TI', MB_ICONINFORMATION);
       FechaDataModule(dtmCon);
       Result := '';

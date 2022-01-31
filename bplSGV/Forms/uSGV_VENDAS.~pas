@@ -19,18 +19,15 @@ type
     pgc: TPageControl;
     tsCadastro: TTabSheet;
     tsConsulta: TTabSheet;
-    GroupBox1: TGroupBox;
+    gbItens: TGroupBox;
     btExclui: TBitBtn;
     GroupBox2: TGroupBox;
     btSai: TBitBtn;
-    dbgConsulta: TbfdbGrid;
     btEditar: TBitBtn;
-    edtConsultaCod: TbfEdit;
     Label2: TLabel;
     edtCliente: TbfdbEdit;
     btTransporta: TBitBtn;
     RelVisual: TRelVisualBlue;
-    edtConsultaNOME: TbfEdit;
     Label3: TLabel;
     edtComanda: TbfdbEdit;
     Label4: TLabel;
@@ -42,7 +39,6 @@ type
     edtCodFamilia: TbfdbEditButton;
     Label1: TLabel;
     edtOBS: TbfdbMemo;
-    edtConsComanda: TbfEdit;
     Label10: TLabel;
     edtCustoRep: TbfdbEdit;
     qrID: TIntegerField;
@@ -83,8 +79,6 @@ type
     cdsUNIDADE: TStringField;
     cdsNOME_FAMILIA: TStringField;
     cdsCOMANDA_NOME: TStringField;
-    edtConsultaProduto: TbfEdit;
-    edtConsultaParceiro: TbfEdit;
     Label5: TLabel;
     bfdbEdit1: TbfdbEdit;
     Label8: TLabel;
@@ -102,10 +96,8 @@ type
     DBEdit1: TbfDBEdit;
     qrIMPRESSO: TStringField;
     cdsIMPRESSO: TStringField;
-    cbxComandaCons: TComboBox;
     btFechaTurno: TBitBtn;
     btPedido: TBitBtn;
-    btConsulta: TBitBtn;
     qrCANCELADO: TStringField;
     cdsCANCELADO: TStringField;
     PopupMenu1: TPopupMenu;
@@ -114,6 +106,51 @@ type
     RvRenderPDF1: TRvRenderPDF;
     MarcarcomoNoImpresso1: TMenuItem;
     N1: TMenuItem;
+    GroupBox3: TGroupBox;
+    dbgCMD: TbfdbGrid;
+    dbgConsulta: TbfdbGrid;
+    Panel2: TPanel;
+    edtConsultaCod: TbfEdit;
+    edtConsultaProduto: TbfEdit;
+    edtConsultaParceiro: TbfEdit;
+    cdsCMD: TClientDataSet;
+    cdsCMDID: TIntegerField;
+    cdsCMDUSU_INCLUI: TStringField;
+    cdsCMDDT_INCLUI: TSQLTimeStampField;
+    cdsCMDUSU_ALTERA: TStringField;
+    cdsCMDDT_ALTERA: TSQLTimeStampField;
+    cdsCMDIDALT: TStringField;
+    cdsCMDIDALTERADO: TStringField;
+    cdsCMDCOMANDA: TIntegerField;
+    cdsCMDNOME: TStringField;
+    cdsCMDID_CLIENTE: TIntegerField;
+    cdsCMDFECHADA: TStringField;
+    cdsCMDTOTAL: TFMTBCDField;
+    cdsCMDNOME_CLIENTE: TStringField;
+    cdsCMDSOCIO: TStringField;
+    dspCMD: TDataSetProvider;
+    qrCMD: TSQLQuery;
+    qrCMDID: TIntegerField;
+    qrCMDUSU_INCLUI: TStringField;
+    qrCMDDT_INCLUI: TSQLTimeStampField;
+    qrCMDUSU_ALTERA: TStringField;
+    qrCMDDT_ALTERA: TSQLTimeStampField;
+    qrCMDIDALT: TStringField;
+    qrCMDIDALTERADO: TStringField;
+    qrCMDCOMANDA: TIntegerField;
+    qrCMDNOME: TStringField;
+    qrCMDID_CLIENTE: TIntegerField;
+    qrCMDFECHADA: TStringField;
+    qrCMDTOTAL: TFMTBCDField;
+    qrCMDNOME_CLIENTE: TStringField;
+    qrCMDSOCIO: TStringField;
+    dsCMD: TDataSource;
+    Panel3: TPanel;
+    btConsulta: TBitBtn;
+    cbxComandaCons: TComboBox;
+    edtConsultaNOME: TbfEdit;
+    edtConsComanda: TbfEdit;
+    btFechaItem: TBitBtn;
 
     procedure Direitos;
     function Pode_Salvar: boolean;
@@ -181,6 +218,14 @@ type
     procedure CancelaItem1Click(Sender: TObject);
     procedure RvSystem1BeforePrint(Sender: TObject);
     procedure RvSystem1Print(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure btFechaItemClick(Sender: TObject);
+    procedure dbgCMDDblClick(Sender: TObject);
+    procedure edtConsComandaKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure dbgCMDKeyPress(Sender: TObject; var Key: Char);
+    procedure edtConsComandaChange(Sender: TObject);
 
   private
     procedure HabilitaControles;
@@ -331,6 +376,35 @@ begin
   if pgc.ActivePage = tsCadastro then btDesisteClick(self);
 
   if not bDBAberto then exit;
+
+  with qrCMD do
+  begin
+    SQLConnection := dtmCon.SQLDB;
+    if active then close;
+    SQL.Clear;
+    SQL.Add(' select c.*, p.nome NOME_CLIENTE ');
+    SQL.Add(' from SGV_COMANDAS c ');
+    SQL.Add(' left join sgc_participantes p on p.id = c.id_cliente ');
+    SQL.Add(' where c.ID > 0 ');
+
+    if StrToIntDef(edtConsComanda.Text,0) <> 0
+    then SQL.Add(' and c.comanda = '+trim(edtConsComanda.Text));
+    if trim(edtConsultaNOME.Text) <> ''
+    then SQL.Add(' and c.nome like ''%'+trim(edtConsultaNOME.Text)+'%'' ');
+
+    if cbxComandaCons.ItemIndex <> 2
+    then
+      if cbxComandaCons.ItemIndex = 1
+      then SQL.Add(' and coalesce(c.fechada,''N'') = ''S'' ')
+      else SQL.Add(' and coalesce(c.fechada,''N'') = ''N'' ');
+
+  end;
+
+  if cdsCMD.Active
+  then cdsCMD.Close;
+
+  cdsCMD.Open;
+
   with qr do
   begin
     SQLConnection := dtmCon.SQLDB;
@@ -393,8 +467,8 @@ begin
 
   if  (not bModal)
   and (not cds.IsEmpty)
-  and (dbgConsulta.CanFocus)
-  then dbgConsulta.SetFocus;
+  and (dbgCMD.CanFocus)
+  then dbgCMD.SetFocus;
 
   HabilitaControles;
 end;
@@ -417,9 +491,11 @@ begin
 
     HabilitaControles;
 
+    btConsultaClick(self);
+
     if id > 0
-    then
-    cds.Locate('ID',id,[]);
+    then cds.Locate('ID',id,[]);
+
     pgc.ActivePage := tsConsulta;
   except
     on e : Exception do
@@ -790,13 +866,12 @@ end;
 procedure TfmSGV_VENDAS.edtConsultaCodChange(Sender: TObject);
 begin
   if cds.Active then cds.Close;
-
 end;
 
 procedure TfmSGV_VENDAS.edtConsultaCodKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-if key = vk_down then dbgConsulta.SetFocus;
+   if key = vk_down then dbgConsulta.SetFocus;
 end;
 
 
@@ -827,12 +902,19 @@ end;
 
 procedure TfmSGV_VENDAS.FormKeyPress(Sender: TObject; var Key: Char);
 begin
-if key = chr(vk_escape) then
+  if key = chr(vk_escape) then
   begin
     if pgc.ActivePage = tsCadastro
     then btDesisteClick(self)
-    else if bModal
+    else
+    begin
+      if (pgc.ActivePage = tsConsulta)
+      and (gbItens.Visible)
+      then btFechaItemClick(self)
+      else
+         if bModal
          then btSaiClick(self);
+    end;
   end;
 end;
 
@@ -937,6 +1019,10 @@ var
   s, f, c : string;
   b : boolean;
 begin
+
+  dbgCMDDblClick(self);
+
+
   if StrToIntDef(edtConsComanda.Text,0) = 0 then
   begin
     MessageBox(Handle, pchar('Informe a comanda.'), 'Aviso', MB_ICONWARNING);
@@ -956,6 +1042,10 @@ begin
     edtConsComanda.SetFocus;
     exit;
   end;
+
+  gbItens.Visible := true;
+
+  ImprimeRelatorio(1);
   
   fmFechaComanda := TfmFechaComanda.Create(self);
   fmFechaComanda.cds.CreateDataSet;
@@ -1031,7 +1121,7 @@ begin
 
   MessageBox(Handle, pchar('Comanda encerrada.'), 'Aviso', MB_ICONWARNING);
 
-  ImprimeRelatorio(1);
+  //ImprimeRelatorio(1);  imprime antes
 
   LimpaFiltros;
   btConsultaClick(self);
@@ -1353,6 +1443,8 @@ begin
   edtConsultaProduto.Clear;
   edtConsultaParceiro.Clear;
   cbxComandaCons.ItemIndex := 0;
+
+  gbItens.Visible := false;
 end;
 
 procedure TfmSGV_VENDAS.btImprimeClick(Sender: TObject);
@@ -1429,16 +1521,17 @@ begin
     Cabecalho3Esquerda := cbxComandaCons.Text;
     Cabecalho2Centro := '';
     case iOp of
-      1 : Cabecalho2Centro := 'Comanda fechada';
-      2 : Cabecalho2Centro := 'Turno '+FormatDateTime('dd/mm/yy hh:nn',dtRel1)+' - '+FormatDateTime('dd/mm/yy hh:nn',dtRel2);
+      1 : Cabecalho3Esquerda := 'Comanda '+edtConsComanda.Text;
+      2 : Cabecalho3Esquerda := 'Turno '+FormatDateTime('dd/mm/yy hh:nn',dtRel1)+' - '+FormatDateTime('dd/mm/yy hh:nn',dtRel2);
     end;
 
     Cabecalho3Centro := '';
-    if (edtConsComanda.Text <> '')
+    if (iOp <> 1)
+    and( (edtConsComanda.Text <> '')
     or (edtConsultaNOME.Text <> '')
     or (edtConsultaCod.Text <> '')
     or (edtConsultaProduto.Text <> '')
-    or (edtConsultaParceiro.Text <> '')
+    or (edtConsultaParceiro.Text <> ''))
     then
     Cabecalho3Centro := ('Filtros: '+trim(edtConsComanda.Text+' '+edtConsultaNOME.Text+' '+edtConsultaCod.Text+' '+edtConsultaProduto.Text+' '+edtConsultaParceiro.Text));
 
@@ -1448,7 +1541,7 @@ begin
 
     DefinicaoCampos.Add('G1;100;E;;NOME_FAMILIA; ');
 
-    DefinicaoCampos.Add('D0;20;E;dd/mm/yy hh:nn;DT_INCLUI;Data/Hora');
+    DefinicaoCampos.Add('D0;18;E;dd/mm/yy;DT_INCLUI;Data');
     DefinicaoCampos.Add('D0;10;D;;COMANDA; ');
     DefinicaoCampos.Add('D0;20;E;;COMANDA_NOME;Comanda');
   //  DefinicaoCampos.Add('D0;15;D;;COD_PROD;Código');
@@ -1457,7 +1550,7 @@ begin
 //    DefinicaoCampos.Add('D1;15;D;##,##0;QUANTIDADE;Qtde.');
 
 //    DefinicaoCampos.Add('D0;22;D;##,##0.00;VALOR;Preço');
-    DefinicaoCampos.Add('D1;20;D;##,##0.00;TOTAL;Total');
+    DefinicaoCampos.Add('D1;22;D;##,##0.00;TOTAL;Total');
 
     DefinicaoCampos.Add('D0;400;D;;NOME_FAMILIA;Parceiro');
 
@@ -1596,7 +1689,7 @@ begin
 
   with Sender as TBaseReport do
   begin
-    SetFont('Arial',8);
+    SetFont('Arial',10);
     Newline;
     if LinesLeft <= 0 then NewPage;
 
@@ -1632,8 +1725,9 @@ begin
         NewLine;
         if LinesLeft <= 0 then NewPage;
 
-        PrintLeft(FormatDateTime('dd/mm/yy hh:mm:ss', cdsDT_INCLUI.AsDateTime)
-                 +' | '+cdsCOMANDA.AsString+' '+cdsCOMANDA_NOME.AsString
+        PrintLeft(cdsCOMANDA.AsString+' '+cdsCOMANDA_NOME.AsString
+                 +'  '+FormatDateTime('dd/mm/yy hh:mm:ss', cdsDT_INCLUI.AsDateTime)
+
                  , MarginLeft);
         NewLine;
         if LinesLeft <= 0 then NewPage;
@@ -1646,6 +1740,7 @@ begin
         end;
       end;
 
+      SetFont('Arial',12);
       PrintLeft(cdsQUANTIDADE.AsString, MarginLeft);
       Print(' - '+cdsNOME_PROD.AsString);
       NewLine;
@@ -1669,6 +1764,64 @@ begin
     end;
   end;
 
+end;
+
+procedure TfmSGV_VENDAS.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  case key of
+    vk_f2: if btAbreComanda.CanFocus then btAbreComandaClick(self);
+    vk_f3: if btFecharComanda.CanFocus then btFecharComandaClick(self);
+    vk_f12 : if pgc.ActivePage = tsConsulta
+             then if btInclui.CanFocus then btIncluiClick(btInclui);
+    vk_f11 : if pgc.ActivePage = tsCadastro
+             then if btSalva.CanFocus then btSalvaClick(self);
+    vk_f5: if btConsulta.CanFocus then btConsultaClick(self);
+    vk_f6: if btPedido.CanFocus then btPedidoClick(self);
+    vk_f9:
+    begin
+      if pgc.ActivePage = tsCadastro
+      then if edtCodProd.CanFocus
+           and (not edtCodProd.Focused)
+           then edtCodProdButtonClick(self);
+    end;
+    vk_f10: if btFechaTurno.CanFocus then btFechaTurnoClick(self);
+  end;
+end;
+
+procedure TfmSGV_VENDAS.btFechaItemClick(Sender: TObject);
+begin
+  LimpaFiltros;
+end;
+
+procedure TfmSGV_VENDAS.dbgCMDDblClick(Sender: TObject);
+begin
+  if cdsCMD.IsEmpty then
+  exit;
+
+  edtConsComanda.Text := cdsCMDCOMANDA.AsString;
+  edtConsultaNOME.Text := cdsCMDNOME.AsString;
+  btConsultaClick(self);
+  gbItens.Visible := true;
+
+  if dbgConsulta.CanFocus then dbgConsulta.SetFocus;  
+end;
+
+procedure TfmSGV_VENDAS.edtConsComandaKeyDown(Sender: TObject;
+  var Key: Word; Shift: TShiftState);
+begin
+  if key = vk_down then dbgCMD.SetFocus;
+end;
+
+procedure TfmSGV_VENDAS.dbgCMDKeyPress(Sender: TObject; var Key: Char);
+begin
+  if key = chr(vk_return) then dbgCMDDblClick(self);
+end;
+
+procedure TfmSGV_VENDAS.edtConsComandaChange(Sender: TObject);
+begin
+  if cds.Active then cds.Close;
+  gbItens.Visible := false;
 end;
 
 end.

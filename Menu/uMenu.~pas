@@ -132,7 +132,7 @@ begin
     SQL.Add(' left join sgd_grupomenu g on g.id = u.grupomenu ');
     SQL.Add(' where u.usuario = :u ');
     SQL.Add(' and a.mostramenu = ''S'' ');
-    SQL.Add(' order by u.USUARIO, m.nome_modulo, u.modulo, u.grupomenu, u.ACESSO ');
+    SQL.Add(' order by u.USUARIO, m.nome, u.modulo, u.grupomenu, u.ACESSO ');
     ParamByName('u').AsString := sUsuario;
     Open;
 
